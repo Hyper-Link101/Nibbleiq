@@ -15,7 +15,8 @@
     "lucide-react": "^0.263.1",
     "recharts": "^2.8.0",
     "react-helmet-async": "^2.0.4",
-    "motion": "^11.11.17"
+    "motion": "^11.11.17",
+    "sonner": "^2.0.3"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
