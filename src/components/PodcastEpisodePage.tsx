@@ -3,7 +3,7 @@ import { Badge } from './ui/badge';
 import { Calendar, Clock, User, ArrowLeft, Play, ExternalLink, Share2 } from 'lucide-react';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { Footer } from './Footer';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface PodcastEpisode {
   id: number;

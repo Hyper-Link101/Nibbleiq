@@ -1,14 +1,7 @@
-import { Link } from "react-router-dom";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
-import { Card } from "./ui/card";
-import { ArrowLeft, Mail, MapPin, Clock } from "lucide-react";
 import { Footer } from "./Footer";
 import { DemoModal } from "./DemoModal";
 import { useState } from "react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { SEO, seoConfigs } from "./SEO";
 

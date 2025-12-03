@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { X, MessageCircle, Send, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 interface Message {
   id: string;

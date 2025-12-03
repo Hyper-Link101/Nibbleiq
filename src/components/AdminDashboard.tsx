@@ -13,7 +13,7 @@ import {
   Share2
 } from 'lucide-react';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface BlogPost {
   id: number;
