@@ -1,107 +1,139 @@
-import { CircleCheck, TrendingDown, Clock, BarChart3 } from "lucide-react";
+import { motion } from "motion/react";
+import { Check, ArrowRight, Zap, Eye, Bell } from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { Button } from "./ui/button";
+import { useState } from "react";
+import { DemoModal } from "./DemoModal";
 
 export function ProductShowcase() {
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+
+  const showcaseItems = [
+    {
+      icon: Eye,
+      title: "Real-Time Visibility",
+      subtitle: "See what's happening across all locations",
+      features: [
+        "Live food cost tracking",
+        "Labor performance by shift",
+        "Supplier price monitoring",
+        "Margin alerts as they happen"
+      ],
+      color: "from-orange-500 to-red-500"
+    },
+    {
+      icon: Bell,
+      title: "Instant Alerts",
+      subtitle: "Never miss a margin threat",
+      features: [
+        "Price increase notifications",
+        "Variance threshold alerts",
+        "Invoice discrepancy flags",
+        "Daily margin briefings"
+      ],
+      color: "from-blue-500 to-indigo-500"
+    },
+    {
+      icon: Zap,
+      title: "AI-Powered Insights",
+      subtitle: "Predictive intelligence that saves time",
+      features: [
+        "Demand-based purchasing",
+        "Labor optimization",
+        "Waste pattern detection",
+        "Menu engineering insights"
+      ],
+      color: "from-amber-500 to-orange-500"
+    }
+  ];
+
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl text-slate-900 mb-4">
-              Built for Restaurant Operators, By Restaurant Experts
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              See how NibbleIQ helps operators like you gain control of costs and save hours every week
-            </p>
-          </div>
-
-          {/* Product + Person Split Layout */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Side - Dashboard with Metrics */}
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-50 p-6">
-                <img 
-                  src="https://images.unsplash.com/photo-1584291527908-033f4d6542c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwdmlzdWFsaXphdGlvbiUyMHNjcmVlbnxlbnwxfHx8fDE3NjQ2MzgzMzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="NibbleIQ analytics dashboard showing food cost trends and labor metrics"
-                  className="w-full h-auto rounded-lg"
-                  loading="lazy"
-                />
-                {/* Brand overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#3D5AFE]/10 to-transparent rounded-2xl"></div>
-              </div>
-
-              {/* Floating Feature Cards */}
-              <div className="absolute -left-4 top-1/4 bg-white rounded-xl shadow-2xl p-4 max-w-[180px] border border-slate-100">
-                <div className="flex items-center gap-2 mb-2">
-                  <TrendingDown className="h-5 w-5 text-green-600" />
-                  <span className="text-xs text-slate-600">Cost Savings</span>
-                </div>
-                <p className="text-xl text-slate-900">$8,400</p>
-                <p className="text-xs text-slate-500">Last quarter</p>
-              </div>
-
-              <div className="absolute -right-4 bottom-1/4 bg-white rounded-xl shadow-2xl p-4 max-w-[180px] border border-slate-100">
-                <div className="flex items-center gap-2 mb-2">
-                  <Clock className="h-5 w-5 text-[#3D5AFE]" />
-                  <span className="text-xs text-slate-600">Time Saved</span>
-                </div>
-                <p className="text-xl text-slate-900">24 hrs</p>
-                <p className="text-xs text-slate-500">Per month</p>
-              </div>
-            </div>
-
-            {/* Right Side - Testimonial with Operator */}
-            <div className="relative">
-              <div className="mb-8">
-                <img 
-                  src="https://images.unsplash.com/photo-1678626667639-de9c676e8222?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVmJTIwcG9ydHJhaXQlMjBwcm9mZXNzaW9uYWwlMjBzbWlsZXxlbnwxfHx8fDE3NjQ3MTU4MzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Restaurant operator using NibbleIQ platform"
-                  className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-xl"
-                  loading="lazy"
-                />
-              </div>
-
-              <blockquote className="mb-6">
-                <p className="text-xl md:text-2xl text-slate-900 mb-6 leading-relaxed">
-                  "Before NibbleIQ, I was drowning in spreadsheets and invoices. Now I have real-time visibility into food costs across all three locations. It's saved me hours every week."
-                </p>
-              </blockquote>
-
-              <div className="mb-8">
-                <p className="text-slate-900">Marcus Chen</p>
-                <p className="text-slate-600 text-sm">Executive Chef & Partner, Coastal Kitchen Group</p>
-              </div>
-
-              {/* Key Benefits */}
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <CircleCheck className="h-6 w-6 text-[#3D5AFE] flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-slate-900">Automated invoice processing</p>
-                    <p className="text-sm text-slate-600">OCR scans and categorizes every invoice automatically</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CircleCheck className="h-6 w-6 text-[#3D5AFE] flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-slate-900">Real-time cost alerts</p>
-                    <p className="text-sm text-slate-600">Get notified when food costs spike or variances occur</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CircleCheck className="h-6 w-6 text-[#3D5AFE] flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-slate-900">Multi-location dashboard</p>
-                    <p className="text-sm text-slate-600">Compare performance across all your restaurants instantly</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+    <>
+      <section className="py-20 bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-25">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-orange-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
-      </div>
-    </section>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 text-white font-bold">
+              Everything You Need in{" "}
+              <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                One Platform
+              </span>
+            </h2>
+            <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto">
+              Unified intelligence across all your restaurant operations
+            </p>
+          </motion.div>
+
+          {/* Showcase Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+            {showcaseItems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                className="group"
+              >
+                <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-white/30 transition-all h-full">
+                  {/* Icon */}
+                  <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-orange-500/20 group-hover:scale-110 transition-transform`}>
+                    <item.icon className="w-8 h-8 text-white" />
+                  </div>
+
+                  {/* Title & Subtitle */}
+                  <h3 className="text-2xl text-white mb-2 font-bold">{item.title}</h3>
+                  <p className="text-slate-400 mb-6">{item.subtitle}</p>
+
+                  {/* Features List */}
+                  <ul className="space-y-3">
+                    {item.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-300">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="text-center mt-12"
+          >
+            <Button
+              size="lg"
+              onClick={() => setIsDemoModalOpen(true)}
+              className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white shadow-2xl shadow-orange-500/50 text-lg px-12 py-8 group"
+            >
+              See the Platform in Action
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+            </Button>
+            <p className="text-slate-400 mt-4">
+              15-minute personalized demo • No sales pitch
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <DemoModal open={isDemoModalOpen} onOpenChange={setIsDemoModalOpen} />
+    </>
   );
 }

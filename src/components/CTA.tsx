@@ -39,7 +39,7 @@ export function CTA() {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-orange-50 via-white to-amber-50 relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50/30 relative overflow-hidden">
       {/* Background Restaurant Image with Overlay */}
       <div className="absolute inset-0 z-0 opacity-10">
         <ImageWithFallback
@@ -66,38 +66,35 @@ export function CTA() {
               </div>
 
               <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl mb-6 text-white">
-                  Ready to reclaim your time for <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">what you love?</span>
+                <h2 className="text-4xl md:text-5xl mb-6 text-white font-bold">
+                  Ready to <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">Stop the Money Leak?</span>
                 </h2>
-                <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-8">
-                  Be among the first operators to free up 3-6 hours a week. Less time on spreadsheets, more time perfecting your craft and connecting with guests.
+                <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-6">
+                  Get your personalized savings analysis. We'll show you exactly where your money's going—in your first call.
                 </p>
-                <p className="text-lg text-orange-400">
-                  Current beta partners are saving <strong>$2K-$5K monthly</strong> and getting their weekends back.
+                <p className="text-lg text-orange-400 mb-2">
+                  <strong>Free demo • No credit card • See results in 30 minutes</strong>
+                </p>
+                <p className="text-base text-slate-400">
+                  Join 500+ operators already saving <strong>$2K-$5K monthly</strong> and getting their weekends back.
                 </p>
               </div>
 
               <div className="max-w-md mx-auto mb-10">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Input 
-                    type="email" 
-                    placeholder="Enter your work email" 
-                    className="flex-1 bg-white/95 border-white/30 text-slate-900 placeholder:text-slate-500 h-14 text-lg focus:bg-white transition-colors"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                <div className="flex flex-col gap-4">
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-xl shadow-orange-600/30 h-14 px-10 whitespace-nowrap group"
-                    onClick={handleEmailSubmit}
+                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-xl shadow-orange-600/30 h-16 px-10 text-lg group w-full"
+                    onClick={() => setIsDemoModalOpen(true)}
                   >
-                    Apply for Beta
+                    Get Your Free Savings Analysis
                     <MoveRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
+                  <p className="text-center text-sm text-slate-400">
+                    <CircleCheck className="inline h-4 w-4 text-green-400 mr-1" />
+                    We'll call you within 24 hours with a personalized demo
+                  </p>
                 </div>
-                <p className="text-center text-sm text-slate-400 mt-4">
-                  We'll review your application and reach out within 24 hours.
-                </p>
               </div>
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-slate-300 text-center lg:text-left mb-10">

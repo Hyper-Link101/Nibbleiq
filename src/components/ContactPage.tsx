@@ -82,7 +82,7 @@ export function ContactPage() {
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      toast.error('Something went wrong. Please try emailing us directly at hello@siftiq.io');
+      toast.error('Something went wrong. Please try emailing us directly at Hello@nibbleiq.ai');
     } finally {
       setIsSubmitting(false);
     }
@@ -229,8 +229,8 @@ export function ContactPage() {
                 <div>
                   <h3 className="text-slate-900 mb-1">Email Us</h3>
                   <p className="text-slate-600 mb-2">For general inquiries</p>
-                  <a href="mailto:hello@siftiq.io" className="text-orange-600 hover:text-orange-700">
-                    hello@siftiq.io
+                  <a href="mailto:Hello@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">
+                    Hello@nibbleiq.ai
                   </a>
                 </div>
               </div>

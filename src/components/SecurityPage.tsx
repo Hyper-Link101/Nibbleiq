@@ -317,7 +317,7 @@ export function SecurityPage() {
               <li>Datadog - Application monitoring</li>
             </ul>
             <p className="text-slate-700 mt-4">
-              For a complete list of subprocessors, please contact us at <a href="mailto:security@siftiq.io" className="text-orange-600 hover:text-orange-700">security@siftiq.io</a>.
+              For a complete list of subprocessors, please contact us at <a href="mailto:security@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">security@nibbleiq.ai</a>.
             </p>
           </section>
 
@@ -386,11 +386,11 @@ export function SecurityPage() {
               If you have questions about our security practices or need additional information:
             </p>
             <div className="bg-slate-50 p-6 rounded-lg">
-              <p className="text-slate-700 mb-2"><strong>Security Team:</strong> <a href="mailto:security@siftiq.io" className="text-orange-600 hover:text-orange-700">security@siftiq.io</a></p>
-              <p className="text-slate-700 mb-2"><strong>Privacy Inquiries:</strong> <a href="mailto:privacy@siftiq.io" className="text-orange-600 hover:text-orange-700">privacy@siftiq.io</a></p>
-              <p className="text-slate-700 mb-4"><strong>General Contact:</strong> <a href="mailto:hello@siftiq.io" className="text-orange-600 hover:text-orange-700">hello@siftiq.io</a></p>
+              <p className="text-slate-700 mb-2"><strong>Security Team:</strong> <a href="mailto:security@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">security@nibbleiq.ai</a></p>
+              <p className="text-slate-700 mb-2"><strong>Privacy Inquiries:</strong> <a href="mailto:privacy@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">privacy@nibbleiq.ai</a></p>
+              <p className="text-slate-700 mb-4"><strong>General Contact:</strong> <a href="mailto:Hello@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">Hello@nibbleiq.ai</a></p>
               <p className="text-slate-700 text-sm mt-4">
-                For security vulnerability reports, please use our responsible disclosure process at <a href="mailto:security@siftiq.io" className="text-orange-600 hover:text-orange-700">security@siftiq.io</a>. We appreciate the security community's efforts to keep our platform safe.
+                For security vulnerability reports, please use our responsible disclosure process at <a href="mailto:security@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">security@nibbleiq.ai</a>. We appreciate the security community's efforts to keep our platform safe.
               </p>
             </div>
           </section>

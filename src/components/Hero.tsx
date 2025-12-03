@@ -16,12 +16,12 @@ export function Hero() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-orange-50">
-      {/* Warm, Inviting Background Elements */}
+    <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50/30 to-red-50/20">
+      {/* Warm, Food-Inspired Background Elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-amber-400/10 via-orange-300/5 to-transparent rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-orange-400/8 via-amber-300/5 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-red-400/5 to-orange-400/5 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-amber-400/10 via-orange-300/8 to-transparent rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-red-400/8 via-amber-300/5 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-orange-400/5 to-red-400/5 rounded-full blur-3xl opacity-30"></div>
       </div>
 
       {/* Sticky Navigation */}
@@ -150,19 +150,20 @@ export function Hero() {
                 <span className="text-sm text-slate-700">Trusted by passionate restaurant owners</span>
               </motion.div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl mb-8 text-slate-900 tracking-tight leading-[1.1]">
-                Spend less time on costs, more time on{" "}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl mb-8 text-slate-900 tracking-tight leading-[1.1] font-bold">
+                Get back to{" "}
                 <span className="bg-gradient-to-r from-orange-600 via-red-600 to-amber-600 bg-clip-text text-transparent">
                   what you love
                 </span>
+                {" "}cooking
               </h1>
               
               <p className="text-xl md:text-2xl text-slate-600 mb-6 leading-relaxed">
-                NibbleIQ.ai is restaurant cost control software that helps you track food costs, manage inventory, and increase profit margins. Our AI-powered platform shows you exactly where your money goes in real-time.
+                NibbleIQ is restaurant management software that helps you control food costs, manage inventory, and boost profits. See where your money goes in real-time.
               </p>
               
               <p className="text-lg md:text-xl text-slate-700 mb-10 leading-relaxed">
-                <strong>Stop drowning in spreadsheets.</strong> Free up 3-6 hours a week to perfect your menu, train your team, and connect with guests—the things that make your restaurant special.
+                <strong>Spend less time in spreadsheets.</strong> More time perfecting your menu, building guest relationships, and growing your team. We catch price hikes, spot waste, and keep suppliers honest.
               </p>
 
               {/* Enhanced Trust Indicators - Hospitality Focused */}
@@ -211,7 +212,7 @@ export function Hero() {
                   className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-2xl shadow-orange-600/30 hover:shadow-3xl hover:shadow-orange-600/50 text-lg px-12 py-8 w-full sm:w-auto group transform hover:scale-105 transition-all duration-300"
                   onClick={() => setIsDemoModalOpen(true)}
                 >
-                  Request Early Access
+                  See Your Savings Potential
                   <MoveRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
                 </Button>
                 <Button 
@@ -230,19 +231,37 @@ export function Hero() {
                 </Button>
               </div>
 
-              {/* Social Proof */}
+              {/* Social Proof + Clear Value */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
-                className="mt-10 flex items-center justify-center lg:justify-start gap-2 text-sm text-slate-600"
+                className="mt-10"
               >
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 border-2 border-white"></div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-500 to-orange-600 border-2 border-white"></div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-600 to-amber-600 border-2 border-white"></div>
+                <div className="flex flex-col items-center lg:items-start gap-4">
+                  <div className="flex items-center gap-2 text-sm text-slate-600">
+                    <div className="flex -space-x-2">
+                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1758892170660-3ad271f3d672?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwY2hlZiUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NjQ3NjM5NzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Restaurant chef" />
+                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1586863981824-d9dd81824d6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwbWFuYWdlciUyMGJ1c2luZXNzfGVufDF8fHx8MTc2NDc4MDc0M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Restaurant manager" />
+                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1758887261865-a2b89c0f7ac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwb3duZXIlMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzY0NzQ3ODIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Restaurant owner" />
+                    </div>
+                    <span>Join 500+ operators saving <strong>8-12 hours/week</strong></span>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm">
+                    <div className="flex items-center gap-2 text-green-700 bg-green-50 px-3 py-1.5 rounded-full border border-green-200">
+                      <CircleCheck className="h-4 w-4" />
+                      <span>Free 14-day trial</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-orange-700 bg-orange-50 px-3 py-1.5 rounded-full border border-orange-200">
+                      <CircleCheck className="h-4 w-4" />
+                      <span>No credit card required</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-blue-700 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200">
+                      <CircleCheck className="h-4 w-4" />
+                      <span>Setup in 48 hours</span>
+                    </div>
+                  </div>
                 </div>
-                <span>Join 18+ restaurant groups reclaiming <strong>3-6 hours/week</strong></span>
               </motion.div>
             </motion.div>
 
@@ -266,16 +285,16 @@ export function Hero() {
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
                   <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1659354219145-dedd2324698e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwY2hlZiUyMGhhcHB5JTIwa2l0Y2hlbnxlbnwxfHx8fDE3NjQ3MzcyNzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                    alt="Happy chef in professional kitchen"
+                    src="https://images.unsplash.com/photo-1608494132127-cfadf11a3889?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwaW52ZW50b3J5JTIwc2hlbHZlc3xlbnwxfHx8fDE3NjQ3MzgxNTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Restaurant inventory management and storage"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
                 <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
                   <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1642477303430-ad6b97b6ad78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dGlmdWwlMjBwbGF0ZWQlMjBmb29kJTIwcmVzdGF1cmFudHxlbnwxfHx8fDE3NjQ3MzcyNzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                    alt="Beautifully plated restaurant dish"
+                    src="https://images.unsplash.com/photo-1543353071-873f17a7a088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5lJTIwZGluaW5nJTIwcGxhdGVkJTIwZm9vZHxlbnwxfHx8fDE3NjQ3MzgxNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Fine dining plated restaurant dish"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
@@ -296,7 +315,7 @@ export function Hero() {
                     </div>
                     <div>
                       <p className="text-base text-slate-900">Get back to what you love</p>
-                      <p className="text-sm text-slate-600">Save <strong>3-6 hours/week</strong> on admin work</p>
+                      <p className="text-sm text-slate-600">Turn <strong>hours of spreadsheets</strong> into minutes</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-1">

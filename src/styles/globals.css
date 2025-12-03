@@ -4,43 +4,45 @@
 
 :root {
   --font-size: 16px;
-  --background: #ffffff;
+  --background: #fffbf5;
   --foreground: #0F172A;
   --card: #ffffff;
   --card-foreground: #0F172A;
   --popover: #ffffff;
   --popover-foreground: #0F172A;
-  --primary: #3D5AFE;
+  --primary: #FF5722;
   --primary-foreground: #ffffff;
-  --secondary: #2962FF;
+  --secondary: #F97316;
   --secondary-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #FF5722;
+  --muted: #fef3e7;
+  --muted-foreground: #78716c;
+  --accent: #F59E0B;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: rgba(15, 23, 42, 0.1);
+  --border: rgba(251, 146, 60, 0.15);
   --input: transparent;
-  --input-background: #f8fafc;
-  --switch-background: #cbd5e1;
+  --input-background: #fef3e7;
+  --switch-background: #fed7aa;
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #3D5AFE;
-  --chart-1: #3D5AFE;
-  --chart-2: #2962FF;
-  --chart-3: #FF5722;
-  --chart-4: #2962FF;
-  --chart-5: #3D5AFE;
+  --ring: #F97316;
+  --chart-1: #F97316;
+  --chart-2: #FF5722;
+  --chart-3: #F59E0B;
+  --chart-4: #FB923C;
+  --chart-5: #FDBA74;
   --radius: 0.75rem;
-  --sidebar: #f8fafc;
+  --sidebar: #fef3e7;
   --sidebar-foreground: #0F172A;
-  --sidebar-primary: #3D5AFE;
+  --sidebar-primary: #F97316;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f1f5f9;
+  --sidebar-accent: #fed7aa;
   --sidebar-accent-foreground: #0F172A;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #3D5AFE;
+  --sidebar-border: #fed7aa;
+  --sidebar-ring: #F97316;
 }
 
 .dark {
@@ -139,25 +141,25 @@
   :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
     h1 {
       font-size: var(--text-2xl);
-      font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-bold);
       line-height: 1.5;
     }
 
     h2 {
       font-size: var(--text-xl);
-      font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-bold);
       line-height: 1.5;
     }
 
     h3 {
       font-size: var(--text-lg);
-      font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-semibold);
       line-height: 1.5;
     }
 
     h4 {
       font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-semibold);
       line-height: 1.5;
     }
 

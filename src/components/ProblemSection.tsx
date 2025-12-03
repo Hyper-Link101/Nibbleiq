@@ -4,35 +4,41 @@ export function ProblemSection() {
   const problems = [
     {
       icon: TrendingDown,
-      title: "Margin Erosion",
-      description: "Hidden price increases from suppliers silently eat into profits, discovered only at month-end when it's too late."
+      title: "Your Profits Are Disappearing",
+      description: "Sysco raised chicken prices 18% last month. Did you catch it? Most operators don't notice until they see their bank account."
     },
     {
       icon: Timer,
-      title: "Reactive Management",
-      description: "You're always one step behind—finding out about issues after they've already impacted your bottom line."
+      title: "You're Always Playing Catch-Up",
+      description: "By the time you see the problem in your numbers, you've already lost thousands. You're reacting instead of preventing."
     },
     {
       icon: FileSearch,
-      title: "Data Scattered",
-      description: "Purchasing, labor, and operations data sits in separate systems, making it impossible to see the full picture."
+      title: "Everything's a Mess",
+      description: "Invoices in email, sales in your POS, costs in QuickBooks. You're wasting hours every week just trying to connect the dots."
     },
     {
       icon: TriangleAlert,
-      title: "Blind Spots",
-      description: "Food cost variances and operational risks go unnoticed until they become major problems in your P&L."
+      title: "Blind Spots Are Killing You",
+      description: "Food cost is supposed to be 32%, but it's actually 38%. Where's the extra 6% going? You have no idea—and that's the problem."
     }
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-slate-900 text-white relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-20 md:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-orange-950 text-white relative overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-500 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl mb-6 font-bold">
-            The Problem: Month-End Surprises Are <span className="text-[#FF5722]">Killing Your Margins</span>
+            You're Losing Money and <span className="text-orange-500">You Don't Even Know It</span>
           </h2>
           <p className="text-xl text-slate-300">
-            Restaurant operators are stuck reacting to problems instead of preventing them. By the time you see the issue in your P&L, it's already cost you thousands.
+            Sound familiar? You work 70-hour weeks, but you're still not sure where all the money goes. Here's why.
           </p>
         </div>
 
@@ -42,18 +48,15 @@ export function ProblemSection() {
               key={index}
               className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 hover:bg-slate-800 transition-all hover:scale-105"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-[#3D5AFE] to-[#2962FF] rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-red-600 rounded-lg flex items-center justify-center mb-4">
                 <problem.icon className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-xl mb-3 font-bold">{problem.title}</h3>
+              <h3 className="text-xl mb-3 font-semibold">{problem.title}</h3>
               <p className="text-slate-400">{problem.description}</p>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-gradient-to-b from-[#3D5AFE]/10 to-transparent blur-3xl pointer-events-none"></div>
     </section>
   );
 }

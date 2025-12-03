@@ -480,7 +480,7 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
             Ready to Transform Your Operations?
           </h2>
           <p className="text-xl text-blue-50 mb-8 max-w-2xl mx-auto">
-            Join 18+ restaurant groups using NibbleIQ.ai to protect their margins and optimize operations.
+            Join 500+ restaurant operators using NibbleIQ.ai to protect their margins and optimize operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-[#3D5AFE] hover:bg-slate-50">

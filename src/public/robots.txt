@@ -1,86 +1,36 @@
-# robots.txt for NibbleIQ - https://nibbleiq.ai
-# Allow all search engines to crawl and index the site
+# Robots.txt for NibbleIQ.ai
+# Last updated: December 3, 2025
 
+# Allow all crawlers to index the site
 User-agent: *
 Allow: /
-
-# Disallow admin areas
-Disallow: /admin
-Disallow: /admin-login
-
-# Allow important directories
-Allow: /resources
-Allow: /contact
-Allow: /about
-Allow: /blog
-Allow: /podcast
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 0
 
 # Sitemap location
 Sitemap: https://nibbleiq.ai/sitemap.xml
 
-# Specific bot configurations
-# Google
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-# Bing
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 0
-
-# Yahoo
-User-agent: Slurp
-Allow: /
-Crawl-delay: 0
-
-# DuckDuckGo
-User-agent: DuckDuckBot
-Allow: /
-Crawl-delay: 0
-
-# Yandex
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 1
-
-# Baidu
-User-agent: Baiduspider
-Allow: /
-Crawl-delay: 1
-
-# AI Crawlers (for AI training and search)
-# OpenAI GPT
+# Allow popular AI crawlers (OpenAI, Google Bard, etc.)
 User-agent: GPTBot
-Allow: /
-
-# Google Bard/Gemini
-User-agent: Google-Extended
-Allow: /
-
-# Anthropic Claude
-User-agent: anthropic-ai
-Allow: /
-
-# Common AI bots
-User-agent: CCBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-# Block spam bots
-User-agent: AhrefsBot
-Disallow: /
+User-agent: Google-Extended
+Allow: /
 
-User-agent: SemrushBot
-Disallow: /
+User-agent: anthropic-ai
+Allow: /
 
-User-agent: MJ12bot
-Disallow: /
+User-agent: Claude-Web
+Allow: /
 
-User-agent: DotBot
-Disallow: /
+# Disallow admin and private areas
+User-agent: *
+Disallow: /admin
+Disallow: /api/
+
+# Crawl-delay for considerate crawling
+Crawl-delay: 1
+
+# Host declaration (helps with canonical URLs)
+Host: https://nibbleiq.ai

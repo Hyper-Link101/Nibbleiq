@@ -195,8 +195,9 @@ export function AboutPage() {
                 size="lg" 
                 className="bg-white text-orange-600 hover:bg-orange-50"
                 onClick={() => setShowDemoModal(true)}
+                asChild
               >
-                Book a Demo
+                <a href="mailto:Hello@nibbleiq.ai">Get in Touch</a>
               </Button>
               <Button 
                 size="lg" 

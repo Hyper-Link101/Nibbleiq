@@ -208,7 +208,7 @@ export function BlogPostPage() {
             Ready to Transform Your Operations?
           </h2>
           <p className="text-xl text-orange-50 mb-8 max-w-2xl mx-auto">
-            Join 150+ restaurant groups using Sift IQ to protect their margins and optimize operations.
+            Join 500+ restaurant operators using NibbleIQ to protect their margins and optimize operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-orange-600 hover:bg-slate-50">

@@ -26,7 +26,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-slate-900 text-slate-300 py-16">
+    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-orange-950 text-slate-300 py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
           <div className="lg:col-span-2">
@@ -35,13 +35,13 @@ export function Footer() {
               A unified restaurant intelligence platform that delivers real-time analytics and intelligent automation for better operational decisions.
             </p>
             <div className="flex gap-4">
-              <a href="https://linkedin.com/company/nibbleiq" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-[#3D5AFE] rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://linkedin.com/company/nibbleiq" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com/NibbleIQ" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-[#3D5AFE] rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://twitter.com/NibbleIQ" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="mailto:Hello@nibbleiq.ai" className="w-10 h-10 bg-slate-800 hover:bg-[#3D5AFE] rounded-lg flex items-center justify-center transition-colors">
+              <a href="mailto:Hello@nibbleiq.ai" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
                 <Mail className="h-5 w-5" />
               </a>
             </div>

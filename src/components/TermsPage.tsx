@@ -153,7 +153,7 @@ export function TermsPage() {
 
             <h3 className="text-slate-900 mb-3 mt-6">Support</h3>
             <p className="text-slate-700">
-              We provide customer support via email at <a href="mailto:hello@siftiq.io" className="text-orange-600 hover:text-orange-700">hello@siftiq.io</a>. Support hours and response times depend on your subscription plan.
+              We provide customer support via email at <a href="mailto:Hello@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">Hello@nibbleiq.ai</a>. Support hours and response times depend on your subscription plan.
             </p>
           </section>
 
@@ -262,9 +262,9 @@ export function TermsPage() {
               If you have questions about these Terms, please contact us:
             </p>
             <div className="bg-slate-50 p-6 rounded-lg">
-              <p className="text-slate-700 mb-2"><strong>Email:</strong> <a href="mailto:legal@siftiq.io" className="text-orange-600 hover:text-orange-700">legal@siftiq.io</a></p>
-              <p className="text-slate-700 mb-2"><strong>General Contact:</strong> <a href="mailto:hello@siftiq.io" className="text-orange-600 hover:text-orange-700">hello@siftiq.io</a></p>
-              <p className="text-slate-700"><strong>Company:</strong> Sift IQ, Inc.</p>
+              <p className="text-slate-700 mb-2"><strong>Email:</strong> <a href="mailto:legal@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">legal@nibbleiq.ai</a></p>
+              <p className="text-slate-700 mb-2"><strong>General Contact:</strong> <a href="mailto:Hello@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">Hello@nibbleiq.ai</a></p>
+              <p className="text-slate-700"><strong>Company:</strong> NibbleIQ, Inc.</p>
             </div>
           </section>
         </div>

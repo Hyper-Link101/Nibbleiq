@@ -7,38 +7,38 @@ export function HowItWorks() {
     {
       icon: Link2,
       number: "01",
-      title: "Connect Your Systems",
-      description: "NibbleIQ integrates seamlessly with your existing tools—POS, accounting, supplier portals, and more. No need to change your workflow.",
+      title: "Hook Up Your Stuff",
+      description: "Connect your email (where invoices come in), your POS system, QuickBooks—whatever you use. Takes about 20 minutes. We'll help you.",
       visual: "connect"
     },
     {
       icon: Radar,
       number: "02",
-      title: "AI Analysis - Price Intelligence Dashboard",
-      description: "Our predictive AI continuously monitors purchasing, labor, and operational signals, learning patterns unique to your business.",
+      title: "We Watch Everything",
+      description: "Like having a really smart accountant checking your numbers 24/7. We learn what's normal for your restaurant, then spot anything weird.",
       visual: "analyze"
     },
     {
       icon: BellRing,
       number: "03",
-      title: "Get Proactive Alerts",
-      description: "Receive daily, actionable insights about price increases, labor optimization, and risks—before they impact your P&L.",
+      title: "Get Alerts That Matter",
+      description: "Every morning, see what happened yesterday. Price increases, weird charges, too much waste. Real problems you can actually fix.",
       visual: "alerts"
     },
     {
       icon: BadgeCheck,
       number: "04",
-      title: "Protect Your Margins",
-      description: "Make confident decisions with clarity and data. Run smoother shifts, support your team, and keep profits where they belong.",
+      title: "Keep Your Money",
+      description: "Make smart decisions. Stop the bleeding. Fire suppliers who are ripping you off. Finally know exactly what's going on.",
       visual: "protect"
     }
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+    <section id="how-it-works" className="py-24 bg-gradient-to-br from-amber-50 via-orange-50/50 to-red-50/30 relative overflow-hidden">
       {/* Background animated gradient blobs */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-[#3D5AFE]/20 rounded-full blur-3xl opacity-20 animate-blob"></div>
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#2962FF]/20 rounded-full blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div className="absolute top-20 right-10 w-72 h-72 bg-orange-600/20 rounded-full blur-3xl opacity-20 animate-blob"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-amber-600/20 rounded-full blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
@@ -49,10 +49,10 @@ export function HowItWorks() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl mb-6 text-slate-900 font-bold">
-            How NibbleIQ Works: <span className="text-[#3D5AFE]">Simple, Powerful, Proactive</span>
+            How It Works: <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Super Simple</span>
           </h2>
           <p className="text-xl text-slate-600">
-            Get up and running in days, not months. No complex setup, no workflow disruption.
+            Set up in 20 minutes. Start saving money the same day.
           </p>
         </motion.div>
 

@@ -61,16 +61,16 @@ export function BetaBenefits() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF5722]/20 text-[#FF5722] rounded-full text-sm backdrop-blur-sm border border-[#FF5722]/30 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 text-orange-500 rounded-full text-sm backdrop-blur-sm border border-orange-500/30 mb-6">
             <Rocket className="h-4 w-4" />
-            Beta Program Benefits
+            Join Our Founding Partners
           </div>
           
           <h2 className="text-4xl md:text-5xl mb-6 font-bold">
-            What You Get as a <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3D5AFE] to-[#FF5722]">Founding Partner</span>
+            Build the Future with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-red-500 to-amber-600">Restaurant Operators Like You</span>
           </h2>
           <p className="text-xl text-slate-300">
-            Beta isn't just "early access"—it's a partnership. You get premium support, exclusive pricing, and direct influence on what we build next.
+            This isn't just "early access"—you're joining a community of operators who shape what we build. Get hands-on support, insider pricing, and a real voice in our product roadmap.
           </p>
         </motion.div>
 
@@ -78,20 +78,20 @@ export function BetaBenefits() {
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:bg-slate-800 hover:border-[#3D5AFE]/50 transition-all hover:scale-105 group"
+              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:bg-slate-800 hover:border-orange-500/50 transition-all hover:scale-105 group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-[#3D5AFE] to-[#2962FF] rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-red-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg shadow-orange-500/30">
                 <benefit.icon className="h-6 w-6 text-white" />
               </div>
               
               <h3 className="text-xl mb-3 font-bold">{benefit.title}</h3>
               <p className="text-slate-400 mb-4">{benefit.description}</p>
               
-              <div className="flex items-center gap-2 text-[#3D5AFE]">
+              <div className="flex items-center gap-2 text-orange-500">
                 <CheckCircle2 className="h-4 w-4" />
                 <span className="text-sm font-bold">{benefit.highlight}</span>
               </div>
@@ -107,23 +107,26 @@ export function BetaBenefits() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 md:p-8">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-slate-800/80 backdrop-blur-sm border border-orange-900/50 rounded-2xl p-6 md:p-8">
             <div className="text-center sm:text-left">
-              <p className="text-sm text-slate-400 mb-1">Limited to next</p>
-              <p className="text-4xl font-bold text-white mb-1">25 <span className="text-[#FF5722]">spots</span></p>
-              <p className="text-sm text-slate-400">Current beta partners: 18/25</p>
+              <p className="text-sm text-slate-400 mb-1">Limited spots for</p>
+              <p className="text-4xl font-bold text-white mb-1">25 <span className="text-orange-500">founding partners</span></p>
+              <p className="text-sm text-slate-400">Current partners: 18/25</p>
             </div>
             <div className="h-px sm:h-20 w-20 sm:w-px bg-slate-700"></div>
             <div className="text-center">
               <Button 
                 size="lg"
-                className="bg-gradient-to-r from-[#3D5AFE] to-[#2962FF] hover:from-[#2962FF] hover:to-[#3D5AFE] text-white shadow-xl shadow-[#3D5AFE]/30 text-lg px-10 py-7 group"
+                className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-xl shadow-orange-600/30 text-lg px-10 py-7 group"
                 onClick={() => setIsDemoModalOpen(true)}
               >
-                Apply for Beta Access
+                Claim Your Founding Partner Spot
                 <Rocket className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <p className="text-xs text-slate-400 mt-3">Response within 24 hours</p>
+              <p className="text-xs text-slate-400 mt-3">
+                <CheckCircle2 className="inline h-3 w-3 text-green-400 mr-1" />
+                Free demo • 50% off first year • Priority support
+              </p>
             </div>
           </div>
         </motion.div>

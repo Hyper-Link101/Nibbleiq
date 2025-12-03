@@ -8,23 +8,21 @@ interface DemoModalProps {
 
 export function DemoModal({ open, onOpenChange }: DemoModalProps) {
   useEffect(() => {
-    // Load HubSpot form script when modal opens
+    // Load HubSpot form script only once when modal opens
     if (open) {
-      const script = document.createElement('script');
-      script.src = 'https://js-na2.hsforms.net/forms/embed/244445783.js';
-      script.defer = true;
-      script.onload = () => {
-        // HubSpot script loaded successfully
-        console.log('HubSpot form script loaded');
-      };
-      document.body.appendChild(script);
-
-      return () => {
-        // Cleanup script when modal closes
-        if (document.body.contains(script)) {
-          document.body.removeChild(script);
-        }
-      };
+      // Check if script already exists
+      const existingScript = document.querySelector('script[src="https://js-na2.hsforms.net/forms/embed/244445783.js"]');
+      
+      if (!existingScript) {
+        const script = document.createElement('script');
+        script.src = 'https://js-na2.hsforms.net/forms/embed/244445783.js';
+        script.defer = true;
+        script.onload = () => {
+          // HubSpot script loaded successfully
+          console.log('HubSpot form script loaded');
+        };
+        document.body.appendChild(script);
+      }
     }
   }, [open]);
 
@@ -34,7 +32,7 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
         <DialogHeader>
           <DialogTitle className="text-2xl">Book Your Live Demo</DialogTitle>
           <DialogDescription className="text-base">
-            See how NibbleIQ can save your restaurants $250K+ per location annually with real-time analytics and intelligent automation.
+            See how NibbleIQ can save your restaurants $50K+ per location annually with real-time analytics and intelligent automation.
           </DialogDescription>
         </DialogHeader>
         

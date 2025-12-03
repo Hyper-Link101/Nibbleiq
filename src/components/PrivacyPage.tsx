@@ -165,7 +165,7 @@ export function PrivacyPage() {
               <li><strong>Restrict Processing:</strong> Request limitations on how we use your information</li>
             </ul>
             <p className="text-slate-700 mt-4">
-              To exercise these rights, please contact us at <a href="mailto:privacy@siftiq.io" className="text-orange-600 hover:text-orange-700">privacy@siftiq.io</a>.
+              To exercise these rights, please contact us at <a href="mailto:privacy@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">privacy@nibbleiq.ai</a>.
             </p>
           </section>
 
@@ -206,9 +206,9 @@ export function PrivacyPage() {
               If you have questions or concerns about this Privacy Policy or our data practices, please contact us:
             </p>
             <div className="bg-slate-50 p-6 rounded-lg">
-              <p className="text-slate-700 mb-2"><strong>Email:</strong> <a href="mailto:privacy@siftiq.io" className="text-orange-600 hover:text-orange-700">privacy@siftiq.io</a></p>
-              <p className="text-slate-700 mb-2"><strong>General Contact:</strong> <a href="mailto:hello@siftiq.io" className="text-orange-600 hover:text-orange-700">hello@siftiq.io</a></p>
-              <p className="text-slate-700"><strong>Address:</strong> Sift IQ, Inc.</p>
+              <p className="text-slate-700 mb-2"><strong>Email:</strong> <a href="mailto:privacy@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">privacy@nibbleiq.ai</a></p>
+              <p className="text-slate-700 mb-2"><strong>General Contact:</strong> <a href="mailto:Hello@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">Hello@nibbleiq.ai</a></p>
+              <p className="text-slate-700"><strong>Company:</strong> NibbleIQ, Inc.</p>
             </div>
           </section>
         </div>

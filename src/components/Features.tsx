@@ -1,4 +1,5 @@
 import { Inbox, Sparkles, BarChart3, ShieldAlert, Coins, Network, Heart } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Features() {
   const features = [
@@ -47,40 +48,49 @@ export function Features() {
   ];
 
   return (
-    <section id="features" className="py-24 bg-gradient-to-br from-orange-50 via-white to-amber-50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-amber-100 to-orange-100 border border-orange-300/50">
-            <Heart className="w-4 h-4 text-orange-600 fill-orange-600" />
-            <span className="text-sm text-slate-700">Built for restaurant operators</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl mb-6 text-slate-900">
-            Stop chasing numbers. <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Start creating experiences.</span>
+    <section id="features" className="py-20 md:py-28 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50/30 relative overflow-hidden">
+      {/* Warm background elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-400 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 text-slate-900 font-bold">
+            Everything You Need to{" "}
+            <span className="bg-gradient-to-r from-orange-600 via-red-600 to-amber-600 bg-clip-text text-transparent">
+              Run Profitably
+            </span>
           </h2>
-          <p className="text-xl text-slate-600">
-            Get early warnings on price increases and margin threats, so you can spend more time on what makes your restaurant special.
+          <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto">
+            Smart tools that protect your margins and free up your time for what matters most
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {features.map((feature, index) => (
-            <div 
+            <motion.div
               key={index}
-              className="group relative bg-white border-2 border-orange-200/50 rounded-2xl p-8 hover:shadow-2xl transition-all hover:-translate-y-2 hover:border-orange-600"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white/80 backdrop-blur-sm border border-orange-200/50 rounded-2xl p-8 hover:shadow-2xl hover:shadow-orange-200/50 transition-all group"
             >
-              <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
-                <feature.icon className="h-7 w-7 text-white" />
+              <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                <feature.icon className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-2xl mb-3 text-slate-900">{feature.title}</h3>
-              <p className="text-slate-600 mb-4">{feature.description}</p>
-              
-              <div className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">
-                {feature.stat}
-              </div>
-              
-              {/* Hover effect border */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none`}></div>
-            </div>
+              <h3 className="text-2xl mb-3 text-slate-900 font-semibold">{feature.title}</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">{feature.description}</p>
+              <div className="text-sm text-orange-600 font-semibold">{feature.stat}</div>
+            </motion.div>
           ))}
         </div>
       </div>

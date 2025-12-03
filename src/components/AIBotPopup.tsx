@@ -29,6 +29,7 @@ export function AIBotPopup() {
   const [conversationMode, setConversationMode] = useState<ConversationMode>("chat");
   const [infoStep, setInfoStep] = useState(0);
   const [visitorData, setVisitorData] = useState<VisitorData>({});
+  const [showButton, setShowButton] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Knowledge base about NibbleIQ
@@ -85,8 +86,37 @@ export function AIBotPopup() {
     scrollToBottom();
   }, [messages]);
 
-  // Show popup after 8 seconds on first visit
+  // Scroll detection - only show button after scrolling past 400px
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const scrollPosition = window.scrollY;
+        if (scrollPosition > 400 && !showButton) {
+          setShowButton(true);
+        }
+      }, 100); // Throttle scroll events
+    };
+
+    // Initial check for scroll position
+    if (window.scrollY > 400) {
+      setShowButton(true);
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [showButton]);
+
+  // Show popup after 8 seconds on first visit (only if button is visible)
+  useEffect(() => {
+    if (!showButton) return;
+    
     const hasSeenBot = localStorage.getItem("nibbleiq_bot_seen");
     const hasDismissed = sessionStorage.getItem("nibbleiq_bot_dismissed");
     
@@ -104,7 +134,7 @@ export function AIBotPopup() {
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [showButton]);
 
   const addBotMessage = (text: string, delay = 800, suggestions?: string[]) => {
     setIsTyping(true);
@@ -385,10 +415,12 @@ export function AIBotPopup() {
   };
 
   if (!isOpen && isMinimized) {
+    if (!showButton) return null;
+    
     return (
       <button
         onClick={toggleMinimize}
-        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full p-4 shadow-2xl shadow-orange-500/50 transition-all hover:scale-110 group"
+        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full p-4 shadow-2xl shadow-orange-500/50 transition-all hover:scale-110 group animate-fade-in"
         aria-label="Open chat"
       >
         <Sparkles className="h-6 w-6 group-hover:scale-110 transition-transform" />
@@ -498,15 +530,31 @@ export function AIBotPopup() {
       </div>
 
       {/* Floating Button when minimized */}
-      {isMinimized && isOpen && (
+      {isMinimized && isOpen && showButton && (
         <button
           onClick={toggleMinimize}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full p-4 shadow-2xl shadow-orange-500/50 transition-all hover:scale-110 group"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full p-4 shadow-2xl shadow-orange-500/50 transition-all hover:scale-110 group animate-fade-in"
           aria-label="Open chat"
         >
           <Sparkles className="h-6 w-6 group-hover:scale-110 transition-transform" />
         </button>
       )}
+      
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.4s ease-out forwards;
+        }
+      `}</style>
     </>
   );
 }

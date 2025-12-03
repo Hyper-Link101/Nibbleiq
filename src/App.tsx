@@ -3,6 +3,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { LandingPage } from './components/LandingPage';
 import { Toaster } from './components/ui/sonner';
+import { CookieConsent } from './components/CookieConsent';
 
 // Lazy load AIBotPopup - it's not critical for initial page load
 const AIBotPopup = lazy(() => import('./components/AIBotPopup').then(module => ({ default: module.AIBotPopup })));
@@ -79,6 +80,7 @@ export default function App() {
           <AIBotPopup />
         </Suspense>
         <Toaster />
+        <CookieConsent />
       </Router>
     </HelmetProvider>
   );
