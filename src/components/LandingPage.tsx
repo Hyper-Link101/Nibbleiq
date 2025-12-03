@@ -39,13 +39,25 @@ export function LandingPage() {
       <ProblemSection />
       <Suspense fallback={<SectionLoader />}>
         <Features />
-        <Comparison />
         <HowItWorks />
+        {/* Hide redundant sections on mobile - only show on tablet+ */}
+        <div className="hidden md:block">
+          <Comparison />
+        </div>
         <Testimonials />
-        <BetaBenefits />
-        <Benefits />
+        {/* Hide BetaBenefits on mobile - redundant with Hero */}
+        <div className="hidden md:block">
+          <BetaBenefits />
+        </div>
+        {/* Hide Benefits on mobile - redundant with Features */}
+        <div className="hidden md:block">
+          <Benefits />
+        </div>
         <Stats />
-        <AboutUs />
+        {/* Hide AboutUs on mobile - less critical for conversion */}
+        <div className="hidden lg:block">
+          <AboutUs />
+        </div>
         <CTA />
         <Footer />
       </Suspense>

@@ -474,19 +474,19 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-orange-500 to-orange-600 py-16">
+      <section className="bg-gradient-to-r from-[#3D5AFE] to-[#2962FF] py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl text-white mb-6">
             Ready to Transform Your Operations?
           </h2>
-          <p className="text-xl text-orange-50 mb-8 max-w-2xl mx-auto">
-            Join 150+ restaurant groups using Sift IQ to protect their margins and optimize operations.
+          <p className="text-xl text-blue-50 mb-8 max-w-2xl mx-auto">
+            Join 18+ restaurant groups using NibbleIQ.ai to protect their margins and optimize operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-orange-600 hover:bg-slate-50">
+            <Button size="lg" className="bg-white text-[#3D5AFE] hover:bg-slate-50">
               Book a Demo
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-white text-[rgb(248,85,63)] hover:bg-white/10">
+            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10">
               Learn More
             </Button>
           </div>

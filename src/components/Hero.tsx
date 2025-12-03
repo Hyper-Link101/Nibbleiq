@@ -1,14 +1,12 @@
 import image_90f71b77ff8f7feaaf19a1f5fd379bf272f74375 from 'figma:asset/90f71b77ff8f7feaaf19a1f5fd379bf272f74375.png';
-import image_90f71b77ff8f7feaaf19a1f5fd379bf272f74375 from 'figma:asset/90f71b77ff8f7feaaf19a1f5fd379bf272f74375.png';
 import { Button } from "./ui/button";
-import { MoveRight, Play, Menu, X, CircleCheck } from "lucide-react";
+import { MoveRight, Play, Menu, X, CircleCheck, Sparkles, Zap, TrendingUp, Heart, ChefHat, Users } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Link } from "react-router-dom";
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
-import image_4f33e51ab4028293bfc505d221f7190f692e345a from 'figma:asset/4f33e51ab4028293bfc505d221f7190f692e345a.png';
-import heroImage from 'figma:asset/f207d1f12ed170cedf3c057602f3d583959d8b68.png';
 import { useState, lazy, Suspense } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { motion } from "motion/react";
 
 // Lazy load DemoModal since it's only needed when user clicks
 const DemoModal = lazy(() => import("./DemoModal").then(module => ({ default: module.DemoModal })));
@@ -18,47 +16,54 @@ export function Hero() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-orange-50">
+      {/* Warm, Inviting Background Elements */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-amber-400/10 via-orange-300/5 to-transparent rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-orange-400/8 via-amber-300/5 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-red-400/5 to-orange-400/5 rounded-full blur-3xl opacity-30"></div>
+      </div>
+
       {/* Sticky Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-amber-200/50 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo - Clickable */}
           <Link to="/" className="flex items-center">
-            <img src={logoImage} alt="NibbleIQ" className="h-10 hover:opacity-80 transition-opacity" loading="eager" />
+            <img src={logoImage} alt="NibbleIQ.ai" className="h-10 hover:opacity-80 transition-opacity" loading="eager" />
           </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <a 
               href="#features" 
-              className="text-slate-700 hover:text-[#3D5AFE] transition-colors relative group"
+              className="text-slate-700 hover:text-orange-600 transition-colors relative group"
             >
               Features
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#3D5AFE] group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
             </a>
             <a 
               href="#how-it-works" 
-              className="text-slate-700 hover:text-[#3D5AFE] transition-colors relative group"
+              className="text-slate-700 hover:text-orange-600 transition-colors relative group"
             >
               How It Works
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#3D5AFE] group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
             </a>
             <Link 
               to="/resources" 
-              className="text-slate-700 hover:text-[#3D5AFE] transition-colors relative group"
+              className="text-slate-700 hover:text-orange-600 transition-colors relative group"
             >
               Resources
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#3D5AFE] group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link 
               to="/contact" 
-              className="text-slate-700 hover:text-[#3D5AFE] transition-colors relative group"
+              className="text-slate-700 hover:text-orange-600 transition-colors relative group"
             >
               Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#3D5AFE] group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Button 
-              className="bg-gradient-to-r from-[#3D5AFE] to-[#2962FF] hover:from-[#2962FF] hover:to-[#3D5AFE] text-white shadow-lg shadow-[#3D5AFE]/30 hover:shadow-xl hover:shadow-[#3D5AFE]/40 transition-all"
+              className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg shadow-orange-600/30 hover:shadow-xl hover:shadow-orange-600/40 transition-all"
               onClick={() => setIsDemoModalOpen(true)}
             >
               Book a Demo
@@ -68,7 +73,7 @@ export function Hero() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-slate-700 hover:text-[#3D5AFE] transition-colors"
+            className="md:hidden p-2 text-slate-700 hover:text-orange-600 transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -77,38 +82,38 @@ export function Hero() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white">
+          <div className="md:hidden border-t border-amber-200 bg-white">
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
               <a 
                 href="#features" 
-                className="text-slate-700 hover:text-[#3D5AFE] transition-colors py-2"
+                className="text-slate-700 hover:text-orange-600 transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Features
               </a>
               <a 
                 href="#how-it-works" 
-                className="text-slate-700 hover:text-[#3D5AFE] transition-colors py-2"
+                className="text-slate-700 hover:text-orange-600 transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 How It Works
               </a>
               <Link 
                 to="/resources" 
-                className="text-slate-700 hover:text-[#3D5AFE] transition-colors py-2"
+                className="text-slate-700 hover:text-orange-600 transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Resources
               </Link>
               <Link 
                 to="/contact" 
-                className="text-slate-700 hover:text-[#3D5AFE] transition-colors py-2"
+                className="text-slate-700 hover:text-orange-600 transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
               </Link>
               <Button 
-                className="bg-gradient-to-r from-[#3D5AFE] to-[#2962FF] hover:from-[#2962FF] hover:to-[#3D5AFE] text-white shadow-lg shadow-[#3D5AFE]/30 w-full"
+                className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg shadow-orange-600/30 w-full"
                 onClick={() => {
                   setIsDemoModalOpen(true);
                   setIsMobileMenuOpen(false);
@@ -122,55 +127,97 @@ export function Hero() {
       </nav>
 
       {/* Hero Content */}
-      <div className="container mx-auto px-4 py-16 md:py-20 lg:py-28">
+      <div className="container mx-auto px-4 py-20 md:py-24 lg:py-32">
         {/* Split Layout: Messaging Left, Dashboard Right */}
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             
             {/* Left Side - Messaging & CTAs */}
-            <div className="text-center lg:text-left">
+            <motion.div 
+              className="text-center lg:text-left"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Premium Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-amber-100 to-orange-100 border border-orange-300/50"
+              >
+                <Heart className="w-4 h-4 text-orange-600 fill-orange-600" />
+                <span className="text-sm text-slate-700">Trusted by passionate restaurant owners</span>
+              </motion.div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 text-slate-900 tracking-tight font-bold leading-tight">
-                See where every dollar goes in your restaurant
+              <h1 className="text-5xl md:text-6xl lg:text-7xl mb-8 text-slate-900 tracking-tight leading-[1.1]">
+                Spend less time on costs, more time on{" "}
+                <span className="bg-gradient-to-r from-orange-600 via-red-600 to-amber-600 bg-clip-text text-transparent">
+                  what you love
+                </span>
               </h1>
               
-              <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
-                NibbleIQ is restaurant cost control software that helps you track food costs, manage inventory, and increase profit margins. Our AI-powered platform shows you exactly where your money goes in real-time.
+              <p className="text-xl md:text-2xl text-slate-600 mb-6 leading-relaxed">
+                NibbleIQ.ai is restaurant cost control software that helps you track food costs, manage inventory, and increase profit margins. Our AI-powered platform shows you exactly where your money goes in real-time.
+              </p>
+              
+              <p className="text-lg md:text-xl text-slate-700 mb-10 leading-relaxed">
+                <strong>Stop drowning in spreadsheets.</strong> Free up 3-6 hours a week to perfect your menu, train your team, and connect with guests—the things that make your restaurant special.
               </p>
 
-              {/* Trust indicators */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 mb-10 text-sm text-slate-700">
-                <div className="flex items-center gap-2">
-                  <CircleCheck className="h-5 w-5 text-[#3D5AFE]" />
-                  <span>Save <strong>3–6 hours/week</strong></span>
+              {/* Enhanced Trust Indicators - Hospitality Focused */}
+              <div className="grid grid-cols-2 gap-4 mb-12 max-w-lg mx-auto lg:mx-0">
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                    <ChefHat className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm text-slate-900">More time</p>
+                    <p className="text-xs text-slate-600">for your craft</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CircleCheck className="h-5 w-5 text-[#3D5AFE]" />
-                  <span><strong>Real-time</strong> food cost tracking</span>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center flex-shrink-0">
+                    <Users className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm text-slate-900">Focus on</p>
+                    <p className="text-xs text-slate-600">guests & team</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CircleCheck className="h-5 w-5 text-[#3D5AFE]" />
-                  <span><strong>Multi-unit</strong> reporting</span>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-600 to-amber-600 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm text-slate-900">Real-time</p>
+                    <p className="text-xs text-slate-600">insights</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CircleCheck className="h-5 w-5 text-[#3D5AFE]" />
-                  <span><strong>Invoice OCR</strong> automation</span>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-600 to-orange-700 flex items-center justify-center flex-shrink-0">
+                    <Sparkles className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm text-slate-900">AI-powered</p>
+                    <p className="text-xs text-slate-600">automation</p>
+                  </div>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-[#3D5AFE] to-[#2962FF] hover:from-[#2962FF] hover:to-[#3D5AFE] text-white shadow-xl shadow-[#3D5AFE]/30 text-lg px-10 py-7 w-full sm:w-auto group"
+                  className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-2xl shadow-orange-600/30 hover:shadow-3xl hover:shadow-orange-600/50 text-lg px-12 py-8 w-full sm:w-auto group transform hover:scale-105 transition-all duration-300"
                   onClick={() => setIsDemoModalOpen(true)}
                 >
                   Request Early Access
-                  <MoveRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <MoveRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 text-lg px-10 py-7 w-full sm:w-auto"
+                  className="border-2 border-orange-300 text-slate-700 hover:bg-orange-50 hover:border-orange-600 text-lg px-12 py-8 w-full sm:w-auto group transition-all duration-300"
                   onClick={() => {
                     const howItWorksSection = document.getElementById('how-it-works');
                     if (howItWorksSection) {
@@ -178,54 +225,103 @@ export function Hero() {
                     }
                   }}
                 >
-                  <Play className="mr-2 h-5 w-5" />
-                  See How NibbleIQ Works
+                  <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                  See How It Works
                 </Button>
               </div>
-            </div>
 
-            {/* Right Side - Product Dashboard Preview */}
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              {/* Social Proof */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="mt-10 flex items-center justify-center lg:justify-start gap-2 text-sm text-slate-600"
+              >
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 border-2 border-white"></div>
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-500 to-orange-600 border-2 border-white"></div>
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-600 to-amber-600 border-2 border-white"></div>
+                </div>
+                <span>Join 18+ restaurant groups reclaiming <strong>3-6 hours/week</strong></span>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Side - Product Dashboard + Restaurant Imagery */}
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              {/* Main Dashboard Image */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur mb-6">
                 <ImageWithFallback
                   src={image_90f71b77ff8f7feaaf19a1f5fd379bf272f74375}
-                  alt="Restaurant operator using NibbleIQ for real-time cost control"
-                  className="w-full h-auto object-cover object-center"
+                  alt="Restaurant operator using NibbleIQ.ai for real-time cost control"
+                  className="w-full h-auto object-cover object-center transform hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              
-              {/* Badge below image */}
-              <div className="mt-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-slate-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#3D5AFE] to-[#2962FF] rounded-lg flex items-center justify-center">
-                    <CircleCheck className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900">Real operators, real results</p>
-                    <p className="text-xs text-slate-600">Join 18 beta partners saving $2K-$5K/month</p>
-                  </div>
+
+              {/* Restaurant Lifestyle Images Grid */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
+                  <ImageWithFallback
+                    src="https://images.unsplash.com/photo-1659354219145-dedd2324698e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwY2hlZiUyMGhhcHB5JTIwa2l0Y2hlbnxlbnwxfHx8fDE3NjQ3MzcyNzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Happy chef in professional kitchen"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+                <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
+                  <ImageWithFallback
+                    src="https://images.unsplash.com/photo-1642477303430-ad6b97b6ad78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dGlmdWwlMjBwbGF0ZWQlMjBmb29kJTIwcmVzdGF1cmFudHxlbnwxfHx8fDE3NjQ3MzcyNzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Beautifully plated restaurant dish"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
               </div>
-            </div>
+              
+              {/* Enhanced Badge with Stats */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-orange-200/50"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-orange-600 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-600/30">
+                      <Heart className="h-7 w-7 text-white fill-white" />
+                    </div>
+                    <div>
+                      <p className="text-base text-slate-900">Get back to what you love</p>
+                      <p className="text-sm text-slate-600">Save <strong>3-6 hours/week</strong> on admin work</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-amber-500 text-xl">★</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
 
           </div>
         </div>
       </div>
 
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 -z-10 w-1/2 h-1/2 bg-gradient-to-br from-[#3D5AFE]/20 to-transparent blur-3xl opacity-50"></div>
-      <div className="absolute bottom-0 left-0 -z-10 w-1/2 h-1/2 bg-gradient-to-tr from-[#2962FF]/20 to-transparent blur-3xl opacity-50"></div>
-
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
+          50% { transform: translateY(-30px); }
         }
         .animate-float {
-          animation: float 3s ease-in-out infinite;
+          animation: float 6s ease-in-out infinite;
         }
         .animate-float-delayed {
-          animation: float 3s ease-in-out infinite 1.5s;
+          animation: float 6s ease-in-out infinite 3s;
         }
       `}</style>
 
