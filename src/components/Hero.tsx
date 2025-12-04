@@ -1,6 +1,6 @@
 import image_90f71b77ff8f7feaaf19a1f5fd379bf272f74375 from 'figma:asset/90f71b77ff8f7feaaf19a1f5fd379bf272f74375.png';
 import { Button } from "./ui/button";
-import { MoveRight, Play, Menu, X, CircleCheck, Sparkles, Zap, TrendingUp, Heart, ChefHat, Users } from "lucide-react";
+import { MoveRight, Play, Menu, X, CircleCheck, Sparkles, Zap, TrendingUp, Heart, ChefHat, Users, Clock } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Link } from "react-router-dom";
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
@@ -18,7 +18,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50/30 to-red-50/20">
       {/* Warm, Food-Inspired Background Elements */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 -z-10 overflow-hidden hidden md:block">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-amber-400/10 via-orange-300/8 to-transparent rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-red-400/8 via-amber-300/5 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-orange-400/5 to-red-400/5 rounded-full blur-3xl opacity-30"></div>
@@ -151,57 +151,56 @@ export function Hero() {
               </motion.div>
               
               <h1 className="text-5xl md:text-6xl lg:text-7xl mb-8 text-slate-900 tracking-tight leading-[1.1] font-bold">
-                Get back to{" "}
+                Intelligent Restaurant Management. You focus on{" "}
                 <span className="bg-gradient-to-r from-orange-600 via-red-600 to-amber-600 bg-clip-text text-transparent">
-                  what you love
+                  the experience
                 </span>
-                {" "}cooking
               </h1>
               
               <p className="text-xl md:text-2xl text-slate-600 mb-6 leading-relaxed">
-                NibbleIQ is restaurant management software that helps you control food costs, manage inventory, and boost profits. See where your money goes in real-time.
+                NibbleIQ is AI-powered restaurant management software that automatically tracks costs, predicts problems before they happen, and tells you exactly what to do next. Stop reacting to issues too late—our intelligence catches them before they hurt your bottom line.
               </p>
               
               <p className="text-lg md:text-xl text-slate-700 mb-10 leading-relaxed">
-                <strong>Spend less time in spreadsheets.</strong> More time perfecting your menu, building guest relationships, and growing your team. We catch price hikes, spot waste, and keep suppliers honest.
+                We catch price hikes, spot waste, and keep suppliers honest—automatically. So you can spend less time in spreadsheets.
               </p>
 
               {/* Enhanced Trust Indicators - Hospitality Focused */}
               <div className="grid grid-cols-2 gap-4 mb-12 max-w-lg mx-auto lg:mx-0">
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0">
-                    <ChefHat className="h-5 w-5 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-slate-900">More time</p>
-                    <p className="text-xs text-slate-600">for your craft</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center flex-shrink-0">
-                    <Users className="h-5 w-5 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-slate-900">Focus on</p>
-                    <p className="text-xs text-slate-600">guests & team</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-600 to-amber-600 flex items-center justify-center flex-shrink-0">
-                    <TrendingUp className="h-5 w-5 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-slate-900">Real-time</p>
-                    <p className="text-xs text-slate-600">insights</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-600 to-orange-700 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
                     <Sparkles className="h-5 w-5 text-white" />
                   </div>
                   <div className="text-left">
-                    <p className="text-sm text-slate-900">AI-powered</p>
-                    <p className="text-xs text-slate-600">automation</p>
+                    <p className="text-sm text-slate-900">AI-Powered Intelligence</p>
+                    <p className="text-xs text-slate-600">Catch problems before they cost you money</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                    <Zap className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm text-slate-900">Automatic Tracking</p>
+                    <p className="text-xs text-slate-600">No manual entry. Connects to POS & vendors</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm text-slate-900">Real-Time Dashboards</p>
+                    <p className="text-xs text-slate-600">See exactly where your money goes, updated live</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
+                    <Clock className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm text-slate-900">8-12 Hours Saved Weekly</p>
+                    <p className="text-xs text-slate-600">Stop living in spreadsheets. Get your time back</p>
                   </div>
                 </div>
               </div>
@@ -245,7 +244,7 @@ export function Hero() {
                       <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1586863981824-d9dd81824d6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwbWFuYWdlciUyMGJ1c2luZXNzfGVufDF8fHx8MTc2NDc4MDc0M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Restaurant manager" />
                       <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1758887261865-a2b89c0f7ac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwb3duZXIlMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzY0NzQ3ODIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Restaurant owner" />
                     </div>
-                    <span>Join 500+ operators saving <strong>8-12 hours/week</strong></span>
+                    <span>Join 18 restaurants in beta saving <strong>8-12 hours/week</strong></span>
                   </div>
                   <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm">
                     <div className="flex items-center gap-2 text-green-700 bg-green-50 px-3 py-1.5 rounded-full border border-green-200">
@@ -282,7 +281,7 @@ export function Hero() {
               </div>
 
               {/* Restaurant Lifestyle Images Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="hidden md:grid grid-cols-2 gap-4 mb-6">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
                   <ImageWithFallback
                     src="https://images.unsplash.com/photo-1608494132127-cfadf11a3889?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwaW52ZW50b3J5JTIwc2hlbHZlc3xlbnwxfHx8fDE3NjQ3MzgxNTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -306,7 +305,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-orange-200/50"
+                className="hidden md:block bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-orange-200/50"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-4">

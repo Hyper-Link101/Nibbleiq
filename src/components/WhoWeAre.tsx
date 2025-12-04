@@ -1,8 +1,13 @@
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { Heart, Users, Award, Sparkles } from "lucide-react";
+import { Heart, Users, Award, Sparkles, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { Button } from "./ui/button";
+import { DemoModal } from "./DemoModal";
 
 export function WhoWeAre() {
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+
   const values = [
     {
       icon: Heart,
@@ -69,9 +74,9 @@ export function WhoWeAre() {
             </motion.div>
 
             {/* Headline */}
-            <h2 className="text-5xl md:text-6xl text-white leading-tight">
+            <h2 className="text-5xl md:text-6xl text-white leading-tight font-bold">
               Restaurant Operators.{" "}
-              <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 bg-clip-text text-transparent font-bold">
                 Not Software People.
               </span>
             </h2>
@@ -204,8 +209,19 @@ export function WhoWeAre() {
                   <p className="text-xl text-slate-200 mb-6" style={{
                     textShadow: '0 1px 8px rgba(0, 0, 0, 0.4)'
                   }}>
-                    Join hundreds of restaurant operators who've already made the switch to smarter management.
+                    Join a dozen restaurant operators who've already made the switch to smarter management.
                   </p>
+                  
+                  {/* CTA Button */}
+                  <Button
+                    onClick={() => setIsDemoModalOpen(true)}
+                    size="lg"
+                    className="mb-6 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 group"
+                  >
+                    Book Your Free Demo
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  
                   <div className="flex items-center gap-3 text-slate-300">
                     <div className="flex -space-x-3">
                       <ImageWithFallback
@@ -229,13 +245,19 @@ export function WhoWeAre() {
                         className="w-10 h-10 rounded-full object-cover border-2 border-slate-900"
                       />
                     </div>
-                    <span className="text-sm">Join 500+ restaurant operators</span>
+                    <span className="text-sm font-bold">Join 18 restaurants in beta</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </motion.div>
+
+        {/* Demo Modal */}
+        <DemoModal
+          open={isDemoModalOpen}
+          onOpenChange={setIsDemoModalOpen}
+        />
       </div>
     </section>
   );

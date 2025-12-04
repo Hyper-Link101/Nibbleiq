@@ -4,6 +4,12 @@ import { useState } from "react";
 import { toast } from "sonner";
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { SEO, seoConfigs } from "./SEO";
+import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
+import { Mail, Clock, MapPin, ArrowLeft } from "lucide-react";
 
 export function ContactPage() {
   const [showDemoModal, setShowDemoModal] = useState(false);

@@ -82,14 +82,14 @@ export function Features() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white/80 backdrop-blur-sm border border-orange-200/50 rounded-2xl p-8 hover:shadow-2xl hover:shadow-orange-200/50 transition-all group"
+              className="bg-white/80 backdrop-blur-sm border border-orange-200/50 rounded-2xl p-8 hover:shadow-2xl hover:shadow-orange-200/50 transition-all group flex flex-col"
             >
               <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                 <feature.icon className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-2xl mb-3 text-slate-900 font-semibold">{feature.title}</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">{feature.description}</p>
-              <div className="text-sm text-orange-600 font-semibold">{feature.stat}</div>
+              <div className="text-sm text-orange-600 font-semibold mt-auto">{feature.stat}</div>
             </motion.div>
           ))}
         </div>

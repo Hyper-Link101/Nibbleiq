@@ -86,30 +86,42 @@ export function AIBotPopup() {
     scrollToBottom();
   }, [messages]);
 
-  // Scroll detection - only show button after scrolling past 400px
+  // Scroll detection - show button after scrolling past 800px AND waiting 5 seconds minimum
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
+    let delayTimer: NodeJS.Timeout;
+    const minimumDelay = 5000; // 5 seconds minimum before showing button
+    const scrollThreshold = 800; // Increased from 400px
     
     const handleScroll = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         const scrollPosition = window.scrollY;
-        if (scrollPosition > 400 && !showButton) {
-          setShowButton(true);
+        if (scrollPosition > scrollThreshold && !showButton) {
+          // Add additional delay even after scroll threshold is met
+          delayTimer = setTimeout(() => {
+            setShowButton(true);
+          }, 2000); // Extra 2 second delay after scroll threshold
         }
       }, 100); // Throttle scroll events
     };
 
-    // Initial check for scroll position
-    if (window.scrollY > 400) {
-      setShowButton(true);
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Wait minimum 5 seconds before even checking scroll position
+    const initialTimer = setTimeout(() => {
+      // Initial check for scroll position after delay
+      if (window.scrollY > scrollThreshold) {
+        setShowButton(true);
+      }
+      
+      // Start listening to scroll events
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    }, minimumDelay);
     
     return () => {
+      clearTimeout(initialTimer);
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(timeoutId);
+      clearTimeout(delayTimer);
     };
   }, [showButton]);
 

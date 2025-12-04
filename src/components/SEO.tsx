@@ -329,8 +329,8 @@ export function SEO({
 // Preset SEO configurations for common pages
 export const seoConfigs = {
   home: {
-    title: "NibbleIQ | Restaurant Cost Control & Operations Intelligence",
-    description: "NibbleIQ is a restaurant analytics and back-office automation platform that tracks food cost, vendor pricing, labor, yield, and daily operating expenses in real time. Built for operators and multi-unit leaders.",
+    title: "Intelligent Restaurant Management Software | NibbleIQ",
+    description: "AI-powered restaurant management that automatically tracks costs, predicts problems, and saves you 8-12 hours per week. Start free trial - no credit card required.",
     keywords: "restaurant cost control software, restaurant operations software, restaurant food cost tracking, back-office restaurant software, restaurant analytics platform, invoice OCR for restaurants, food cost management tools, restaurant automation, multi-unit restaurant software, vendor price tracking, yield tracking, Seattle restaurant software",
     noindex: false
   },
