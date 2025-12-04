@@ -3642,6 +3642,16 @@
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
 
+  .shadow-amber-500\/30 {
+    --tw-shadow-color: color-mix(in srgb, oklch(.769 .188 70.08) 30%, transparent);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .shadow-amber-500\/30 {
+      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-amber-500) 30%, transparent) var(--tw-shadow-alpha), transparent);
+    }
+  }
+
   .shadow-blue-400\/10 {
     --tw-shadow-color: color-mix(in srgb, oklch(.707 .165 254.624) 10%, transparent);
   }
@@ -3692,6 +3702,16 @@
     }
   }
 
+  .shadow-green-500\/30 {
+    --tw-shadow-color: color-mix(in srgb, oklch(.723 .219 149.579) 30%, transparent);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .shadow-green-500\/30 {
+      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-green-500) 30%, transparent) var(--tw-shadow-alpha), transparent);
+    }
+  }
+
   .shadow-orange-500\/20 {
     --tw-shadow-color: color-mix(in srgb, oklch(.705 .213 47.604) 20%, transparent);
   }
@@ -3739,6 +3759,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .shadow-orange-600\/40 {
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-orange-600) 40%, transparent) var(--tw-shadow-alpha), transparent);
+    }
+  }
+
+  .shadow-purple-500\/30 {
+    --tw-shadow-color: color-mix(in srgb, oklch(.627 .265 303.9) 30%, transparent);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .shadow-purple-500\/30 {
+      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-purple-500) 30%, transparent) var(--tw-shadow-alpha), transparent);
     }
   }
 

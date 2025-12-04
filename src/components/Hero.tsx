@@ -168,8 +168,8 @@ export function Hero() {
               {/* Enhanced Trust Indicators - Hospitality Focused */}
               <div className="grid grid-cols-2 gap-4 mb-12 max-w-lg mx-auto lg:mx-0">
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="h-5 w-5 text-white" />
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/30">
+                    <Sparkles className="h-7 w-7 text-white" strokeWidth={2.5} />
                   </div>
                   <div className="text-left">
                     <p className="text-sm text-slate-900">AI-Powered Intelligence</p>
@@ -177,8 +177,8 @@ export function Hero() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0">
-                    <Zap className="h-5 w-5 text-white" />
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/30">
+                    <Zap className="h-7 w-7 text-white" strokeWidth={2.5} />
                   </div>
                   <div className="text-left">
                     <p className="text-sm text-slate-900">Automatic Tracking</p>
@@ -186,8 +186,8 @@ export function Hero() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center flex-shrink-0">
-                    <TrendingUp className="h-5 w-5 text-white" />
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-600/30">
+                    <TrendingUp className="h-7 w-7 text-white" strokeWidth={2.5} />
                   </div>
                   <div className="text-left">
                     <p className="text-sm text-slate-900">Real-Time Dashboards</p>
@@ -195,8 +195,8 @@ export function Hero() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-5 w-5 text-white" />
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-green-500/30">
+                    <Clock className="h-7 w-7 text-white" strokeWidth={2.5} />
                   </div>
                   <div className="text-left">
                     <p className="text-sm text-slate-900">8-12 Hours Saved Weekly</p>
