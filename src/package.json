@@ -16,7 +16,9 @@
     "recharts": "^2.8.0",
     "react-helmet-async": "^2.0.4",
     "motion": "^11.11.17",
-    "sonner": "^2.0.3"
+    "sonner": "^2.0.3",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
