@@ -259,7 +259,7 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
       </section>
 
       {/* Content Section */}
-      <section className="container mx-auto px-4 py-16">
+      <section id="main-content" className="container mx-auto px-4 py-16">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'blog' | 'podcast' | 'links')} className="max-w-7xl mx-auto">
           <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-12">
             <TabsTrigger value="blog" className="text-lg">

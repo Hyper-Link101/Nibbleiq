@@ -79,7 +79,4 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Note: Individual blog post and podcast episode URLs should be added dynamically
-       as content is created. This is the foundational sitemap structure. -->
-
 </urlset>

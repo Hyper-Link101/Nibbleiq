@@ -2,8 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    
+    <!-- Favicon - Multiple formats for browser compatibility -->
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data:; img-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self' https:; frame-ancestors 'none';">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -23,62 +35,23 @@
       gtag('config', 'G-JZZRKKTYN2');
     </script>
 
-    <!-- Hotjar Tracking Code -->
+    <!-- Contentsquare Tracking Code -->
     <script src="https://t.contentsquare.net/uxa/416dad4539022.js"></script>
 
     <!-- Preconnect to External Domains for Faster Loading -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="preconnect" href="https://js-na2.hsforms.net" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://js-na2.hsforms.net" />
     
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- Preload Critical Assets -->
     <link rel="preload" href="/assets/index.css" as="style" />
     <link rel="preload" href="/assets/index.js" as="script" crossorigin />
-    
-    <!-- Primary Meta Tags -->
-    <title>Restaurant Cost Control Software | Save 3-7% | NibbleIQ</title>
-    <meta name="title" content="NibbleIQ | Restaurant Cost Control & Operations Intelligence" />
-    <meta name="description" content="Track food costs, labor, and profits in real-time. NibbleIQ helps restaurants save 3-7% on costs with AI-powered insights. Start free trial today." />
-    <meta name="keywords" content="restaurant cost control software, restaurant operations software, restaurant food cost tracking, back-office restaurant software, restaurant analytics platform, invoice OCR for restaurants, food cost management tools, restaurant automation, multi-unit restaurant software, vendor price tracking, yield tracking, Seattle restaurant software" />
-    
-    <!-- Robots Meta - Allow Indexing (React Helmet will enhance this) -->
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Additional Meta -->
-    <meta name="language" content="English" />
-    <meta name="author" content="NibbleIQ" />
-    <meta name="copyright" content="NibbleIQ" />
-    <meta name="theme-color" content="#3D5AFE" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    
-    <!-- Geo Tags -->
-    <meta name="geo.region" content="US" />
-    <meta name="geo.placename" content="United States" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://nibbleiq.ai/" />
-    <meta property="og:title" content="NibbleIQ - Restaurant Intelligence Platform | Real-Time Analytics" />
-    <meta property="og:description" content="Stop losing money to hidden price increases. NibbleIQ delivers real-time analytics and intelligent automation for restaurant operations." />
-    <meta property="og:image" content="https://nibbleiq.ai/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="NibbleIQ" />
-    <meta property="og:locale" content="en_US" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://nibbleiq.ai/" />
-    <meta name="twitter:title" content="NibbleIQ - Restaurant Intelligence Platform | Real-Time Analytics" />
-    <meta name="twitter:description" content="Stop losing money to hidden price increases. NibbleIQ delivers real-time analytics and intelligent automation for restaurant operations." />
-    <meta name="twitter:image" content="https://nibbleiq.ai/og-image.jpg" />
-    <meta name="twitter:creator" content="@NibbleIQ" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://nibbleiq.ai/" />
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -119,14 +92,14 @@
       "url": "https://nibbleiq.ai",
       "logo": "https://nibbleiq.ai/logo.png",
       "description": "Restaurant intelligence platform that delivers real-time analytics, intelligent automation for food cost management, and seamless integration with existing restaurant systems.",
-      "email": "Hello@nibbleiq.ai",
+      "email": "hello@nibbleiq.com",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "US"
       },
       "contactPoint": {
         "@type": "ContactPoint",
-        "email": "Hello@nibbleiq.ai",
+        "email": "hello@nibbleiq.com",
         "contactType": "Sales",
         "areaServed": "US"
       }
@@ -194,7 +167,7 @@
         <section>
           <h2>Join the Beta Program</h2>
           <p>We're currently in beta testing with select restaurant groups. Apply for early access and lock in beta pricing.</p>
-          <p>Contact us at <a href="mailto:Hello@nibbleiq.ai">Hello@nibbleiq.ai</a></p>
+          <p>Contact us at <a href="mailto:hello@nibbleiq.com">hello@nibbleiq.com</a></p>
         </section>
         
         <section>
@@ -222,7 +195,7 @@
       <div style="padding: 20px; text-align: center; background: #fff3cd; border: 2px solid #ffc107;">
         <h2>JavaScript Required</h2>
         <p>NibbleIQ requires JavaScript to provide the best experience. Please enable JavaScript in your browser.</p>
-        <p>For more information, contact us at <a href="mailto:Hello@nibbleiq.ai">Hello@nibbleiq.ai</a></p>
+        <p>For more information, contact us at <a href="mailto:hello@nibbleiq.com">hello@nibbleiq.com</a></p>
       </div>
     </noscript>
     

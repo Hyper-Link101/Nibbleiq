@@ -1,7 +1,5 @@
 @custom-variant dark (&:is(.dark *));
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
-
 :root {
   --font-size: 16px;
   --background: #fffbf5;
@@ -131,6 +129,14 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* Accessibility: Ensure skip links are hidden until focused */
+  .skip-link,
+  a[href="#main"],
+  a[href="#content"],
+  a[href="#main-content"] {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-white focus:text-slate-900 focus:shadow-xl focus:rounded-lg focus:font-bold focus:ring-2 focus:ring-orange-500 focus:outline-none transition-all;
   }
 }
 

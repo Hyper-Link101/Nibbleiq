@@ -25,9 +25,9 @@ const GoogleVerification = lazy(() => import('./components/GoogleVerification').
 // Loading component
 function PageLoader() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-blue-200 border-t-[#3D5AFE] rounded-full animate-spin" />
+        <div className="w-12 h-12 border-4 border-orange-200 border-t-[#F97316] rounded-full animate-spin" />
         <p className="text-slate-600">Loading...</p>
       </div>
     </div>
@@ -54,6 +54,8 @@ export default function App() {
 
   return (
     <HelmetProvider>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
       <Router>
         <Suspense fallback={<PageLoader />}>
           <Routes>

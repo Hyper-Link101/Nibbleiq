@@ -16,6 +16,7 @@
         'input-otp@1.4.2': 'input-otp',
         'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png': path.resolve(__dirname, './src/assets/9bb62c518e31aa9f806ab4341886470dd2d122c6.png'),
         'figma:asset/90f71b77ff8f7feaaf19a1f5fd379bf272f74375.png': path.resolve(__dirname, './src/assets/90f71b77ff8f7feaaf19a1f5fd379bf272f74375.png'),
+        'figma:asset/7038329c1420eb31999dbbb4c9e9c35c9bd51f77.png': path.resolve(__dirname, './src/assets/7038329c1420eb31999dbbb4c9e9c35c9bd51f77.png'),
         'class-variance-authority@0.7.1': 'class-variance-authority',
         '@radix-ui/react-tooltip@1.1.8': '@radix-ui/react-tooltip',
         '@radix-ui/react-toggle@1.1.2': '@radix-ui/react-toggle',

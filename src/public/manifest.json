@@ -4,8 +4,8 @@
   "description": "Unified restaurant intelligence platform that delivers real-time analytics, intelligent automation for food cost management, and seamless integration with existing restaurant systems.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#3D5AFE",
+  "background_color": "#fffbf5",
+  "theme_color": "#F97316",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en-US",
@@ -13,50 +13,10 @@
   "categories": ["business", "productivity", "finance"],
   "icons": [
     {
-      "src": "/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon-48x48.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshot-desktop.jpg",
-      "sizes": "1920x1080",
-      "type": "image/jpeg",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/screenshot-mobile.jpg",
-      "sizes": "750x1334",
-      "type": "image/jpeg",
-      "form_factor": "narrow"
     }
   ],
   "related_applications": [],

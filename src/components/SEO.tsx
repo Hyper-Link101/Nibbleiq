@@ -27,7 +27,7 @@ export function SEO({
 }: SEOProps) {
   const siteUrl = "https://nibbleiq.ai";
   const siteName = "NibbleIQ";
-  const defaultImage = `${siteUrl}/og-image.jpg`;
+  const defaultImage = "https://images.unsplash.com/photo-1609070220425-2d5b49f710b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwa2l0Y2hlbiUyMHRlYW0lMjBwcm9mZXNzaW9uYWwlMjBidXN5JTIwd2FybSUyMGxpZ2h0aW5nfGVufDF8fHx8MTc2NDg5OTgwOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
   const twitterHandle = "@NibbleIQ";
   const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
   const canonicalUrl = canonical || siteUrl;
@@ -98,7 +98,7 @@ export function SEO({
       <meta name="language" content="English" />
       <meta name="author" content={siteName} />
       <meta name="copyright" content={siteName} />
-      <meta name="theme-color" content="#3D5AFE" />
+      <meta name="theme-color" content="#F97316" />
 
       {/* Geo Tags */}
       <meta name="geo.region" content="US" />
@@ -117,20 +117,20 @@ export function SEO({
           "logo": `${siteUrl}/logo.png`,
           "foundingDate": "2024",
           "description": "NibbleIQ is a unified restaurant intelligence platform that delivers real-time analytics, intelligent automation for food cost management, and seamless integration with existing restaurant systems.",
-          "email": "Hello@nibbleiq.ai",
+          "email": "hello@nibbleiq.com",
           "address": {
             "@type": "PostalAddress",
             "addressCountry": "US"
           },
           "contactPoint": [{
             "@type": "ContactPoint",
-            "email": "Hello@nibbleiq.ai",
+            "email": "hello@nibbleiq.com",
             "contactType": "Sales",
             "areaServed": "US",
             "availableLanguage": "English"
           }, {
             "@type": "ContactPoint",
-            "email": "Hello@nibbleiq.ai",
+            "email": "hello@nibbleiq.com",
             "contactType": "Customer Support",
             "areaServed": "US",
             "availableLanguage": "English"

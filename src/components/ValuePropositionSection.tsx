@@ -18,7 +18,7 @@ export function ValuePropositionSection() {
       impact: "One client saved $1,200/month catching a price hike they never would've spotted",
       color: "from-emerald-500/30 to-teal-500/30",
       accentColor: "emerald",
-      image: "https://images.unsplash.com/photo-1599275247787-40daab5777bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMHByb2R1Y2UlMjB2ZWdldGFibGVzJTIwZmFybWVyJTIwbWFya2V0fGVufDF8fHx8MTc2NDc5MDcyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      image: "https://images.unsplash.com/photo-1599275247787-40daab5777bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMHByb2R1Y2UlMjB2ZWdldGFibGVzJTIwZmFybWVyJTIwbWFya2V0fGVufDF8fHx8MTc2NDc5MDcyM3ww&ixlib=rb-4.1.0&q=80&w=400&utm_source=figma&utm_medium=referral"
     },
     {
       icon: LineChart,
@@ -28,7 +28,7 @@ export function ValuePropositionSection() {
       impact: "Know exactly what's happening while you can still do something about it",
       color: "from-amber-500/30 to-orange-500/30",
       accentColor: "amber",
-      image: "https://images.unsplash.com/photo-1759209402969-be3ea5027356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVmJTIwY29va2luZyUyMGtpdGNoZW4lMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzY0NjY0OTE1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      image: "https://images.unsplash.com/photo-1759209402969-be3ea5027356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVmJTIwY29va2luZyUyMGtpdGNoZW4lMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzY0NjY0OTE1fDA&ixlib=rb-4.1.0&q=80&w=400&utm_source=figma&utm_medium=referral"
     },
     {
       icon: Zap,
@@ -38,7 +38,7 @@ export function ValuePropositionSection() {
       impact: "Save 8-12 hours every week. Focus on your craft, your team, your guests.",
       color: "from-blue-500/30 to-indigo-500/30",
       accentColor: "blue",
-      image: "https://images.unsplash.com/photo-1762113246607-4299ec3f3214?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwdGVhbSUyMGtpdGNoZW4lMjBzZXJ2aWNlfGVufDF8fHx8MTc2NDc5MDcyMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      image: "https://images.unsplash.com/photo-1762113246607-4299ec3f3214?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwdGVhbSUyMGtpdGNoZW4lMjBzZXJ2aWNlfGVufDF8fHx8MTc2NDc5MDcyMnww&ixlib=rb-4.1.0&q=80&w=400&utm_source=figma&utm_medium=referral"
     },
     {
       icon: FileCheck,
@@ -48,7 +48,7 @@ export function ValuePropositionSection() {
       impact: "Stop paying for stuff you didn't get. $15K-30K back in your pocket every year.",
       color: "from-rose-500/30 to-pink-500/30",
       accentColor: "rose",
-      image: "https://images.unsplash.com/photo-1713393280932-8a2a29d46226?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwZGluaW5nJTIwZ3Vlc3RzJTIwaGFwcHl8ZW58MXx8fHwxNzY0NzkwNzIzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      image: "https://images.unsplash.com/photo-1713393280932-8a2a29d46226?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwZGluaW5nJTIwZ3Vlc3RzJTIwaGFwcHl8ZW58MXx8fHwxNzY0NzkwNzIzfDA&ixlib=rb-4.1.0&q=80&w=400&utm_source=figma&utm_medium=referral"
     }
   ];
 
@@ -108,7 +108,7 @@ export function ValuePropositionSection() {
                 title: "Spoilage & Waste",
                 stat: "18%",
                 label: "of food costs",
-                image: "https://images.unsplash.com/photo-1649140208632-1edeb77d7bf6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwd2FzdGUlMjB0cmFzaCUyMHJlc3RhdXJhbnR8ZW58MXx8fHwxNzY0NzgzOTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+                image: "https://images.unsplash.com/photo-1649140208632-1edeb77d7bf6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwd2FzdGUlMjB0cmFzaCUyMHJlc3RhdXJhbnR8ZW58MXx8fHwxNzY0NzgzOTU4fDA&ixlib=rb-4.1.0&q=80&w=800",
                 gradient: "from-amber-600/60 to-orange-600/70",
                 iconBg: "from-amber-500 to-orange-600"
               },
@@ -116,7 +116,7 @@ export function ValuePropositionSection() {
                 title: "Labor Overruns",
                 stat: "32%",
                 label: "above target",
-                image: "https://images.unsplash.com/photo-1708506751726-e1709ba6b147?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwc3RhZmYlMjBzaG9ydGFnZXxlbnwxfHx8fDE3NjQ3ODM5NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+                image: "https://images.unsplash.com/photo-1708506751726-e1709ba6b147?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwc3RhZmYlMjBzaG9ydGFnZXxlbnwxfHx8fDE3NjQ3ODM5NTh8MA&ixlib=rb-4.1.0&q=80&w=800",
                 gradient: "from-orange-600/60 to-red-600/70",
                 iconBg: "from-orange-500 to-red-600"
               },
@@ -124,7 +124,7 @@ export function ValuePropositionSection() {
                 title: "Invoice Errors",
                 stat: "$2.4K",
                 label: "monthly overcharges",
-                image: "https://images.unsplash.com/photo-1764231467852-b609a742e082?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnZvaWNlJTIwYmlsbHMlMjBwYXBlcndvcmt8ZW58MXx8fHwxNzY0NzgzOTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+                image: "https://images.unsplash.com/photo-1764231467852-b609a742e082?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnZvaWNlJTIwYmlsbHMlMjBwYXBlcndvcmt8ZW58MXx8fHwxNzY0NzgzOTU5fDA&ixlib=rb-4.1.0&q=80&w=800",
                 gradient: "from-red-600/60 to-amber-600/70",
                 iconBg: "from-red-500 to-amber-600"
               },
@@ -132,7 +132,7 @@ export function ValuePropositionSection() {
                 title: "Hidden Costs",
                 stat: "47",
                 label: "untracked expenses",
-                image: "https://images.unsplash.com/photo-1761515397001-c8e82879c4c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwZGF0YSUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NjQ3ODM5NTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+                image: "https://images.unsplash.com/photo-1761515397001-c8e82879c4c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwZGF0YSUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NjQ3ODM5NTl8MA&ixlib=rb-4.1.0&q=80&w=800",
                 gradient: "from-orange-700/60 to-red-700/70",
                 iconBg: "from-orange-600 to-red-700"
               }
@@ -163,6 +163,7 @@ export function ValuePropositionSection() {
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover brightness-90 group-hover:brightness-110 transition-all duration-700"
+                      loading="lazy"
                     />
                     {/* Noise texture overlay for depth */}
                     <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/5 to-black/20 mix-blend-overlay"></div>

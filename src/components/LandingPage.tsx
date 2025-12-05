@@ -7,13 +7,14 @@ import { MetricsSection } from "./MetricsSection";
 import { ValuePropositionSection } from "./ValuePropositionSection";
 import { InlineCTA } from "./InlineCTA";
 import { WhoWeAre } from "./WhoWeAre";
+import { ProfitLeakCalculator } from "./ProfitLeakCalculator";
+import { ProductTour } from "./ProductTour";
+import { StickyCTA } from "./StickyCTA";
 
 // Lazy load below-the-fold sections for faster initial render
 const Features = lazy(() => import("./Features").then(module => ({ default: module.Features })));
-const HowItWorks = lazy(() => import("./HowItWorks").then(module => ({ default: module.HowItWorks })));
 const BetaBenefits = lazy(() => import("./BetaBenefits").then(module => ({ default: module.BetaBenefits })));
 const Testimonials = lazy(() => import("./Testimonials").then(module => ({ default: module.Testimonials })));
-const CTA = lazy(() => import("./CTA").then(module => ({ default: module.CTA })));
 const Footer = lazy(() => import("./Footer").then(module => ({ default: module.Footer })));
 
 // Simple skeleton loader for sections
@@ -38,35 +39,36 @@ export function LandingPage() {
       {/* Above the fold - critical for initial load */}
       <Hero />
       <TrustBar />
+      
+      {/* Social Proof/Results FIRST - Hook them with what's possible */}
       <MetricsSection />
       
-      {/* Optimized conversion funnel */}
+      {/* Agitation - Why they need it */}
+      <ProblemSection />
+      
+      {/* Solution - How we fix it */}
+      <ValuePropositionSection />
+      
+      {/* Engagement - personalized cost of inaction */}
+      <ProfitLeakCalculator />
+      
       <Suspense fallback={<SectionLoader />}>
-        <ProblemSection />
-        <ValuePropositionSection />
+        {/* The "What" - Core Features */}
+        <ProductTour />
         
-        {/* Who We Are Section */}
+        {/* The "Proof" - Peer validation */}
+        <Testimonials />
+        
+        {/* The "Who" - Building trust with the team */}
         <WhoWeAre />
         
-        {/* Core Features + CTA */}
-        <Features />
-        <InlineCTA variant="features" />
-        
-        {/* How It Works + CTA */}
-        <HowItWorks />
-        <InlineCTA variant="howItWorks" />
-        
-        {/* Social Proof + CTA */}
-        <Testimonials />
-        <InlineCTA variant="testimonials" />
-        
-        {/* Premium Offer (has built-in CTA) */}
+        {/* The "Close" - Final Offer with Scarcity */}
         <BetaBenefits />
         
-        {/* Final CTA */}
-        <CTA />
         <Footer />
       </Suspense>
+      
+      <StickyCTA />
     </div>
   );
 }

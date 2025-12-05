@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { SEO, seoConfigs } from "./SEO";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -88,7 +88,7 @@ export function ContactPage() {
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      toast.error('Something went wrong. Please try emailing us directly at Hello@nibbleiq.ai');
+      toast.error('Something went wrong. Please try emailing us directly at hello@nibbleiq.com');
     } finally {
       setIsSubmitting(false);
     }
@@ -107,10 +107,10 @@ export function ContactPage() {
       {/* Header */}
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link to="/">
-            <img src={logoImage} alt="Sift IQ" className="h-8" />
+          <Link href="/">
+            <img src={logoImage} alt="NibbleIQ" className="h-8" />
           </Link>
-          <Link to="/">
+          <Link href="/">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
@@ -127,13 +127,13 @@ export function ContactPage() {
           </div>
           <h1 className="text-slate-900 mb-6">Get in Touch</h1>
           <p className="text-slate-700 text-xl max-w-3xl mx-auto">
-            Have questions about Sift IQ? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            Have questions about NibbleIQ? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </p>
         </div>
       </section>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-16 max-w-6xl">
+      <main id="main-content" className="container mx-auto px-4 py-16 max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-12">
           
           {/* Contact Form */}
@@ -218,7 +218,7 @@ export function ContactPage() {
               </Button>
 
               <p className="text-slate-600 text-sm text-center">
-                By submitting this form, you agree to our <Link to="/privacy" className="text-orange-600 hover:text-orange-700">Privacy Policy</Link>
+                By submitting this form, you agree to our <Link href="/privacy" className="text-orange-600 hover:text-orange-700">Privacy Policy</Link>
               </p>
             </form>
           </div>
@@ -235,8 +235,8 @@ export function ContactPage() {
                 <div>
                   <h3 className="text-slate-900 mb-1">Email Us</h3>
                   <p className="text-slate-600 mb-2">For general inquiries</p>
-                  <a href="mailto:Hello@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">
-                    Hello@nibbleiq.ai
+                  <a href="mailto:hello@nibbleiq.com" className="text-orange-600 hover:text-orange-700">
+                    hello@nibbleiq.com
                   </a>
                 </div>
               </div>
@@ -264,9 +264,9 @@ export function ContactPage() {
 
             {/* Demo CTA Box */}
             <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 text-white">
-              <h3 className="text-white mb-3">Ready to See Sift IQ in Action?</h3>
+              <h3 className="text-white mb-3">Ready to See NibbleIQ in Action?</h3>
               <p className="text-orange-100 mb-6">
-                Book a personalized demo and discover how Sift IQ can transform your hospitality operations.
+                Book a personalized demo and discover how NibbleIQ can transform your restaurant operations.
               </p>
               <Button 
                 size="lg" 
@@ -282,7 +282,7 @@ export function ContactPage() {
               <h3 className="text-slate-900 mb-4">Other Ways to Connect</h3>
               <div className="space-y-3">
                 <Link 
-                  to="/resources" 
+                  href="/resources" 
                   className="flex items-center gap-3 text-slate-700 hover:text-orange-600 transition-colors"
                 >
                   <div className="w-8 h-8 bg-slate-200 rounded-lg flex items-center justify-center">
@@ -295,7 +295,7 @@ export function ContactPage() {
                 </Link>
                 
                 <Link 
-                  to="/about" 
+                  href="/about" 
                   className="flex items-center gap-3 text-slate-700 hover:text-orange-600 transition-colors"
                 >
                   <div className="w-8 h-8 bg-slate-200 rounded-lg flex items-center justify-center">
@@ -347,7 +347,7 @@ export function ContactPage() {
       </main>
 
       <Footer />
-      <DemoModal open={showDemoModal} onClose={() => setShowDemoModal(false)} />
+      <DemoModal open={showDemoModal} onOpenChange={setShowDemoModal} source="contact-page" />
     </div>
   );
 }

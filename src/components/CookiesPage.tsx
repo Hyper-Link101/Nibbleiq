@@ -283,8 +283,8 @@ export function CookiesPage() {
               If you have questions about our use of cookies, please contact us:
             </p>
             <div className="bg-slate-50 p-6 rounded-lg">
-              <p className="text-slate-700 mb-2"><strong>Email:</strong> <a href="mailto:privacy@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">privacy@nibbleiq.ai</a></p>
-              <p className="text-slate-700"><strong>General Contact:</strong> <a href="mailto:Hello@nibbleiq.ai" className="text-orange-600 hover:text-orange-700">Hello@nibbleiq.ai</a></p>
+              <p className="text-slate-700 mb-2"><strong>Email:</strong> <a href="mailto:privacy@nibbleiq.com" className="text-orange-600 hover:text-orange-700">privacy@nibbleiq.com</a></p>
+              <p className="text-slate-700"><strong>General Contact:</strong> <a href="mailto:hello@nibbleiq.com" className="text-orange-600 hover:text-orange-700">hello@nibbleiq.com</a></p>
             </div>
           </section>
         </div>

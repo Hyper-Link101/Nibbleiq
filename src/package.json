@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postbuild": "react-snap"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -56,7 +57,32 @@
     "@vitejs/plugin-react": "^4.3.1",
     "vite": "^5.4.0",
     "typescript": "^5.5.3",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.0.0",
+    "react-snap": "^1.23.0",
+    "vite-plugin-prerender": "^1.1.0"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "collapseWhitespace": true,
+      "removeComments": true
+    },
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "include": [
+      "/",
+      "/about",
+      "/contact",
+      "/resources",
+      "/blog",
+      "/podcast",
+      "/privacy",
+      "/terms",
+      "/cookies",
+      "/security"
+    ]
   },
   "engines": {
     "node": ">=18.0.0 <23.0.0"

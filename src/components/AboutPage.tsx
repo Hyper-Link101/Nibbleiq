@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { ArrowLeft, Users, Target, Lightbulb, Heart } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Footer } from "./Footer";
 import { DemoModal } from "./DemoModal";
 import { useState } from "react";
@@ -16,10 +16,10 @@ export function AboutPage() {
       {/* Header */}
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link to="/">
+          <Link href="/">
             <img src={logoImage} alt="Sift IQ" className="h-8" />
           </Link>
-          <Link to="/">
+          <Link href="/">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
@@ -39,7 +39,7 @@ export function AboutPage() {
       </section>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-16 max-w-6xl">
+      <main id="main-content" className="container mx-auto px-4 py-16 max-w-6xl">
         
         {/* Our Story Section */}
         <section className="mb-20">
@@ -197,7 +197,7 @@ export function AboutPage() {
                 onClick={() => setShowDemoModal(true)}
                 asChild
               >
-                <a href="mailto:Hello@nibbleiq.ai">Get in Touch</a>
+                <a href="mailto:hello@nibbleiq.com">Get in Touch</a>
               </Button>
               <Button 
                 size="lg" 

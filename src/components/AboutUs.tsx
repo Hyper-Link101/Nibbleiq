@@ -1,7 +1,7 @@
 import { Target, Users, TrendingUp, Mail, Linkedin } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export function AboutUs() {
   const team = [
@@ -111,7 +111,7 @@ export function AboutUs() {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link to="/contact">
+                <Link href="/contact">
                   <Button 
                     size="lg"
                     className="bg-gradient-to-r from-[#3D5AFE] to-[#2962FF] hover:from-[#2962FF] hover:to-[#3D5AFE] text-white shadow-xl shadow-[#3D5AFE]/30 px-8 py-6 group"
@@ -121,11 +121,11 @@ export function AboutUs() {
                   </Button>
                 </Link>
                 <a 
-                  href="mailto:Hello@nibbleiq.ai"
+                  href="mailto:hello@nibbleiq.com"
                   className="text-slate-300 hover:text-white transition-colors flex items-center gap-2"
                 >
                   <Mail className="h-5 w-5" />
-                  Hello@nibbleiq.ai
+                  hello@nibbleiq.com
                 </a>
                 <a 
                   href="https://linkedin.com/company/nibbleiq"

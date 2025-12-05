@@ -1,36 +1,3 @@
-# Robots.txt for NibbleIQ.ai
-# Last updated: December 3, 2025
-
-# Allow all crawlers to index the site
 User-agent: *
 Allow: /
-
-# Sitemap location
 Sitemap: https://nibbleiq.ai/sitemap.xml
-
-# Allow popular AI crawlers (OpenAI, Google Bard, etc.)
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-# Disallow admin and private areas
-User-agent: *
-Disallow: /admin
-Disallow: /api/
-
-# Crawl-delay for considerate crawling
-Crawl-delay: 1
-
-# Host declaration (helps with canonical URLs)
-Host: https://nibbleiq.ai

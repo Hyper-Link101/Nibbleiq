@@ -102,6 +102,7 @@ export function TrustedBySection() {
                 src="https://images.unsplash.com/photo-1667725335393-3f5d14d45e6f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwb3duZXIlMjBoYXBweXxlbnwxfHx8fDE3NjQ3ODAyMTh8MA&ixlib=rb-4.1.0&q=80&w=400"
                 alt="Happy restaurant owner"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             </div>
@@ -110,6 +111,7 @@ export function TrustedBySection() {
                 src="https://images.unsplash.com/photo-1681993302983-96d079223a70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwdGVhbSUyMG1lZXRpbmd8ZW58MXx8fHwxNzY0NzgwMjE5fDA&ixlib=rb-4.1.0&q=80&w=400"
                 alt="Restaurant team collaboration"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             </div>
@@ -118,6 +120,7 @@ export function TrustedBySection() {
                 src="https://images.unsplash.com/photo-1759027044799-5aed5577f864?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwZGluaW5nJTIwYXRtb3NwaGVyZXxlbnwxfHx8fDE3NjQ2OTI0NzJ8MA&ixlib=rb-4.1.0&q=80&w=400"
                 alt="Restaurant dining atmosphere"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             </div>
@@ -126,6 +129,7 @@ export function TrustedBySection() {
                 src="https://images.unsplash.com/photo-1630710577163-b49a62cd6ee8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwc3VjY2Vzc3xlbnwxfHx8fDE3NjQ3ODAyMTl8MA&ixlib=rb-4.1.0&q=80&w=400"
                 alt="Successful restaurant"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             </div>

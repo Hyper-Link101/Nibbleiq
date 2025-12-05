@@ -190,9 +190,10 @@ export function WhoWeAre() {
             {/* Image */}
             <div className="relative h-96 md:h-[500px]">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920"
+                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
                 alt="Restaurant team collaboration"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               
               {/* Gradient Overlay */}
@@ -225,24 +226,36 @@ export function WhoWeAre() {
                   <div className="flex items-center gap-3 text-slate-300">
                     <div className="flex -space-x-3">
                       <ImageWithFallback
-                        src="https://images.unsplash.com/photo-1759521296144-fe6f2d2dc769?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwY2hlZiUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NDc5MjY2MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                        src="https://images.unsplash.com/photo-1759521296144-fe6f2d2dc769?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwY2hlZiUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NDc5MjY2MHww&ixlib=rb-4.1.0&q=80&w=100&utm_source=figma&utm_medium=referral"
                         alt="Restaurant chef"
                         className="w-10 h-10 rounded-full object-cover border-2 border-slate-900"
+                        loading="lazy"
+                        width={40}
+                        height={40}
                       />
                       <ImageWithFallback
-                        src="https://images.unsplash.com/photo-1728631191055-aa24c9eff7f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwbWFuYWdlciUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NjQ3OTI2NjB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                        src="https://images.unsplash.com/photo-1728631191055-aa24c9eff7f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwbWFuYWdlciUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NjQ3OTI2NjB8MA&ixlib=rb-4.1.0&q=80&w=100&utm_source=figma&utm_medium=referral"
                         alt="Restaurant manager"
                         className="w-10 h-10 rounded-full object-cover border-2 border-slate-900"
+                        loading="lazy"
+                        width={40}
+                        height={40}
                       />
                       <ImageWithFallback
-                        src="https://images.unsplash.com/photo-1667725335393-3f5d14d45e6f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwb3duZXIlMjBzbWlsaW5nfGVufDF8fHx8MTc2NDc5MjY2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                        src="https://images.unsplash.com/photo-1667725335393-3f5d14d45e6f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwb3duZXIlMjBzbWlsaW5nfGVufDF8fHx8MTc2NDc5MjY2MXww&ixlib=rb-4.1.0&q=80&w=100&utm_source=figma&utm_medium=referral"
                         alt="Restaurant owner"
                         className="w-10 h-10 rounded-full object-cover border-2 border-slate-900"
+                        loading="lazy"
+                        width={40}
+                        height={40}
                       />
                       <ImageWithFallback
-                        src="https://images.unsplash.com/photo-1758887261865-a2b89c0f7ac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3NwaXRhbGl0eSUyMHByb2Zlc3Npb25hbCUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NDc5MjY2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                        src="https://images.unsplash.com/photo-1758887261865-a2b89c0f7ac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3NwaXRhbGl0eSUyMHByb2Zlc3Npb25hbCUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NDc5MjY2MXww&ixlib=rb-4.1.0&q=80&w=100&utm_source=figma&utm_medium=referral"
                         alt="Hospitality professional"
                         className="w-10 h-10 rounded-full object-cover border-2 border-slate-900"
+                        loading="lazy"
+                        width={40}
+                        height={40}
                       />
                     </div>
                     <span className="text-sm font-bold">Join 18 restaurants in beta</span>

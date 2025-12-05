@@ -1,14 +1,12 @@
 import image_90f71b77ff8f7feaaf19a1f5fd379bf272f74375 from 'figma:asset/90f71b77ff8f7feaaf19a1f5fd379bf272f74375.png';
 import { Button } from "./ui/button";
-import { MoveRight, Play, Menu, X, CircleCheck, Sparkles, Zap, TrendingUp, Heart, ChefHat, Users, Clock } from "lucide-react";
-import { Badge } from "./ui/badge";
+import { MoveRight, Play, Menu, X, CircleCheck, Sparkles, Zap, TrendingUp, Heart, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { useState, lazy, Suspense } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
 
-// Lazy load DemoModal since it's only needed when user clicks
 const DemoModal = lazy(() => import("./DemoModal").then(module => ({ default: module.DemoModal })));
 
 export function Hero() {
@@ -127,19 +125,16 @@ export function Hero() {
       </nav>
 
       {/* Hero Content */}
-      <div className="container mx-auto px-4 py-20 md:py-24 lg:py-32">
-        {/* Split Layout: Messaging Left, Dashboard Right */}
+      <div id="main-content" className="container mx-auto px-4 py-20 md:py-24 lg:py-32">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             
-            {/* Left Side - Messaging & CTAs */}
             <motion.div 
               className="text-center lg:text-left"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {/* Premium Badge */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -166,41 +161,41 @@ export function Hero() {
               </p>
 
               {/* Enhanced Trust Indicators - Hospitality Focused */}
-              <div className="grid grid-cols-2 gap-4 mb-12 max-w-lg mx-auto lg:mx-0">
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/30">
-                    <Sparkles className="h-7 w-7 text-white" strokeWidth={2.5} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-12 max-w-lg mx-auto lg:mx-0">
+                <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/30">
+                    <Sparkles className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
                   </div>
-                  <div className="text-left">
-                    <p className="text-sm text-slate-900">AI-Powered Intelligence</p>
-                    <p className="text-xs text-slate-600">Catch problems before they cost you money</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/30">
-                    <Zap className="h-7 w-7 text-white" strokeWidth={2.5} />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-slate-900">Automatic Tracking</p>
-                    <p className="text-xs text-slate-600">No manual entry. Connects to POS & vendors</p>
+                  <div className="text-left min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-slate-900 leading-tight">AI-Powered Intelligence</p>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-tight mt-0.5">Catch problems before they cost you money</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-600/30">
-                    <TrendingUp className="h-7 w-7 text-white" strokeWidth={2.5} />
+                <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/30">
+                    <Zap className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
                   </div>
-                  <div className="text-left">
-                    <p className="text-sm text-slate-900">Real-Time Dashboards</p>
-                    <p className="text-xs text-slate-600">See exactly where your money goes, updated live</p>
+                  <div className="text-left min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-slate-900 leading-tight">Automatic Tracking</p>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-tight mt-0.5">No manual entry. Connects to POS & vendors</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-green-500/30">
-                    <Clock className="h-7 w-7 text-white" strokeWidth={2.5} />
+                <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-600/30">
+                    <TrendingUp className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
                   </div>
-                  <div className="text-left">
-                    <p className="text-sm text-slate-900">8-12 Hours Saved Weekly</p>
-                    <p className="text-xs text-slate-600">Stop living in spreadsheets. Get your time back</p>
+                  <div className="text-left min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-slate-900 leading-tight">Real-Time Dashboards</p>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-tight mt-0.5">See exactly where your money goes, updated live</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-xl bg-white/80 backdrop-blur border border-orange-200/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-green-500/30">
+                    <Clock className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
+                  </div>
+                  <div className="text-left min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-slate-900 leading-tight">8-12 Hours Saved Weekly</p>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-tight mt-0.5">Stop living in spreadsheets. Get your time back</p>
                   </div>
                 </div>
               </div>
@@ -240,9 +235,9 @@ export function Hero() {
                 <div className="flex flex-col items-center lg:items-start gap-4">
                   <div className="flex items-center gap-2 text-sm text-slate-600">
                     <div className="flex -space-x-2">
-                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1758892170660-3ad271f3d672?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwY2hlZiUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NjQ3NjM5NzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Restaurant chef" />
-                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1586863981824-d9dd81824d6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwbWFuYWdlciUyMGJ1c2luZXNzfGVufDF8fHx8MTc2NDc4MDc0M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Restaurant manager" />
-                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1758887261865-a2b89c0f7ac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwb3duZXIlMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzY0NzQ3ODIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Restaurant owner" />
+                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1758892170660-3ad271f3d672?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwY2hlZiUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NjQ3NjM5NzN8MA&ixlib=rb-4.1.0&q=80&w=100&utm_source=figma&utm_medium=referral" alt="Restaurant chef" width={32} height={32} />
+                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1586863981824-d9dd81824d6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwbWFuYWdlciUyMGJ1c2luZXNzfGVufDF8fHx8MTc2NDc4MDc0M3ww&ixlib=rb-4.1.0&q=80&w=100&utm_source=figma&utm_medium=referral" alt="Restaurant manager" width={32} height={32} />
+                      <ImageWithFallback className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1758887261865-a2b89c0f7ac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwb3duZXIlMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzY0NzQ3ODIxfDA&ixlib=rb-4.1.0&q=80&w=100&utm_source=figma&utm_medium=referral" alt="Restaurant owner" width={32} height={32} />
                     </div>
                     <span>Join 18 restaurants in beta saving <strong>8-12 hours/week</strong></span>
                   </div>
@@ -284,17 +279,19 @@ export function Hero() {
               <div className="hidden md:grid grid-cols-2 gap-4 mb-6">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
                   <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1608494132127-cfadf11a3889?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwaW52ZW50b3J5JTIwc2hlbHZlc3xlbnwxfHx8fDE3NjQ3MzgxNTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    src="https://images.unsplash.com/photo-1608494132127-cfadf11a3889?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwaW52ZW50b3J5JTIwc2hlbHZlc3xlbnwxfHx8fDE3NjQ3MzgxNTV8MA&ixlib=rb-4.1.0&q=80&w=600&utm_source=figma&utm_medium=referral"
                     alt="Restaurant inventory management and storage"
                     className="w-full h-full object-cover"
+                    width={600}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
                 <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
                   <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1543353071-873f17a7a088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5lJTIwZGluaW5nJTIwcGxhdGVkJTIwZm9vZHxlbnwxfHx8fDE3NjQ3MzgxNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    src="https://images.unsplash.com/photo-1543353071-873f17a7a088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5lJTIwZGluaW5nJTIwcGxhdGVkJTIwZm9vZHxlbnwxfHx8fDE3NjQ3MzgxNTZ8MA&ixlib=rb-4.1.0&q=80&w=600&utm_source=figma&utm_medium=referral"
                     alt="Fine dining plated restaurant dish"
                     className="w-full h-full object-cover"
+                    width={600}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
@@ -344,7 +341,7 @@ export function Hero() {
       `}</style>
 
       {/* Demo Modal */}
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={null}>
         <DemoModal open={isDemoModalOpen} onOpenChange={setIsDemoModalOpen} />
       </Suspense>
     </section>

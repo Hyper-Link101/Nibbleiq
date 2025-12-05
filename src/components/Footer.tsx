@@ -43,7 +43,7 @@ export function Footer() {
               <a href="https://twitter.com/NibbleIQ" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="mailto:Hello@nibbleiq.ai" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
+              <a href="mailto:hello@nibbleiq.com" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
