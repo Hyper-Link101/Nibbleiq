@@ -27,7 +27,7 @@ export function Hero() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo - Clickable */}
           <Link to="/" className="flex items-center" aria-label="NibbleIQ Home">
-            <img src={logoImage} alt="NibbleIQ" className="h-10 hover:opacity-80 transition-opacity" loading="eager" />
+            <img src={logoImage} alt="NibbleIQ" className="h-10 hover:opacity-80 transition-opacity" loading="eager" width="160" height="40" />
           </Link>
           
           {/* Desktop Navigation */}
@@ -272,6 +272,8 @@ export function Hero() {
                   src={image_90f71b77ff8f7feaaf19a1f5fd379bf272f74375}
                   alt="Restaurant operator using NibbleIQ.ai for real-time cost control"
                   className="w-full h-auto object-cover object-center transform hover:scale-105 transition-transform duration-700"
+                  width="1200"
+                  height="800"
                 />
               </div>
 
@@ -283,6 +285,7 @@ export function Hero() {
                     alt="Restaurant inventory management and storage"
                     className="w-full h-full object-cover"
                     width={600}
+                    height={450}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
@@ -292,6 +295,7 @@ export function Hero() {
                     alt="Fine dining plated restaurant dish"
                     className="w-full h-full object-cover"
                     width={600}
+                    height={450}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>

@@ -72,7 +72,7 @@ export function BlogPostPage() {
       {/* Navigation */}
       <nav className="container mx-auto px-4 py-6 flex items-center justify-between border-b border-slate-200">
         <Link to="/">
-          <img src={logoImage} alt="NibbleIQ" className="h-10" />
+          <img src={logoImage} alt="NibbleIQ" className="h-10" width="160" height="40" />
         </Link>
         <div className="flex items-center gap-6">
           <Link to="/#features" className="text-slate-700 hover:text-slate-900 transition-colors hidden md:block">

@@ -221,7 +221,7 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
       {/* Navigation */}
       <nav className="container mx-auto px-4 py-6 flex items-center justify-between border-b border-slate-200">
         <Link to="/" aria-label="NibbleIQ Home">
-          <img src={logoImage} alt="NibbleIQ" className="h-10" />
+          <img src={logoImage} alt="NibbleIQ" className="h-10" width="160" height="40" />
         </Link>
         <div className="flex items-center gap-6">
           <Link to="/#features" className="text-slate-700 hover:text-slate-900 transition-colors hidden md:block">
@@ -579,6 +579,8 @@ function BlogPostCard({ post }: { post: BlogPost }) {
           src={`https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&h=400&fit=crop&q=80`}
           alt={post.title}
           className="w-full h-full object-cover"
+          width="600"
+          height="400"
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">

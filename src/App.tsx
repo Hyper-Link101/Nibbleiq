@@ -36,20 +36,7 @@ function PageLoader() {
 
 export default function App() {
   useEffect(() => {
-    // Load Google Analytics asynchronously (non-blocking)
-    const script1 = document.createElement('script');
-    script1.async = true;
-    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-YGW1YJZR7K';
-    document.head.appendChild(script1);
-
-    const script2 = document.createElement('script');
-    script2.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YGW1YJZR7K');
-    `;
-    document.head.appendChild(script2);
+    // Analytics are loaded via index.html/GTM
   }, []);
 
   return (

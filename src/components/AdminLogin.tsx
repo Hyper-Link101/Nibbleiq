@@ -28,7 +28,7 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-8 shadow-xl">
         <div className="text-center mb-8">
-          <img src={logoImage} alt="NibbleIQ" className="h-12 mx-auto mb-6" />
+          <img src={logoImage} alt="NibbleIQ" className="h-12 mx-auto mb-6" width="192" height="48" />
           <h1 className="text-2xl mb-2 text-slate-900">Admin Login</h1>
           <p className="text-slate-600">Enter your password to access the admin panel</p>
         </div>

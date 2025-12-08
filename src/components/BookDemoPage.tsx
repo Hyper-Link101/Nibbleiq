@@ -21,7 +21,7 @@ export function BookDemoPage() {
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/">
-            <img src={logoImage} alt="NibbleIQ" className="h-8" />
+            <img src={logoImage} alt="NibbleIQ" className="h-8" width="128" height="32" />
           </Link>
           <Link href="/">
             <Button variant="ghost" size="sm">

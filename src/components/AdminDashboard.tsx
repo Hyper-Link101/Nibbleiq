@@ -198,7 +198,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img src={logoImage} alt="NibbleIQ" className="h-8" />
+            <img src={logoImage} alt="NibbleIQ" className="h-8" width="128" height="32" />
             <Badge className="bg-cyan-100 text-cyan-700 border-cyan-200">Admin Panel</Badge>
           </div>
           <div className="flex items-center gap-4">
