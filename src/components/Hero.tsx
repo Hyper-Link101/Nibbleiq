@@ -145,7 +145,7 @@ export function Hero() {
                 <span className="text-sm text-slate-700">Trusted by passionate restaurant owners</span>
               </motion.div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl mb-8 text-slate-900 tracking-tight leading-[1.1] font-bold">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 text-slate-900 tracking-tight leading-[1.1] font-bold">
                 Intelligent Restaurant Management. You focus on{" "}
                 <span className="bg-gradient-to-r from-orange-600 via-red-600 to-amber-600 bg-clip-text text-transparent">
                   the experience

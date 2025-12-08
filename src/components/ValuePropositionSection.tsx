@@ -225,7 +225,7 @@ export function ValuePropositionSection() {
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="text-7xl text-white tracking-tight" style={{ 
+                        <div className="text-5xl md:text-6xl lg:text-7xl text-white tracking-tight" style={{ 
                           textShadow: '0 2px 16px rgba(59, 130, 246, 0.15), 0 1px 4px rgba(59, 130, 246, 0.1)',
                           fontVariantNumeric: 'tabular-nums'
                         }}>
@@ -234,7 +234,7 @@ export function ValuePropositionSection() {
                       </motion.div>
                       
                       {/* Title with Enhanced Typography */}
-                      <div className="text-2xl text-white tracking-tight leading-tight font-medium" style={{
+                      <div className="text-xl md:text-2xl text-white tracking-tight leading-tight font-medium" style={{
                         textShadow: '0 1px 8px rgba(59, 130, 246, 0.12)'
                       }}>
                         {item.title}

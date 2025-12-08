@@ -35,7 +35,6 @@
           "clsx": "*",
           "cmdk": "*",
           "embla-carousel-react": "*",
-          "framer-motion": "*",
           "input-otp": "^1.4.2",
           "lucide-react": "^0.487.0",
           "motion": "*",

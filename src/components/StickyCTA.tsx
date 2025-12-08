@@ -34,26 +34,26 @@ export function StickyCTA() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-0 left-0 right-0 z-50 p-4 pointer-events-none flex justify-center"
+            className="fixed bottom-0 left-0 right-0 z-50 p-2 md:p-4 pointer-events-none flex justify-center"
           >
-            <div className="bg-slate-900/90 backdrop-blur-md text-white rounded-full shadow-2xl border border-white/10 p-2 pl-6 pr-2 pointer-events-auto flex items-center gap-4 max-w-lg w-full justify-between">
-              <div className="flex flex-col">
-                <span className="font-bold text-sm">18/25 Founding Spots Filled</span>
-                <span className="text-xs text-slate-400">Lock in 50% off for life</span>
+            <div className="bg-slate-900/90 backdrop-blur-md text-white rounded-full shadow-2xl border border-white/10 p-2 pl-4 md:pl-6 pr-2 pointer-events-auto flex items-center gap-2 md:gap-4 max-w-lg w-full justify-between">
+              <div className="flex flex-col flex-shrink">
+                <span className="font-bold text-xs md:text-sm whitespace-nowrap">18/25 Founding Spots Filled</span>
+                <span className="text-[10px] md:text-xs text-slate-400 hidden xs:block">Lock in 50% off for life</span>
               </div>
               
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-shrink-0">
                 <Button
                   size="sm"
                   onClick={() => setIsDemoModalOpen(true)}
-                  className="bg-orange-600 hover:bg-orange-700 text-white rounded-full px-6"
+                  className="bg-orange-600 hover:bg-orange-700 text-white rounded-full px-4 md:px-6 text-xs md:text-sm h-8 md:h-9"
                 >
                   Claim Spot
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  <ArrowRight className="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4" />
                 </Button>
                 <button
                   onClick={() => setIsDismissed(true)}
-                  className="p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+                  className="p-1.5 md:p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>

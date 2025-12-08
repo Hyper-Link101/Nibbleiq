@@ -79,17 +79,17 @@ export function MetricsSection() {
 
                 {/* Value */}
                 <div className="mb-3 flex items-end gap-1 whitespace-nowrap">
-                  <span className={`bg-gradient-to-br ${metric.color} bg-clip-text text-transparent`} style={{ fontSize: '3rem', lineHeight: '1', fontWeight: '700' }}>
+                  <span className={`bg-gradient-to-br ${metric.color} bg-clip-text text-transparent text-4xl md:text-5xl font-bold leading-none`}>
                     {metric.value}
                   </span>
-                  <span className="text-slate-400 pb-1" style={{ fontSize: '1.25rem' }}>{metric.unit}</span>
+                  <span className="text-slate-400 pb-1 text-lg md:text-xl">{metric.unit}</span>
                 </div>
 
                 {/* Label */}
-                <h3 className="text-white mb-2" style={{ fontSize: '1.125rem' }}>{metric.label}</h3>
+                <h3 className="text-white mb-2 text-lg md:text-[1.125rem]">{metric.label}</h3>
                 
                 {/* Description */}
-                <p className="text-slate-400 flex-grow" style={{ fontSize: '0.875rem' }}>{metric.description}</p>
+                <p className="text-slate-400 flex-grow text-sm">{metric.description}</p>
 
                 {/* Glow effect on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${metric.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>

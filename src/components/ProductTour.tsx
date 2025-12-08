@@ -98,7 +98,7 @@ export function ProductTour() {
           </div>
 
           {/* Right: Interactive Preview */}
-          <div className="relative h-[500px] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-800">
+          <div className="relative h-[300px] md:h-[500px] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mt-8 lg:mt-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}

@@ -1,5 +1,5 @@
 import { Inbox, Sparkles, BarChart3, ShieldAlert, Coins, Network, Heart } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export function Features() {
   const features = [
