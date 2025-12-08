@@ -31,7 +31,7 @@ export function BookingSchema({ name, date, time }: BookingSchemaProps) {
       },
       "offers": {
         "@type": "Offer",
-        "price": "0",
+        "price": 0,
         "priceCurrency": "USD",
         "description": "Free 30-minute demo and 14-day trial",
         "availability": "https://schema.org/InStock"
@@ -68,7 +68,7 @@ export function BookingSchema({ name, date, time }: BookingSchemaProps) {
         },
         "offers": {
           "@type": "Offer",
-          "price": "0",
+          "price": 0,
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"
         }

@@ -220,7 +220,7 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
       />
       {/* Navigation */}
       <nav className="container mx-auto px-4 py-6 flex items-center justify-between border-b border-slate-200">
-        <Link to="/">
+        <Link to="/" aria-label="NibbleIQ Home">
           <img src={logoImage} alt="NibbleIQ" className="h-10" />
         </Link>
         <div className="flex items-center gap-6">

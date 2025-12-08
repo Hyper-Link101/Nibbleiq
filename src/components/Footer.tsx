@@ -30,20 +30,20 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
           <div className="lg:col-span-2">
-            <Link to="/">
+            <Link to="/" aria-label="NibbleIQ Home">
               <img src={logoImage} alt="NibbleIQ" className="h-10 mb-6 hover:opacity-80 transition-opacity cursor-pointer" />
             </Link>
             <p className="text-slate-400 mb-6 max-w-sm">
               A unified restaurant intelligence platform that delivers real-time analytics and intelligent automation for better operational decisions.
             </p>
             <div className="flex gap-4">
-              <a href="https://linkedin.com/company/nibbleiq" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
+              <a href="https://linkedin.com/company/nibbleiq" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all" aria-label="Visit NibbleIQ on LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com/NibbleIQ" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
+              <a href="https://twitter.com/NibbleIQ" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all" aria-label="Visit NibbleIQ on Twitter">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="mailto:hello@nibbleiq.com" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all">
+              <a href="mailto:hello@nibbleiq.com" className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-r hover:from-orange-600 hover:to-red-600 rounded-lg flex items-center justify-center transition-all" aria-label="Email NibbleIQ">
                 <Mail className="h-5 w-5" />
               </a>
             </div>

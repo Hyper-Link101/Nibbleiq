@@ -54,6 +54,7 @@ export function StickyCTA() {
                 <button
                   onClick={() => setIsDismissed(true)}
                   className="p-1.5 md:p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+                  aria-label="Dismiss offer"
                 >
                   <X className="w-4 h-4" />
                 </button>

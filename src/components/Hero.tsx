@@ -26,8 +26,8 @@ export function Hero() {
       <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-amber-200/50 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo - Clickable */}
-          <Link to="/" className="flex items-center">
-            <img src={logoImage} alt="NibbleIQ.ai" className="h-10 hover:opacity-80 transition-opacity" loading="eager" />
+          <Link to="/" className="flex items-center" aria-label="NibbleIQ Home">
+            <img src={logoImage} alt="NibbleIQ" className="h-10 hover:opacity-80 transition-opacity" loading="eager" />
           </Link>
           
           {/* Desktop Navigation */}

@@ -157,7 +157,7 @@ export function SEO({
             "@type": "Offer",
             "category": "SaaS",
             "priceCurrency": "USD",
-            "price": "0",
+            "price": 0,
             "priceValidUntil": "2026-12-31",
             "availability": "https://schema.org/InStock",
             "seller": {
@@ -218,6 +218,7 @@ export function SEO({
           "offers": {
             "@type": "Offer",
             "priceCurrency": "USD",
+            "price": 0,
             "availability": "https://schema.org/InStock",
             "url": siteUrl
           },
