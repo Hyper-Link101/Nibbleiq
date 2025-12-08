@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { ArrowLeft, Users, Target, Lightbulb, Heart } from "lucide-react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { Footer } from "./Footer";
 import { DemoModal } from "./DemoModal";
 import { useState } from "react";
@@ -16,10 +16,10 @@ export function AboutPage() {
       {/* Header */}
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/">
+          <Link to="/">
             <img src={logoImage} alt="Sift IQ" className="h-8" />
           </Link>
-          <Link href="/">
+          <Link to="/">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
@@ -195,9 +195,8 @@ export function AboutPage() {
                 size="lg" 
                 className="bg-white text-orange-600 hover:bg-orange-50"
                 onClick={() => setShowDemoModal(true)}
-                asChild
               >
-                <a href="mailto:hello@nibbleiq.com">Get in Touch</a>
+                Book a Demo
               </Button>
               <Button 
                 size="lg" 
@@ -205,7 +204,7 @@ export function AboutPage() {
                 className="border-white text-white hover:bg-white/10"
                 asChild
               >
-                <a href="mailto:hello@siftiq.io">Get in Touch</a>
+                <a href="mailto:hello@nibbleiq.com">Get in Touch</a>
               </Button>
             </div>
           </div>
@@ -214,7 +213,7 @@ export function AboutPage() {
       </main>
 
       <Footer />
-      <DemoModal open={showDemoModal} onClose={() => setShowDemoModal(false)} />
+      <DemoModal open={showDemoModal} onOpenChange={setShowDemoModal} source="about-page" />
     </div>
   );
 }

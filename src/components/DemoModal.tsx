@@ -11,6 +11,32 @@ interface DemoModalProps {
 export function DemoModal({ open, onOpenChange, source }: DemoModalProps) {
   const [bookingData, setBookingData] = useState<{ name?: string; date?: string; time?: string }>({});
 
+  useEffect(() => {
+    if (open) {
+      // Setup Koalendar global function
+      (window as any).Koalendar = (window as any).Koalendar || function() {
+        ((window as any).Koalendar.props = (window as any).Koalendar.props || []).push(arguments);
+      };
+
+      // Load widget script if not already loaded
+      if (!document.querySelector('script[src="https://koalendar.com/assets/widget.js"]')) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = "https://koalendar.com/assets/widget.js";
+        document.body.appendChild(script);
+      }
+
+      // Initialize widget
+      // We wrap in a small timeout to ensure DOM is ready if it's being portaled
+      setTimeout(() => {
+        (window as any).Koalendar('inline', {
+          "url": "https://koalendar.com/e/meet-with-nibbleIQ-founders",
+          "selector": "#inline-widget-meet-with-nibbleIQ-founders"
+        });
+      }, 100);
+    }
+  }, [open]);
+
   const handleBookingSuccess = () => {
     // Track successful booking
     if (typeof window !== 'undefined' && (window as any).gtag) {
@@ -34,15 +60,8 @@ export function DemoModal({ open, onOpenChange, source }: DemoModalProps) {
           </DialogHeader>
           
           <div className="w-full overflow-y-auto" style={{ maxHeight: 'calc(90vh - 100px)' }}>
-            {/* Koalendar Embed */}
-            <iframe
-              src="https://koalendar.com/e/meet-with-nibble-iq-founders"
-              width="100%"
-              height="700"
-              frameBorder="0"
-              style={{ border: 'none', minHeight: '700px' }}
-              title="Book a Demo with NibbleIQ"
-            />
+            {/* Koalendar Inline Embed */}
+            <div id="inline-widget-meet-with-nibbleIQ-founders" style={{ minHeight: '700px', width: '100%' }}></div>
           </div>
         </DialogContent>
       </Dialog>

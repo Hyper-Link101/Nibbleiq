@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { Footer } from './Footer';
 import { SEO, seoConfigs } from './SEO';
+import { DemoModal } from './DemoModal';
 
 interface BlogPost {
   id: number;
@@ -61,6 +62,7 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
   const [showNotifyModal, setShowNotifyModal] = useState(false);
   const [notifyEmail, setNotifyEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   // Load data from localStorage
   useEffect(() => {
@@ -231,7 +233,10 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
           <Link to="/resources" className="text-orange-600 hover:text-orange-700 transition-colors hidden md:block">
             Resources
           </Link>
-          <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30">
+          <Button 
+            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30"
+            onClick={() => setIsDemoModalOpen(true)}
+          >
             Book a Demo
           </Button>
         </div>
@@ -483,7 +488,11 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
             Join 500+ restaurant operators using NibbleIQ.ai to protect their margins and optimize operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-[#3D5AFE] hover:bg-slate-50">
+            <Button 
+              size="lg" 
+              className="bg-white text-[#3D5AFE] hover:bg-slate-50"
+              onClick={() => setIsDemoModalOpen(true)}
+            >
               Book a Demo
             </Button>
             <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10">
@@ -556,6 +565,8 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
           </div>
         </DialogContent>
       </Dialog>
+      
+      <DemoModal open={isDemoModalOpen} onOpenChange={setIsDemoModalOpen} source="resources-page" />
     </div>
   );
 }
