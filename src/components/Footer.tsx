@@ -54,11 +54,13 @@ export function Footer() {
               <h3 className="text-white mb-4">{category}</h3>
               <ul className="space-y-3">
                 {items.map((item) => (
-                  <li key={item.name}>
-                    <Link to={item.href} className="text-slate-400 hover:text-[#3D5AFE] transition-colors">
-                      {item.name}
-                    </Link>
-                  </li>
+                  item.name !== "About" && (
+                    <li key={item.name}>
+                      <Link to={item.href} className="text-slate-400 hover:text-[#3D5AFE] transition-colors">
+                        {item.name}
+                      </Link>
+                    </li>
+                  )
                 ))}
               </ul>
             </div>
