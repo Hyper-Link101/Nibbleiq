@@ -146,18 +146,18 @@ export function Hero() {
               </motion.div>
               
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 text-slate-900 tracking-tight leading-[1.1] font-bold">
-                Intelligent Restaurant Management. You focus on{" "}
+                NibbleIQ: AI Restaurant Operations Intelligence for{" "}
                 <span className="bg-gradient-to-r from-orange-600 via-red-600 to-amber-600 bg-clip-text text-transparent">
-                  the experience
+                  Cost, Labor, and Inventory
                 </span>
               </h1>
               
               <p className="text-xl md:text-2xl text-slate-600 mb-6 leading-relaxed">
-                NibbleIQ is AI-powered restaurant management software that automatically tracks costs, predicts problems before they happen, and tells you exactly what to do next. Stop reacting to issues too late—our intelligence catches them before they hurt your bottom line.
+                Operators don’t need more dashboards. They need clarity, automation, and real-time cost intuition. That is what NibbleIQ delivers.
               </p>
               
               <p className="text-lg md:text-xl text-slate-700 mb-10 leading-relaxed">
-                We catch price hikes, spot waste, and keep suppliers honest—automatically. So you can spend less time in spreadsheets.
+                AI-powered operational intelligence that tracks vendor pricing, labor, and inventory in real time—so you can stop living in spreadsheets.
               </p>
 
               {/* Enhanced Trust Indicators - Hospitality Focused */}
