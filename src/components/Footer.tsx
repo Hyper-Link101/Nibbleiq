@@ -9,7 +9,6 @@ export function Footer() {
       { name: "How It Works", href: "/#how-it-works" }
     ],
     Company: [
-      { name: "About", href: "/about" },
       { name: "Contact", href: "/contact" }
     ],
     Resources: [
@@ -54,13 +53,11 @@ export function Footer() {
               <h3 className="text-white mb-4">{category}</h3>
               <ul className="space-y-3">
                 {items.map((item) => (
-                  item.name !== "About" && (
-                    <li key={item.name}>
-                      <Link to={item.href} className="text-slate-400 hover:text-[#3D5AFE] transition-colors">
-                        {item.name}
-                      </Link>
-                    </li>
-                  )
+                  <li key={item.name}>
+                    <Link to={item.href} className="text-slate-400 hover:text-[#3D5AFE] transition-colors">
+                      {item.name}
+                    </Link>
+                  </li>
                 ))}
               </ul>
             </div>
