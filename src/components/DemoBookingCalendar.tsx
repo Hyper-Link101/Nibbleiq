@@ -134,6 +134,10 @@ Time Zone: ${formData.timeZone}
       console.log('Google Calendar URL:', calendarUrl);
 
       // Send booking to backend API
+      // In a real implementation, you would send to an API endpoint here
+      // For now, since we removed the Next.js API route, we'll skip this call
+      // and rely on the client-side logging and Google Calendar integration.
+      /*
       const apiResponse = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -147,6 +151,7 @@ Time Zone: ${formData.timeZone}
 
       const responseData = await apiResponse.json();
       console.log('Booking API Response:', responseData);
+      */
 
       setStep('confirmed');
       toast.success('Demo booked successfully!');

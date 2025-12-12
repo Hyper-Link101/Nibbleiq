@@ -1,7 +1,7 @@
 import { Footer } from "./Footer";
 import { BookingSchema } from "./BookingSchema";
 import { SEO } from "./SEO";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { ArrowLeft, CheckCircle, Clock, Video, Users } from "lucide-react";
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
@@ -20,10 +20,10 @@ export function BookDemoPage() {
       {/* Header */}
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/">
+          <Link to="/">
             <img src={logoImage} alt="NibbleIQ" className="h-8" width="128" height="32" />
           </Link>
-          <Link href="/">
+          <Link to="/">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home

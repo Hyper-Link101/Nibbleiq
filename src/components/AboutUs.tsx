@@ -1,7 +1,7 @@
 import { Target, Users, TrendingUp, Mail, Linkedin } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 export function AboutUs() {
   const team = [
@@ -111,7 +111,7 @@ export function AboutUs() {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link href="/contact">
+                <Link to="/contact">
                   <Button 
                     size="lg"
                     className="bg-gradient-to-r from-[#3D5AFE] to-[#2962FF] hover:from-[#2962FF] hover:to-[#3D5AFE] text-white shadow-xl shadow-[#3D5AFE]/30 px-8 py-6 group"
