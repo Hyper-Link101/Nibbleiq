@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "postbuild": "react-snap"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -58,32 +57,7 @@
     "vite": "^5.4.0",
     "typescript": "^5.5.3",
     "tailwindcss": "^4.0.0",
-    "react-snap": "^1.23.0",
     "vite-plugin-prerender": "^1.1.0"
-  },
-  "reactSnap": {
-    "source": "dist",
-    "minifyHtml": {
-      "collapseWhitespace": true,
-      "removeComments": true
-    },
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
-    ],
-    "include": [
-      "/",
-      "/about",
-      "/contact",
-      "/book-demo",
-      "/resources",
-      "/blog",
-      "/podcast",
-      "/privacy",
-      "/terms",
-      "/cookies",
-      "/security"
-    ]
   },
   "engines": {
     "node": ">=18.0.0 <23.0.0"
