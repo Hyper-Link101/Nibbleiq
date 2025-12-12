@@ -1,6 +1,7 @@
 export interface BlogPost {
   id: number;
   title: string;
+  slug: string; // URL friendly version of title
   excerpt: string;
   content?: string; // Content is optional in list view but required for detail
   author: string;
@@ -10,13 +11,22 @@ export interface BlogPost {
   image: string;
   featuredImage?: string;
   published?: boolean;
+  
+  // SEO Fields
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string;
 }
 
 export const INITIAL_BLOG_POSTS: BlogPost[] = [
   {
     id: 1,
     title: "How Hidden Supplier Price Increases Are Killing Your Margins",
+    slug: "hidden-supplier-price-increases-killing-margins",
     excerpt: "Discover how restaurant groups are losing $250K+ annually from undetected supplier price hikes—and what you can do about it.",
+    metaTitle: "Restaurant Supplier Price Increases: The Silent Margin Killer",
+    metaDescription: "Learn how hidden supplier price increases are costing restaurant groups thousands annually and how to detect them automatically.",
+    keywords: "restaurant margins, supplier pricing, food cost control, restaurant inflation",
     content: `
       <p>In the high-stakes world of hospitality, margins are everything. Yet, many restaurant groups are bleeding profits through a silent killer: hidden supplier price increases.</p>
       
@@ -43,7 +53,11 @@ export const INITIAL_BLOG_POSTS: BlogPost[] = [
   {
     id: 2,
     title: "The True Cost of Manual Invoice Processing",
+    slug: "true-cost-manual-invoice-processing",
     excerpt: "Learn why manual invoice processing is costing you more than just time—and how AI can transform your back office operations.",
+    metaTitle: "Manual Invoice Processing Costs for Restaurants",
+    metaDescription: "Manual invoice processing is costing your restaurant time and money. Discover how AI automation can transform your back office.",
+    keywords: "invoice processing, restaurant ap automation, back office efficiency",
     content: `
       <p>How much time does your team spend keying in invoices? If you're like most restaurant groups, the answer is "too much." but the cost isn't just in labor hours—it's in the data you're missing.</p>
 
@@ -66,7 +80,11 @@ export const INITIAL_BLOG_POSTS: BlogPost[] = [
   {
     id: 3,
     title: "Predictive Labor Scheduling: A Complete Guide for 2024",
+    slug: "predictive-labor-scheduling-guide-2024",
     excerpt: "Master the art of labor forecasting with AI. Save 20+ hours per week while improving service quality.",
+    metaTitle: "Restaurant Predictive Labor Scheduling Guide 2024",
+    metaDescription: "A complete guide to predictive labor scheduling for restaurants. Learn how to use AI to forecast demand and optimize labor costs.",
+    keywords: "labor scheduling, restaurant labor cost, predictive scheduling, workforce management",
     content: `
       <p>Labor is the hardest cost to control because it directly impacts guest satisfaction. Cut too much, and service suffers. Schedule too heavy, and profits tank. The "Goldilocks zone" is elusive—or at least it used to be.</p>
 

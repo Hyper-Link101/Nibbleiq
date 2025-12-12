@@ -1,38 +1,58 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Calendar, Clock, User, ArrowLeft, Share2 } from 'lucide-react';
+import { Calendar, Clock, User, ArrowLeft, Share2, Loader2 } from 'lucide-react';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { Footer } from './Footer';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
+import { getPostBySlug, getAllPosts, BlogPost } from '../lib/blog';
+import { toast } from 'sonner';
+import { SEO } from './SEO';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export function BlogPostPage() {
-  const { id } = useParams();
+  const { id } = useParams(); // 'id' will contain the slug because of the route definition /blog/:id
   const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const savedBlogs = localStorage.getItem('siftiq_blogs');
-    const allBlogs: BlogPost[] = savedBlogs ? JSON.parse(savedBlogs) : INITIAL_BLOG_POSTS;
-    
-    const currentPost = allBlogs.find(b => b.id === Number(id) && b.published === true);
-    
-    if (currentPost) {
-      setPost(currentPost);
-      
-      // Get related posts (same category, limit 3)
-      const related = allBlogs
-        .filter(b => 
-          b.id !== currentPost.id && 
-          b.category === currentPost.category && 
-          b.published === true
-        )
-        .slice(0, 3);
-      setRelatedPosts(related);
-    } else {
-      navigate('/resources');
-    }
+    const loadPost = async () => {
+      try {
+        setIsLoading(true);
+        if (!id) return;
+
+        const foundPost = await getPostBySlug(id);
+        
+        if (foundPost) {
+          setPost(foundPost);
+          
+          // Get related posts
+          const allPosts = await getAllPosts();
+          const related = allPosts
+            .filter(b => 
+              b.slug !== foundPost.slug && 
+              b.category === foundPost.category && 
+              b.published
+            )
+            .slice(0, 3);
+          setRelatedPosts(related);
+        } else {
+          navigate('/resources');
+        }
+      } catch (error) {
+        console.error('Failed to load blog post:', error);
+        toast.error('Failed to load content');
+        navigate('/resources');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPost();
   }, [id, navigate]);
 
   const handleShare = () => {
@@ -41,18 +61,36 @@ export function BlogPostPage() {
     toast.success('Link copied to clipboard!');
   };
 
-  if (!post) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl text-slate-900 mb-4">Loading...</h2>
+          <Loader2 className="w-8 h-8 animate-spin text-orange-500 mx-auto mb-4" />
+          <p className="text-slate-600">Loading article...</p>
         </div>
       </div>
     );
   }
 
+  if (!post) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title={post.title}
+        description={post.description}
+        keywords={post.tags?.join(', ')}
+        image={post.image}
+        type="article"
+        article={{
+          publishedTime: post.date,
+          author: post.author,
+          tag: post.category
+        }}
+        canonical={`https://nibbleiq.ai/blog/${post.slug}`}
+      />
       {/* Navigation */}
       <nav className="container mx-auto px-4 py-6 flex items-center justify-between border-b border-slate-200">
         <Link to="/">
@@ -105,13 +143,13 @@ export function BlogPostPage() {
 
           {/* Excerpt */}
           <p className="text-xl text-slate-600 mb-8">
-            {post.excerpt}
+            {post.description}
           </p>
 
           {/* Author Info */}
           <div className="flex items-center justify-between pb-8 mb-8 border-b border-slate-200">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
                 {post.author.charAt(0)}
               </div>
               <div>
@@ -132,21 +170,22 @@ export function BlogPostPage() {
           </div>
 
           {/* Featured Image */}
-          {post.featuredImage && (
-            <div className="mb-12 rounded-2xl overflow-hidden">
+          {post.image && (
+            <div className="mb-12 rounded-2xl overflow-hidden aspect-video relative">
               <ImageWithFallback 
-                src={post.featuredImage}
+                src={post.image}
                 alt={post.title}
-                className="w-full h-auto"
+                className="w-full h-full object-cover"
               />
             </div>
           )}
 
           {/* Content */}
-          <div 
-            className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-img:rounded-xl prose-img:shadow-lg"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <div className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-img:rounded-xl prose-img:shadow-lg">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {post.content}
+            </ReactMarkdown>
+          </div>
         </div>
       </article>
 
@@ -159,22 +198,33 @@ export function BlogPostPage() {
               <div className="grid md:grid-cols-3 gap-8">
                 {relatedPosts.map((relatedPost) => (
                   <Link 
-                    key={relatedPost.id} 
-                    to={`/blog/${relatedPost.id}`}
+                    key={relatedPost.slug} 
+                    to={`/blog/${relatedPost.slug}`}
                     className="group"
                   >
-                    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 border border-slate-200 h-full">
-                      <div className="aspect-video bg-gradient-to-br from-slate-100 to-orange-50" />
-                      <div className="p-6">
-                        <Badge className="bg-orange-100 text-orange-700 border-orange-200 mb-3">
+                    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 border border-slate-200 h-full flex flex-col">
+                      <div className="aspect-video bg-gradient-to-br from-slate-100 to-orange-50 relative overflow-hidden">
+                        <ImageWithFallback 
+                          src={relatedPost.image || `https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&h=400&fit=crop&q=80`}
+                          alt={relatedPost.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-6 flex flex-col flex-grow">
+                        <Badge className="bg-orange-100 text-orange-700 border-orange-200 mb-3 w-fit">
                           {relatedPost.category}
                         </Badge>
-                        <h3 className="text-lg mb-2 text-slate-900 line-clamp-2 group-hover:text-orange-600 transition-colors">
+                        <h3 className="text-lg mb-2 text-slate-900 line-clamp-2 group-hover:text-orange-600 transition-colors font-bold">
                           {relatedPost.title}
                         </h3>
-                        <p className="text-sm text-slate-600 line-clamp-2">
-                          {relatedPost.excerpt}
+                        <p className="text-sm text-slate-600 line-clamp-2 mb-4">
+                          {relatedPost.description}
                         </p>
+                         <div className="flex items-center gap-2 text-xs text-slate-500 mt-auto">
+                            <span>{relatedPost.date}</span>
+                            <span>•</span>
+                            <span>{relatedPost.readTime}</span>
+                        </div>
                       </div>
                     </div>
                   </Link>

@@ -1,82 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Homepage - Highest priority -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nibbleiq.ai/</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-12-12</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Main Navigation Pages -->
-  <url>
-    <loc>https://nibbleiq.ai/about</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://nibbleiq.ai/contact</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Resources Section -->
   <url>
     <loc>https://nibbleiq.ai/resources</loc>
-    <lastmod>2025-01-03</lastmod>
+    <lastmod>2024-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://nibbleiq.ai/blog</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://nibbleiq.ai/podcast</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Legal Pages -->
-  <url>
-    <loc>https://nibbleiq.ai/privacy</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://nibbleiq.ai/terms</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://nibbleiq.ai/cookies</loc>
-    <lastmod>2025-01-03</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://nibbleiq.ai/security</loc>
-    <lastmod>2025-01-03</lastmod>
+    <loc>https://nibbleiq.ai/blog/hidden-supplier-price-increases-killing-margins</loc>
+    <lastmod>2024-11-20</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nibbleiq.ai/blog/true-cost-manual-invoice-processing</loc>
+    <lastmod>2024-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nibbleiq.ai/blog/predictive-labor-scheduling-guide-2024</loc>
+    <lastmod>2024-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nibbleiq.ai/about</loc>
+    <lastmod>2024-12-01</lastmod>
     <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://nibbleiq.ai/contact</loc>
+    <lastmod>2024-12-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nibbleiq.ai/book-demo</loc>
+    <lastmod>2024-12-01</lastmod>
+    <priority>0.8</priority>
+  </url>
 </urlset>

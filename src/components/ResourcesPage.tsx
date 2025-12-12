@@ -7,13 +7,15 @@ import { Card, CardContent } from './ui/card';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
-import { Calendar, Clock, User, ExternalLink, Play, TrendingUp, MessageSquare, Link2, Sparkles, Zap, BookOpen, Mail, X } from 'lucide-react';
+import { Calendar, Clock, User, ExternalLink, Play, TrendingUp, MessageSquare, Link2, Sparkles, Zap, BookOpen, Mail, X, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { Footer } from './Footer';
 import { SEO, seoConfigs } from './SEO';
 import { DemoModal } from './DemoModal';
-import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
+import { getAllPosts, BlogPost } from '../lib/blog';
+import { api } from '../utils/api';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface PodcastEpisode {
   id: number;
@@ -52,85 +54,90 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
   const [notifyEmail, setNotifyEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Load data from localStorage
+  // Load data
   useEffect(() => {
-    const savedBlogs = localStorage.getItem('siftiq_blogs');
-    const savedPodcasts = localStorage.getItem('siftiq_podcasts');
-    const savedLinks = localStorage.getItem('siftiq_links');
-    
-    if (savedBlogs) {
-      const allBlogs = JSON.parse(savedBlogs);
-      // Only show published blogs
-      setBlogPosts(allBlogs.filter((blog: BlogPost) => blog.published === true));
-    } else {
-      // Default sample data if no custom content exists
-      setBlogPosts(INITIAL_BLOG_POSTS);
-    }
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+        // Load Blogs from Markdown Files
+        const blogs = await getAllPosts();
+        setBlogPosts(blogs.filter(blog => blog.published));
 
-    if (savedPodcasts) {
-      const allPodcasts = JSON.parse(savedPodcasts);
-      // Only show published podcasts
-      setPodcastEpisodes(allPodcasts.filter((podcast: PodcastEpisode) => podcast.published === true));
-    } else {
-      // Default sample data if no custom content exists
-      setPodcastEpisodes([
-        {
-          id: 1,
-          title: "Ep 12: From Spreadsheets to AI - A Restaurant CFO's Journey",
-          description: "Join us as we chat with Jessica Park, CFO of a 45-location restaurant group, about her transition from manual processes to AI-powered operations.",
-          duration: "42 min",
-          date: "Nov 22, 2024",
-          guest: "Jessica Park, CFO at Ember Restaurant Group",
-          topics: ["AI Adoption", "Cost Control", "Digital Transformation"],
-          spotifyUrl: "#",
-          appleUrl: "#",
-          image: "podcast studio",
-          published: true
-        },
-        {
-          id: 2,
-          title: "Ep 11: The Hidden Costs of Food Price Volatility",
-          description: "Industry expert Marcus Johnson breaks down how to navigate supplier price changes and protect your margins in uncertain times.",
-          duration: "38 min",
-          date: "Nov 15, 2024",
-          guest: "Marcus Johnson, Supply Chain Consultant",
-          topics: ["Food Costs", "Supplier Relations", "Risk Management"],
-          spotifyUrl: "#",
-          appleUrl: "#",
-          image: "business meeting",
-          published: true
-        }
-      ]);
-    }
+        // Load other resources from API (or keep dummy data if API fails/is empty)
+        const [podcasts, links] = await Promise.all([
+          api.getPodcasts(),
+          api.getResourceLinks()
+        ]);
 
-    if (savedLinks) {
-      const allLinks = JSON.parse(savedLinks);
-      // Only show published links
-      setResourceLinks(allLinks.filter((link: ResourceLink) => link.published === true));
-    } else {
-      // Default sample data if no custom content exists
-      setResourceLinks([
-        {
-          id: 1,
-          title: "Sift IQ Whitepaper: Optimizing Restaurant Operations with AI",
-          description: "Download our comprehensive guide to learn how AI can revolutionize your restaurant operations.",
-          url: "#",
-          category: "Whitepaper",
-          date: "Nov 10, 2024",
-          published: true
-        },
-        {
-          id: 2,
-          title: "Sift IQ Case Study: How Ember Restaurant Group Reduced Costs by 20%",
-          description: "Read our case study to see how Ember Restaurant Group used Sift IQ to cut costs and improve efficiency.",
-          url: "#",
-          category: "Case Study",
-          date: "Nov 5, 2024",
-          published: true
+        if (podcasts && podcasts.length > 0) {
+          setPodcastEpisodes(podcasts.filter((podcast: any) => podcast.published === true));
+        } else {
+          // Default sample podcasts
+          setPodcastEpisodes([
+            {
+              id: 1,
+              title: "Ep 12: From Spreadsheets to AI - A Restaurant CFO's Journey",
+              description: "Join us as we chat with Jessica Park, CFO of a 45-location restaurant group, about her transition from manual processes to AI-powered operations.",
+              duration: "42 min",
+              date: "Nov 22, 2024",
+              guest: "Jessica Park, CFO at Ember Restaurant Group",
+              topics: ["AI Adoption", "Cost Control", "Digital Transformation"],
+              spotifyUrl: "#",
+              appleUrl: "#",
+              image: "podcast studio",
+              published: true
+            },
+            {
+              id: 2,
+              title: "Ep 11: The Hidden Costs of Food Price Volatility",
+              description: "Industry expert Marcus Johnson breaks down how to navigate supplier price changes and protect your margins in uncertain times.",
+              duration: "38 min",
+              date: "Nov 15, 2024",
+              guest: "Marcus Johnson, Supply Chain Consultant",
+              topics: ["Food Costs", "Supplier Relations", "Risk Management"],
+              spotifyUrl: "#",
+              appleUrl: "#",
+              image: "business meeting",
+              published: true
+            }
+          ]);
         }
-      ]);
-    }
+
+        if (links && links.length > 0) {
+          setResourceLinks(links.filter((link: any) => link.published === true));
+        } else {
+          // Default sample links
+          setResourceLinks([
+            {
+              id: 1,
+              title: "Sift IQ Whitepaper: Optimizing Restaurant Operations with AI",
+              description: "Download our comprehensive guide to learn how AI can revolutionize your restaurant operations.",
+              url: "#",
+              category: "Whitepaper",
+              date: "Nov 10, 2024",
+              published: true
+            },
+            {
+              id: 2,
+              title: "Sift IQ Case Study: How Ember Restaurant Group Reduced Costs by 20%",
+              description: "Read our case study to see how Ember Restaurant Group used Sift IQ to cut costs and improve efficiency.",
+              url: "#",
+              category: "Case Study",
+              date: "Nov 5, 2024",
+              published: true
+            }
+          ]);
+        }
+      } catch (error) {
+        console.error('Failed to load data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
   }, []);
 
   const handleNotifySubmit = async () => {
@@ -530,12 +537,10 @@ function BlogPostCard({ post }: { post: BlogPost }) {
   return (
     <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-slate-200 flex flex-col h-full">
       <div className="aspect-video bg-gradient-to-br from-slate-100 to-orange-50 relative overflow-hidden">
-        <img 
-          src={`https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&h=400&fit=crop&q=80`}
+        <ImageWithFallback 
+          src={post.image || `https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&h=400&fit=crop&q=80`}
           alt={post.title}
           className="w-full h-full object-cover"
-          width="600"
-          height="400"
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">
@@ -552,7 +557,7 @@ function BlogPostCard({ post }: { post: BlogPost }) {
           {post.title}
         </h3>
         <p className="text-slate-600 mb-4 line-clamp-3">
-          {post.excerpt}
+          {post.description || post.excerpt || ''}
         </p>
         <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
           <div className="flex items-center gap-2 text-sm text-slate-600">
@@ -564,7 +569,7 @@ function BlogPostCard({ post }: { post: BlogPost }) {
             <span>{post.date}</span>
           </div>
         </div>
-        <Link to={`/blog/${post.id}`}>
+        <Link to={`/blog/${post.slug}`}>
           <Button className="w-full mt-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white">
             Read More
           </Button>
