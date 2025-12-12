@@ -15,6 +15,7 @@ const PodcastEpisodePage = lazy(() => import('./components/PodcastEpisodePage').
 const AdminPage = lazy(() => import('./components/AdminPage').then(module => ({ default: module.AdminPage })));
 const AboutPage = lazy(() => import('./components/AboutPage').then(module => ({ default: module.AboutPage })));
 const ContactPage = lazy(() => import('./components/ContactPage').then(module => ({ default: module.ContactPage })));
+const BookDemoPage = lazy(() => import('./components/BookDemoPage').then(module => ({ default: module.BookDemoPage })));
 const PrivacyPage = lazy(() => import('./components/PrivacyPage').then(module => ({ default: module.PrivacyPage })));
 const TermsPage = lazy(() => import('./components/TermsPage').then(module => ({ default: module.TermsPage })));
 const CookiesPage = lazy(() => import('./components/CookiesPage').then(module => ({ default: module.CookiesPage })));
@@ -55,6 +56,7 @@ export default function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/book-demo" element={<BookDemoPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/cookies" element={<CookiesPage />} />
