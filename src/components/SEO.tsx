@@ -148,11 +148,18 @@ export function SEO({
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
           "name": siteName,
-          "applicationCategory": "BusinessApplication",
-          "applicationSubCategory": "Restaurant Management Software",
+          "applicationCategory": "Restaurant Management Software",
           "operatingSystem": "Web",
-          "description": description,
+          "description": "AI-powered operational intelligence for restaurants to track cost, labor, inventory, vendor pricing, and performance in real time.",
           "url": siteUrl,
+          "brand": {
+            "@type": "Brand",
+            "name": siteName
+          },
+          "creator": {
+            "@type": "Organization",
+            "name": "NibbleIQ Inc."
+          },
           "offers": {
             "@type": "Offer",
             "category": "SaaS",
@@ -330,8 +337,8 @@ export function SEO({
 // Preset SEO configurations for common pages
 export const seoConfigs = {
   home: {
-    title: "Intelligent Restaurant Management Software | NibbleIQ",
-    description: "AI-powered restaurant management that automatically tracks costs, predicts problems, and saves you 8-12 hours per week. Start free trial - no credit card required.",
+    title: "NibbleIQ: AI Restaurant Operations Intelligence for Cost, Labor, and Inventory",
+    description: "AI-powered restaurant operations platform that tracks food cost, vendor pricing, labor, inventory, and daily performance in one real-time dashboard. Built for multi-unit operators.",
     keywords: "restaurant cost control software, restaurant operations software, restaurant food cost tracking, back-office restaurant software, restaurant analytics platform, invoice OCR for restaurants, food cost management tools, restaurant automation, multi-unit restaurant software, vendor price tracking, yield tracking, Seattle restaurant software",
     noindex: false
   },
