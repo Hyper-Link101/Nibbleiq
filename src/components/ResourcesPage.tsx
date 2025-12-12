@@ -13,18 +13,7 @@ import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png'
 import { Footer } from './Footer';
 import { SEO, seoConfigs } from './SEO';
 import { DemoModal } from './DemoModal';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: string;
-  published?: boolean;
-}
+import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
 
 interface PodcastEpisode {
   id: number;
@@ -76,41 +65,7 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
       setBlogPosts(allBlogs.filter((blog: BlogPost) => blog.published === true));
     } else {
       // Default sample data if no custom content exists
-      setBlogPosts([
-        {
-          id: 1,
-          title: "How Hidden Supplier Price Increases Are Killing Your Margins",
-          excerpt: "Discover how restaurant groups are losing $250K+ annually from undetected supplier price hikes—and what you can do about it.",
-          author: "Sarah Chen",
-          date: "Nov 20, 2024",
-          readTime: "5 min read",
-          category: "Cost Control",
-          image: "restaurant technology",
-          published: true
-        },
-        {
-          id: 2,
-          title: "The True Cost of Manual Invoice Processing",
-          excerpt: "Learn why manual invoice processing is costing you more than just time—and how AI can transform your back office operations.",
-          author: "Michael Torres",
-          date: "Nov 18, 2024",
-          readTime: "7 min read",
-          category: "Operations",
-          image: "business analytics",
-          published: true
-        },
-        {
-          id: 3,
-          title: "Predictive Labor Scheduling: A Complete Guide for 2024",
-          excerpt: "Master the art of labor forecasting with AI. Save 20+ hours per week while improving service quality.",
-          author: "Alex Rivera",
-          date: "Nov 15, 2024",
-          readTime: "10 min read",
-          category: "Labor Management",
-          image: "team collaboration",
-          published: true
-        }
-      ]);
+      setBlogPosts(INITIAL_BLOG_POSTS);
     }
 
     if (savedPodcasts) {

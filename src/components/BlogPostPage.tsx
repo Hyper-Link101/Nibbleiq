@@ -4,20 +4,7 @@ import { Calendar, Clock, User, ArrowLeft, Share2 } from 'lucide-react';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { Footer } from './Footer';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: string;
-  featuredImage?: string;
-  published?: boolean;
-}
+import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
 
 export function BlogPostPage() {
   const { id } = useParams();
@@ -27,25 +14,22 @@ export function BlogPostPage() {
 
   useEffect(() => {
     const savedBlogs = localStorage.getItem('siftiq_blogs');
-    if (savedBlogs) {
-      const allBlogs: BlogPost[] = JSON.parse(savedBlogs);
-      const currentPost = allBlogs.find(b => b.id === Number(id) && b.published === true);
+    const allBlogs: BlogPost[] = savedBlogs ? JSON.parse(savedBlogs) : INITIAL_BLOG_POSTS;
+    
+    const currentPost = allBlogs.find(b => b.id === Number(id) && b.published === true);
+    
+    if (currentPost) {
+      setPost(currentPost);
       
-      if (currentPost) {
-        setPost(currentPost);
-        
-        // Get related posts (same category, limit 3)
-        const related = allBlogs
-          .filter(b => 
-            b.id !== currentPost.id && 
-            b.category === currentPost.category && 
-            b.published === true
-          )
-          .slice(0, 3);
-        setRelatedPosts(related);
-      } else {
-        navigate('/resources');
-      }
+      // Get related posts (same category, limit 3)
+      const related = allBlogs
+        .filter(b => 
+          b.id !== currentPost.id && 
+          b.category === currentPost.category && 
+          b.published === true
+        )
+        .slice(0, 3);
+      setRelatedPosts(related);
     } else {
       navigate('/resources');
     }

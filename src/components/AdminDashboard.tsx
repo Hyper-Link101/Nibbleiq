@@ -10,24 +10,13 @@ import { Badge } from './ui/badge';
 import { RichTextEditor } from './RichTextEditor';
 import { 
   Plus, 
-  Share2
+  Share2,
+  Download,
+  Database
 } from 'lucide-react';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { toast } from 'sonner';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: string;
-  featuredImage?: string;
-  published: boolean;
-}
+import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
 
 interface PodcastEpisode {
   id: number;
@@ -77,7 +66,11 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     
     if (savedBlogs) {
       setBlogPosts(JSON.parse(savedBlogs));
+    } else {
+      // Load initial data from code if no local changes
+      setBlogPosts(INITIAL_BLOG_POSTS);
     }
+
     if (savedPodcasts) {
       setPodcastEpisodes(JSON.parse(savedPodcasts));
     }
@@ -192,6 +185,27 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     toast.success('Publication status updated');
   };
 
+  const handleExportData = () => {
+    const data = `export interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  content?: string;
+  author: string;
+  date: string;
+  readTime: string;
+  category: string;
+  image: string;
+  featuredImage?: string;
+  published?: boolean;
+}
+
+export const INITIAL_BLOG_POSTS: BlogPost[] = ${JSON.stringify(blogPosts, null, 2)};`;
+
+    navigator.clipboard.writeText(data);
+    toast.success('Data copied to clipboard! Paste it into src/data/blogPosts.ts');
+  };
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
@@ -202,6 +216,10 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <Badge className="bg-cyan-100 text-cyan-700 border-cyan-200">Admin Panel</Badge>
           </div>
           <div className="flex items-center gap-4">
+            <Button variant="outline" size="sm" onClick={handleExportData}>
+              <Download className="w-4 h-4 mr-2" />
+              Export Data
+            </Button>
             <Link to="/resources">
               <Button variant="outline" size="sm">
                 <Eye className="w-4 h-4 mr-2" />
