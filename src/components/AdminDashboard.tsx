@@ -12,7 +12,18 @@ import {
   Plus, 
   Share2,
   Download,
-  Database
+  Database,
+  Eye,
+  LogOut,
+  FileText,
+  Podcast,
+  Link2,
+  User,
+  Calendar,
+  Edit2,
+  Trash2,
+  X,
+  Save
 } from 'lucide-react';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { toast } from 'sonner';
@@ -60,22 +71,27 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   // Load data from localStorage on mount
   useEffect(() => {
-    const savedBlogs = localStorage.getItem('siftiq_blogs');
-    const savedPodcasts = localStorage.getItem('siftiq_podcasts');
-    const savedLinks = localStorage.getItem('siftiq_links');
-    
-    if (savedBlogs) {
-      setBlogPosts(JSON.parse(savedBlogs));
-    } else {
-      // Load initial data from code if no local changes
-      setBlogPosts(INITIAL_BLOG_POSTS);
-    }
+    try {
+      const savedBlogs = localStorage.getItem('siftiq_blogs');
+      const savedPodcasts = localStorage.getItem('siftiq_podcasts');
+      const savedLinks = localStorage.getItem('siftiq_links');
+      
+      if (savedBlogs) {
+        setBlogPosts(JSON.parse(savedBlogs));
+      } else {
+        // Load initial data from code if no local changes
+        setBlogPosts(INITIAL_BLOG_POSTS);
+      }
 
-    if (savedPodcasts) {
-      setPodcastEpisodes(JSON.parse(savedPodcasts));
-    }
-    if (savedLinks) {
-      setResourceLinks(JSON.parse(savedLinks));
+      if (savedPodcasts) {
+        setPodcastEpisodes(JSON.parse(savedPodcasts));
+      }
+      if (savedLinks) {
+        setResourceLinks(JSON.parse(savedLinks));
+      }
+    } catch (error) {
+      console.error('Failed to load data:', error);
+      setBlogPosts(INITIAL_BLOG_POSTS);
     }
   }, []);
 
