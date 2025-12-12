@@ -5,13 +5,11 @@ import { LandingPage } from './components/LandingPage';
 import { Toaster } from './components/ui/sonner';
 import { CookieConsent } from './components/CookieConsent';
 
-// Lazy load AIBotPopup - it's not critical for initial page load
-const AIBotPopup = lazy(() => import('./components/AIBotPopup').then(module => ({ default: module.AIBotPopup })));
-
 // Lazy load all non-critical routes
 const ResourcesPage = lazy(() => import('./components/ResourcesPage').then(module => ({ default: module.ResourcesPage })));
 const BlogPostPage = lazy(() => import('./components/BlogPostPage').then(module => ({ default: module.BlogPostPage })));
 const PodcastEpisodePage = lazy(() => import('./components/PodcastEpisodePage').then(module => ({ default: module.PodcastEpisodePage })));
+const AdminPage = lazy(() => import('./components/AdminPage').then(module => ({ default: module.AdminPage })));
 const AboutPage = lazy(() => import('./components/AboutPage').then(module => ({ default: module.AboutPage })));
 const ContactPage = lazy(() => import('./components/ContactPage').then(module => ({ default: module.ContactPage })));
 const BookDemoPage = lazy(() => import('./components/BookDemoPage').then(module => ({ default: module.BookDemoPage })));
@@ -52,6 +50,7 @@ export default function App() {
             <Route path="/blog/:id" element={<BlogPostPage />} />
             <Route path="/podcast" element={<ResourcesPage initialTab="podcast" />} />
             <Route path="/podcast/:id" element={<PodcastEpisodePage />} />
+            <Route path="/admin" element={<AdminPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/book-demo" element={<BookDemoPage />} />
@@ -64,9 +63,6 @@ export default function App() {
             <Route path="/BingSiteAuth.xml" element={<BingSiteAuth />} />
             <Route path="/google-Z6h6hI3EauwQNX8USE1RH-RYH4W_daafjBpsfdDFlk.html" element={<GoogleVerification />} />
           </Routes>
-        </Suspense>
-        <Suspense fallback={null}>
-          <AIBotPopup />
         </Suspense>
         <Toaster />
         <CookieConsent />

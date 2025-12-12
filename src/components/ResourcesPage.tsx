@@ -13,7 +13,7 @@ import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png'
 import { Footer } from './Footer';
 import { SEO, seoConfigs } from './SEO';
 import { DemoModal } from './DemoModal';
-import { getAllPosts, BlogPost } from '../lib/blog';
+import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
 import { api } from '../utils/api';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
@@ -61,15 +61,17 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
     const loadData = async () => {
       try {
         setIsLoading(true);
-        // Load Blogs from Markdown Files
-        const blogs = await getAllPosts();
-        setBlogPosts(blogs.filter(blog => blog.published));
-
-        // Load other resources from API (or keep dummy data if API fails/is empty)
-        const [podcasts, links] = await Promise.all([
+        const [blogs, podcasts, links] = await Promise.all([
+          api.getBlogPosts(),
           api.getPodcasts(),
           api.getResourceLinks()
         ]);
+
+        if (blogs && blogs.length > 0) {
+          setBlogPosts(blogs.filter((blog: any) => blog.published === true));
+        } else {
+          setBlogPosts(INITIAL_BLOG_POSTS.filter(blog => blog.published === true));
+        }
 
         if (podcasts && podcasts.length > 0) {
           setPodcastEpisodes(podcasts.filter((podcast: any) => podcast.published === true));

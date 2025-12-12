@@ -6,14 +6,13 @@ import { Calendar, Clock, User, ArrowLeft, Share2, Loader2 } from 'lucide-react'
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { Footer } from './Footer';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { getPostBySlug, getAllPosts, BlogPost } from '../lib/blog';
+import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
 import { toast } from 'sonner';
+import { api } from '../utils/api';
 import { SEO } from './SEO';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 
 export function BlogPostPage() {
-  const { id } = useParams(); // 'id' will contain the slug because of the route definition /blog/:id
+  const { id } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
@@ -23,24 +22,34 @@ export function BlogPostPage() {
     const loadPost = async () => {
       try {
         setIsLoading(true);
-        if (!id) return;
-
-        const foundPost = await getPostBySlug(id);
+        // Fetch fresh data from API
+        const blogs = await api.getBlogPosts();
         
-        if (foundPost) {
-          setPost(foundPost);
+        // Use API data or fallback to initial data
+        const allBlogs: BlogPost[] = (blogs && blogs.length > 0) ? blogs : INITIAL_BLOG_POSTS;
+        
+        // Try to find by ID (if numeric) or Slug
+        let currentPost;
+        if (id && !isNaN(Number(id))) {
+           currentPost = allBlogs.find(b => b.id === Number(id) && b.published === true);
+        } else {
+           currentPost = allBlogs.find(b => b.slug === id && b.published === true);
+        }
+        
+        if (currentPost) {
+          setPost(currentPost);
           
-          // Get related posts
-          const allPosts = await getAllPosts();
-          const related = allPosts
+          // Get related posts (same category, limit 3)
+          const related = allBlogs
             .filter(b => 
-              b.slug !== foundPost.slug && 
-              b.category === foundPost.category && 
-              b.published
+              b.id !== currentPost.id && 
+              b.category === currentPost.category && 
+              b.published === true
             )
             .slice(0, 3);
           setRelatedPosts(related);
         } else {
+          // If not found by slug, maybe redirect to resources or show 404
           navigate('/resources');
         }
       } catch (error) {
@@ -52,7 +61,9 @@ export function BlogPostPage() {
       }
     };
 
-    loadPost();
+    if (id) {
+      loadPost();
+    }
   }, [id, navigate]);
 
   const handleShare = () => {
@@ -170,22 +181,21 @@ export function BlogPostPage() {
           </div>
 
           {/* Featured Image */}
-          {post.image && (
-            <div className="mb-12 rounded-2xl overflow-hidden aspect-video relative">
+          {post.featuredImage && (
+            <div className="mb-12 rounded-2xl overflow-hidden">
               <ImageWithFallback 
-                src={post.image}
+                src={post.featuredImage}
                 alt={post.title}
-                className="w-full h-full object-cover"
+                className="w-full h-auto"
               />
             </div>
           )}
 
           {/* Content */}
-          <div className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-img:rounded-xl prose-img:shadow-lg">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {post.content}
-            </ReactMarkdown>
-          </div>
+          <div 
+            className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-img:rounded-xl prose-img:shadow-lg"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </div>
       </article>
 
