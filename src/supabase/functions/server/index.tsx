@@ -116,4 +116,37 @@ app.post("/make-server-94a4ef79/resource-links", async (c) => {
   }
 });
 
+// Auth Signup (Admin Creation)
+app.post("/make-server-94a4ef79/signup", async (c) => {
+  const supabase = createClient(
+    Deno.env.get('SUPABASE_URL') ?? '',
+    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+  );
+
+  try {
+    const { email, password } = await c.req.json();
+    
+    if (!email || !password) {
+      return c.json({ error: "Email and password are required" }, 400);
+    }
+
+    const { data, error } = await supabase.auth.admin.createUser({
+      email,
+      password,
+      // Automatically confirm the user's email since an email server hasn't been configured.
+      email_confirm: true
+    });
+
+    if (error) {
+      console.error("Error creating user:", error);
+      return c.json({ error: error.message }, 400);
+    }
+
+    return c.json({ data });
+  } catch (error) {
+    console.error("Signup error:", error);
+    return c.json({ error: "Internal server error" }, 500);
+  }
+});
+
 Deno.serve(app.fetch);
