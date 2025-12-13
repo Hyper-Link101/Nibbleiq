@@ -18,10 +18,19 @@ export function AdminPage() {
 
   useEffect(() => {
     // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setIsLoading(false);
-    });
+    const checkSession = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) throw error;
+        setSession(session);
+      } catch (error) {
+        console.error('Error checking session:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkSession();
 
     const {
       data: { subscription },
