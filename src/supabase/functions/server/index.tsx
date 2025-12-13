@@ -11,6 +11,12 @@ async function checkAuth(c: any) {
   if (!authHeader) return false;
   
   const token = authHeader.replace('Bearer ', '');
+  
+  // Allow the simple shared password for admin access
+  if (token === 'nibbleiq2024') {
+    return true;
+  }
+  
   const supabase = createClient(
     Deno.env.get("SUPABASE_URL") ?? "",
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
@@ -113,89 +119,6 @@ app.post("/make-server-94a4ef79/resource-links", async (c) => {
   } catch (error) {
     console.error("Error saving resource links:", error);
     return c.json({ error: "Failed to save links" }, 500);
-  }
-});
-
-// Auth Signup (Admin Creation)
-app.post("/make-server-94a4ef79/signup", async (c) => {
-  const supabase = createClient(
-    Deno.env.get('SUPABASE_URL') ?? '',
-    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
-  );
-
-  try {
-    const { email, password } = await c.req.json();
-    
-    if (!email || !password) {
-      return c.json({ error: "Email and password are required" }, 400);
-    }
-
-    const { data, error } = await supabase.auth.admin.createUser({
-      email,
-      password,
-      // Automatically confirm the user's email since an email server hasn't been configured.
-      email_confirm: true
-    });
-
-    if (error) {
-      console.error("Error creating user:", error);
-      return c.json({ error: error.message }, 400);
-    }
-
-    return c.json({ data });
-  } catch (error) {
-    console.error("Signup error:", error);
-    return c.json({ error: "Internal server error" }, 500);
-  }
-});
-
-// Admin Password Reset
-app.post("/make-server-94a4ef79/reset-password", async (c) => {
-  const supabase = createClient(
-    Deno.env.get('SUPABASE_URL') ?? '',
-    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
-  );
-
-  try {
-    const { email, password } = await c.req.json();
-    
-    if (!email || !password) {
-      return c.json({ error: "Email and password are required" }, 400);
-    }
-
-    // 1. Find the user
-    const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
-    
-    if (listError) {
-      console.error("Error listing users:", listError);
-      return c.json({ error: listError.message }, 500);
-    }
-
-    const user = users.find((u: any) => u.email === email);
-    
-    if (!user) {
-      return c.json({ error: "User not found" }, 404);
-    }
-
-    // 2. Update the user
-    const { data, error: updateError } = await supabase.auth.admin.updateUserById(
-      user.id,
-      { 
-        password: password,
-        email_confirm: true,
-        user_metadata: { email_verified: true }
-      }
-    );
-
-    if (updateError) {
-      console.error("Error updating user:", updateError);
-      return c.json({ error: updateError.message }, 400);
-    }
-
-    return c.json({ success: true, message: "Password updated successfully" });
-  } catch (error) {
-    console.error("Reset error:", error);
-    return c.json({ error: "Internal server error" }, 500);
   }
 });
 
