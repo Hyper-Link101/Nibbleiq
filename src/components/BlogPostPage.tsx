@@ -11,18 +11,70 @@ import { toast } from 'sonner';
 import { api } from '../utils/api';
 import { SEO } from './SEO';
 
+import { getAllContent } from '../lib/mdx';
+
 export function BlogPostPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [MdxContent, setMdxContent] = useState<React.ComponentType | null>(null);
 
   useEffect(() => {
     const loadPost = async () => {
       try {
         setIsLoading(true);
-        // Fetch fresh data from API
+        setMdxContent(null);
+        
+        // 1. Check MDX Content First
+        const mdxPosts = getAllContent('blog');
+        const mdxMatch = mdxPosts.find(p => p.slug === id);
+        
+        if (mdxMatch) {
+            setPost({
+                id: mdxMatch.slug as any, // ID string is fine here
+                title: mdxMatch.frontmatter.title,
+                slug: mdxMatch.slug,
+                excerpt: mdxMatch.frontmatter.excerpt || mdxMatch.frontmatter.description,
+                content: '', // Content handled by component
+                author: mdxMatch.frontmatter.author || 'NibbleIQ Team',
+                date: mdxMatch.frontmatter.date ? new Date(mdxMatch.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
+                readTime: mdxMatch.frontmatter.readTime || '5 min read',
+                category: mdxMatch.frontmatter.category || 'Insights',
+                image: mdxMatch.frontmatter.image,
+                published: mdxMatch.frontmatter.published !== false,
+                featuredImage: mdxMatch.frontmatter.featuredImage,
+                metaTitle: mdxMatch.frontmatter.metaTitle,
+                metaDescription: mdxMatch.frontmatter.metaDescription,
+                keywords: mdxMatch.frontmatter.keywords
+            });
+            setMdxContent(() => mdxMatch.component);
+            
+            // Get related from MDX + Static
+            // For now just MDX related or Static related?
+            // Let's mix them for better UX
+             const allBlogs = [
+                ...mdxPosts.map(p => ({ 
+                    ...p.frontmatter, 
+                    slug: p.slug,
+                    published: p.frontmatter.published !== false
+                })), 
+                ...INITIAL_BLOG_POSTS
+             ];
+             
+             const related = allBlogs.filter(b => 
+                b.slug !== mdxMatch.slug && 
+                (b.category === mdxMatch.frontmatter.category) &&
+                b.published
+             ).slice(0, 3);
+             
+             setRelatedPosts(related as any);
+             setIsLoading(false);
+             return;
+        }
+
+        // 2. Fetch fresh data from API
         const blogs = await api.getBlogPosts();
         
         // Use API data or fallback to initial data
@@ -90,10 +142,10 @@ export function BlogPostPage() {
   return (
     <div className="min-h-screen bg-white">
       <SEO 
-        title={post.title}
-        description={post.description}
-        keywords={post.tags?.join(', ')}
-        image={post.image}
+        title={post.metaTitle || post.title}
+        description={post.metaDescription || post.excerpt || post.description}
+        keywords={post.keywords || (post as any).tags?.join(', ')}
+        image={post.image || post.featuredImage}
         type="article"
         article={{
           publishedTime: post.date,
@@ -192,10 +244,16 @@ export function BlogPostPage() {
           )}
 
           {/* Content */}
-          <div 
-            className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-img:rounded-xl prose-img:shadow-lg"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          {MdxContent ? (
+            <div className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-img:rounded-xl prose-img:shadow-lg">
+                <MdxContent />
+            </div>
+          ) : (
+            <div 
+                className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-img:rounded-xl prose-img:shadow-lg"
+                dangerouslySetInnerHTML={{ __html: post.content || '' }}
+            />
+          )}
         </div>
       </article>
 

@@ -26,7 +26,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "*.tsx", "components/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "*.tsx", "components/**/*.tsx", "types/**/*.d.ts"],
   "exclude": ["node_modules", "dist", "public"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

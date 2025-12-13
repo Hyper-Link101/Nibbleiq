@@ -17,6 +17,8 @@ import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
 import { api } from '../utils/api';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
+import { getAllContent } from '../lib/mdx';
+
 interface PodcastEpisode {
   id: number;
   title: string;
@@ -67,17 +69,54 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
           api.getResourceLinks()
         ]);
 
-        if (blogs && blogs.length > 0) {
-          setBlogPosts(blogs.filter((blog: any) => blog.published === true));
-        } else {
-          setBlogPosts(INITIAL_BLOG_POSTS.filter(blog => blog.published === true));
-        }
+        // MDX Content
+        const mdxBlogs = getAllContent('blog').map(item => ({
+          id: item.slug, // Use slug as ID for MDX
+          title: item.frontmatter.title || 'Untitled',
+          slug: item.slug,
+          excerpt: item.frontmatter.excerpt || item.frontmatter.description || '',
+          content: '', // Not needed for list
+          author: item.frontmatter.author || 'NibbleIQ Team',
+          date: item.frontmatter.date ? new Date(item.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
+          readTime: item.frontmatter.readTime || '5 min read',
+          category: item.frontmatter.category || 'Insights',
+          image: item.frontmatter.image,
+          published: item.frontmatter.published !== false
+        }));
 
+        const mdxPodcasts = getAllContent('podcast').map(item => ({
+          id: item.slug,
+          title: item.frontmatter.title || 'Untitled',
+          description: item.frontmatter.description || '',
+          duration: item.frontmatter.duration || '',
+          date: item.frontmatter.date ? new Date(item.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
+          guest: item.frontmatter.guest || '',
+          topics: item.frontmatter.topics || [],
+          spotifyUrl: item.frontmatter.spotifyUrl || '#',
+          appleUrl: item.frontmatter.appleUrl || '#',
+          image: item.frontmatter.image,
+          published: item.frontmatter.published !== false
+        }));
+
+        let combinedBlogs = [...mdxBlogs];
+        if (blogs && blogs.length > 0) {
+          combinedBlogs = [...combinedBlogs, ...blogs.filter((blog: any) => blog.published === true)];
+        } else {
+          combinedBlogs = [...combinedBlogs, ...INITIAL_BLOG_POSTS.filter(blog => blog.published === true)];
+        }
+        // Deduplicate by slug
+        combinedBlogs = Array.from(new Map(combinedBlogs.map(item => [item.slug, item])).values());
+        // Sort by date
+        combinedBlogs.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        
+        setBlogPosts(combinedBlogs as any);
+
+        let combinedPodcasts = [...mdxPodcasts];
         if (podcasts && podcasts.length > 0) {
-          setPodcastEpisodes(podcasts.filter((podcast: any) => podcast.published === true));
+          combinedPodcasts = [...combinedPodcasts, ...podcasts.filter((podcast: any) => podcast.published === true)];
         } else {
           // Default sample podcasts
-          setPodcastEpisodes([
+          const defaults = [
             {
               id: 1,
               title: "Ep 12: From Spreadsheets to AI - A Restaurant CFO's Journey",
@@ -104,8 +143,10 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
               image: "business meeting",
               published: true
             }
-          ]);
+          ];
+          combinedPodcasts = [...combinedPodcasts, ...defaults];
         }
+        setPodcastEpisodes(combinedPodcasts as any);
 
         if (links && links.length > 0) {
           setResourceLinks(links.filter((link: any) => link.published === true));

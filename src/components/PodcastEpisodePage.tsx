@@ -4,6 +4,7 @@ import { Calendar, Clock, User, ArrowLeft, Play, ExternalLink, Share2 } from 'lu
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 import { Footer } from './Footer';
 import { toast } from 'sonner';
+import { SEO } from './SEO';
 
 interface PodcastEpisode {
   id: number;
@@ -20,13 +21,52 @@ interface PodcastEpisode {
   published?: boolean;
 }
 
+import { getAllContent } from '../lib/mdx';
+
 export function PodcastEpisodePage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [episode, setEpisode] = useState<PodcastEpisode | null>(null);
   const [relatedEpisodes, setRelatedEpisodes] = useState<PodcastEpisode[]>([]);
+  const [MdxContent, setMdxContent] = useState<React.ComponentType | null>(null);
 
   useEffect(() => {
+    // 1. Check MDX Content First
+    const mdxPodcasts = getAllContent('podcast');
+    const mdxMatch = mdxPodcasts.find(p => p.slug === id);
+    
+    if (mdxMatch) {
+         setEpisode({
+            id: mdxMatch.slug as any,
+            title: mdxMatch.frontmatter.title,
+            description: mdxMatch.frontmatter.description,
+            content: '',
+            duration: mdxMatch.frontmatter.duration,
+            date: mdxMatch.frontmatter.date ? new Date(mdxMatch.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
+            guest: mdxMatch.frontmatter.guest,
+            topics: mdxMatch.frontmatter.topics || [],
+            spotifyUrl: mdxMatch.frontmatter.spotifyUrl,
+            appleUrl: mdxMatch.frontmatter.appleUrl,
+            image: mdxMatch.frontmatter.image,
+            published: mdxMatch.frontmatter.published !== false
+         });
+         setMdxContent(() => mdxMatch.component);
+         
+         // Related from MDX
+         const related = mdxPodcasts
+            .filter(p => p.slug !== id && p.frontmatter.published !== false)
+            .map(p => ({
+                id: p.slug as any,
+                title: p.frontmatter.title,
+                description: p.frontmatter.description,
+                duration: p.frontmatter.duration,
+                published: p.frontmatter.published !== false
+            }))
+            .slice(0, 3);
+         setRelatedEpisodes(related as any);
+         return;
+    }
+
     const savedPodcasts = localStorage.getItem('siftiq_podcasts');
     if (savedPodcasts) {
       const allEpisodes: PodcastEpisode[] = JSON.parse(savedPodcasts);
@@ -66,6 +106,18 @@ export function PodcastEpisodePage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title={episode.title}
+        description={episode.description}
+        image={episode.image}
+        type="article" 
+        article={{
+             publishedTime: episode.date,
+             author: episode.guest,
+             tag: "Podcast"
+        }}
+        canonical={`https://nibbleiq.ai/podcast/${episode.id}`} 
+      />
       {/* Navigation */}
       <nav className="container mx-auto px-4 py-6 flex items-center justify-between border-b border-slate-200">
         <Link to="/">
@@ -183,13 +235,19 @@ export function PodcastEpisodePage() {
           </div>
 
           {/* Show Notes */}
-          {episode.content && (
+          {(episode.content || MdxContent) && (
             <div className="mb-12">
               <h3 className="text-xl mb-4 text-slate-900">Show Notes</h3>
-              <div 
-                className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-ul:text-slate-700 prose-li:text-slate-700"
-                dangerouslySetInnerHTML={{ __html: episode.content }}
-              />
+              {MdxContent ? (
+                  <div className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-ul:text-slate-700 prose-li:text-slate-700">
+                    <MdxContent />
+                  </div>
+              ) : (
+                  <div 
+                    className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-700 prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-ul:text-slate-700 prose-li:text-slate-700"
+                    dangerouslySetInnerHTML={{ __html: episode.content || '' }}
+                  />
+              )}
             </div>
           )}
         </div>
