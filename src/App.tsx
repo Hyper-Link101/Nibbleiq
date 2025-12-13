@@ -20,6 +20,7 @@ const SecurityPage = lazy(() => import('./components/SecurityPage').then(module 
 const BingSiteAuth = lazy(() => import('./components/BingSiteAuth').then(module => ({ default: module.BingSiteAuth })));
 const GoogleVerification = lazy(() => import('./components/GoogleVerification').then(module => ({ default: module.GoogleVerification })));
 
+
 // Loading component
 function PageLoader() {
   return (
