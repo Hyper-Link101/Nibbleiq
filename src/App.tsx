@@ -19,6 +19,8 @@ const CookiesPage = lazy(() => import('./components/CookiesPage').then(module =>
 const SecurityPage = lazy(() => import('./components/SecurityPage').then(module => ({ default: module.SecurityPage })));
 const BingSiteAuth = lazy(() => import('./components/BingSiteAuth').then(module => ({ default: module.BingSiteAuth })));
 const GoogleVerification = lazy(() => import('./components/GoogleVerification').then(module => ({ default: module.GoogleVerification })));
+const AdminTroubleshoot = lazy(() => import('./components/AdminTroubleshoot').then(module => ({ default: module.AdminTroubleshoot })));
+
 
 
 // Loading component
@@ -52,6 +54,7 @@ export default function App() {
             <Route path="/podcast" element={<ResourcesPage initialTab="podcast" />} />
             <Route path="/podcast/:id" element={<PodcastEpisodePage />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/troubleshoot" element={<AdminTroubleshoot />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/book-demo" element={<BookDemoPage />} />

@@ -149,4 +149,54 @@ app.post("/make-server-94a4ef79/signup", async (c) => {
   }
 });
 
+// Admin Password Reset
+app.post("/make-server-94a4ef79/reset-password", async (c) => {
+  const supabase = createClient(
+    Deno.env.get('SUPABASE_URL') ?? '',
+    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+  );
+
+  try {
+    const { email, password } = await c.req.json();
+    
+    if (!email || !password) {
+      return c.json({ error: "Email and password are required" }, 400);
+    }
+
+    // 1. Find the user
+    const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
+    
+    if (listError) {
+      console.error("Error listing users:", listError);
+      return c.json({ error: listError.message }, 500);
+    }
+
+    const user = users.find((u: any) => u.email === email);
+    
+    if (!user) {
+      return c.json({ error: "User not found" }, 404);
+    }
+
+    // 2. Update the user
+    const { data, error: updateError } = await supabase.auth.admin.updateUserById(
+      user.id,
+      { 
+        password: password,
+        email_confirm: true,
+        user_metadata: { email_verified: true }
+      }
+    );
+
+    if (updateError) {
+      console.error("Error updating user:", updateError);
+      return c.json({ error: updateError.message }, 400);
+    }
+
+    return c.json({ success: true, message: "Password updated successfully" });
+  } catch (error) {
+    console.error("Reset error:", error);
+    return c.json({ error: "Internal server error" }, 500);
+  }
+});
+
 Deno.serve(app.fetch);
