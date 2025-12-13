@@ -55,6 +55,9 @@ export function LandingPage() {
       <Suspense fallback={<SectionLoader />}>
         {/* The "What" - Core Features */}
         <ProductTour />
+
+        {/* Detailed Features List */}
+        <Features />
         
         {/* The "Proof" - Peer validation */}
         <Testimonials />

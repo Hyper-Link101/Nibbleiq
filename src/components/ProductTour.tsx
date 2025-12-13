@@ -39,7 +39,7 @@ export function ProductTour() {
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section id="how-it-works" className="py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">

@@ -1,8 +1,25 @@
 import { Hono } from "npm:hono";
 import { cors } from "npm:hono/cors";
 import { logger } from "npm:hono/logger";
+import { createClient } from "jsr:@supabase/supabase-js@2";
 import * as kv from "./kv_store.tsx";
 const app = new Hono();
+
+// Helper to check auth
+async function checkAuth(c: any) {
+  const authHeader = c.req.header('Authorization');
+  if (!authHeader) return false;
+  
+  const token = authHeader.replace('Bearer ', '');
+  const supabase = createClient(
+    Deno.env.get("SUPABASE_URL") ?? "",
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+  );
+  
+  const { data: { user }, error } = await supabase.auth.getUser(token);
+  if (error || !user) return false;
+  return true;
+}
 
 // Enable logger
 app.use('*', logger(console.log));
@@ -36,6 +53,9 @@ app.get("/make-server-94a4ef79/blog-posts", async (c) => {
 });
 
 app.post("/make-server-94a4ef79/blog-posts", async (c) => {
+  if (!(await checkAuth(c))) {
+    return c.json({ error: "Unauthorized" }, 401);
+  }
   try {
     const posts = await c.req.json();
     await kv.set("blog_posts", posts);
@@ -58,6 +78,9 @@ app.get("/make-server-94a4ef79/podcasts", async (c) => {
 });
 
 app.post("/make-server-94a4ef79/podcasts", async (c) => {
+  if (!(await checkAuth(c))) {
+    return c.json({ error: "Unauthorized" }, 401);
+  }
   try {
     const podcasts = await c.req.json();
     await kv.set("podcasts", podcasts);
@@ -80,6 +103,9 @@ app.get("/make-server-94a4ef79/resource-links", async (c) => {
 });
 
 app.post("/make-server-94a4ef79/resource-links", async (c) => {
+  if (!(await checkAuth(c))) {
+    return c.json({ error: "Unauthorized" }, 401);
+  }
   try {
     const links = await c.req.json();
     await kv.set("resource_links", links);

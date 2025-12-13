@@ -60,9 +60,10 @@ interface ResourceLink {
 
 interface AdminDashboardProps {
   onLogout: () => void;
+  token: string;
 }
 
-export function AdminDashboard({ onLogout }: AdminDashboardProps) {
+export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   
@@ -123,7 +124,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         toast.success('Blog post updated successfully!');
       }
       setBlogPosts(newPosts);
-      await api.saveBlogPosts(newPosts);
+      await api.saveBlogPosts(newPosts, token);
       setEditingBlog(null);
       setIsCreating(false);
     } catch (error) {
@@ -135,7 +136,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     if (confirm('Are you sure? This cannot be undone.')) {
       const newPosts = blogPosts.filter(b => b.id !== id);
       setBlogPosts(newPosts);
-      await api.saveBlogPosts(newPosts);
+      await api.saveBlogPosts(newPosts, token);
       toast.success('Blog post deleted');
     }
   };
@@ -153,7 +154,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         toast.success('Episode updated successfully!');
       }
       setPodcastEpisodes(newPodcasts);
-      await api.savePodcasts(newPodcasts);
+      await api.savePodcasts(newPodcasts, token);
       setEditingPodcast(null);
       setIsCreating(false);
     } catch (error) {
@@ -165,7 +166,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     if (confirm('Are you sure?')) {
       const newPodcasts = podcastEpisodes.filter(p => p.id !== id);
       setPodcastEpisodes(newPodcasts);
-      await api.savePodcasts(newPodcasts);
+      await api.savePodcasts(newPodcasts, token);
       toast.success('Podcast deleted');
     }
   };
@@ -182,7 +183,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         toast.success('Link updated successfully!');
       }
       setResourceLinks(newLinks);
-      await api.saveResourceLinks(newLinks);
+      await api.saveResourceLinks(newLinks, token);
       setEditingLink(null);
       setIsCreating(false);
     } catch (error) {
@@ -194,7 +195,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     if (confirm('Are you sure?')) {
       const newLinks = resourceLinks.filter(l => l.id !== id);
       setResourceLinks(newLinks);
-      await api.saveResourceLinks(newLinks);
+      await api.saveResourceLinks(newLinks, token);
       toast.success('Link deleted');
     }
   };

@@ -5,48 +5,62 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { Lock, Loader2 } from 'lucide-react';
+import { Lock, Loader2, Mail } from 'lucide-react';
 import { toast } from 'sonner';
+import { supabase } from '../utils/supabase/client';
 
 export function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [session, setSession] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     // Check for existing session
-    const session = sessionStorage.getItem('nibbleiq_admin_session');
-    if (session === 'true') {
-      setIsAuthenticated(true);
-    }
-    setIsLoading(false);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setIsLoading(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call for login
-    setTimeout(() => {
-      if (password === 'admin123') { // Simple hardcoded password for demo
-        sessionStorage.setItem('nibbleiq_admin_session', 'true');
-        setIsAuthenticated(true);
-        toast.success('Welcome back!');
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        toast.error(error.message);
       } else {
-        toast.error('Invalid password');
+        toast.success('Welcome back!');
       }
+    } catch (error) {
+      toast.error('An unexpected error occurred');
+      console.error(error);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('nibbleiq_admin_session');
-    setIsAuthenticated(false);
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     toast.success('Logged out successfully');
   };
 
-  if (isLoading && !isAuthenticated) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <Loader2 className="w-8 h-8 animate-spin text-orange-500" />
@@ -54,7 +68,7 @@ export function AdminPage() {
     );
   }
 
-  if (!isAuthenticated) {
+  if (!session) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
         <Card className="w-full max-w-md shadow-lg border-slate-200">
@@ -68,16 +82,34 @@ export function AdminPage() {
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="pl-9 h-11"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="h-11"
-                />
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="pl-9 h-11"
+                  />
+                </div>
               </div>
               <Button 
                 type="submit" 
@@ -93,5 +125,5 @@ export function AdminPage() {
     );
   }
 
-  return <AdminDashboard onLogout={handleLogout} />;
+  return <AdminDashboard onLogout={handleLogout} token={session.access_token} />;
 }

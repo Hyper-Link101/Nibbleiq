@@ -293,19 +293,6 @@ export function ContactPage() {
                     <div className="text-sm text-slate-600">Blog, podcast, and helpful links</div>
                   </div>
                 </Link>
-                
-                <Link 
-                  to="/about" 
-                  className="flex items-center gap-3 text-slate-700 hover:text-orange-600 transition-colors"
-                >
-                  <div className="w-8 h-8 bg-slate-200 rounded-lg flex items-center justify-center">
-                    <span className="text-sm">👋</span>
-                  </div>
-                  <div>
-                    <div className="font-medium">About Us</div>
-                    <div className="text-sm text-slate-600">Learn about our story and team</div>
-                  </div>
-                </Link>
               </div>
             </div>
           </div>

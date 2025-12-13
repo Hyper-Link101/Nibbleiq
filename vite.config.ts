@@ -43,6 +43,7 @@
         '@radix-ui/react-aspect-ratio@1.1.2': '@radix-ui/react-aspect-ratio',
         '@radix-ui/react-alert-dialog@1.1.6': '@radix-ui/react-alert-dialog',
         '@jsr/supabase__supabase-js@2.49.8': '@jsr/supabase__supabase-js',
+        '@jsr/supabase__supabase-js@2': '@jsr/supabase__supabase-js',
         '@': path.resolve(__dirname, './src'),
       },
     },
