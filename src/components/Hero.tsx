@@ -17,9 +17,9 @@ export function Hero() {
     <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50/30 to-red-50/20">
       {/* Warm, Food-Inspired Background Elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden hidden md:block">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-amber-400/10 via-orange-300/8 to-transparent rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-red-400/8 via-amber-300/5 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-orange-400/5 to-red-400/5 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-amber-400/10 via-orange-300/8 to-transparent rounded-full blur-3xl animate-float pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-red-400/8 via-amber-300/5 to-transparent rounded-full blur-3xl animate-float-delayed pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-orange-400/5 to-red-400/5 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
       </div>
 
       {/* Sticky Navigation */}
@@ -274,6 +274,8 @@ export function Hero() {
                   className="w-full h-auto object-cover object-center transform hover:scale-105 transition-transform duration-700"
                   width="1200"
                   height="800"
+                  loading="eager"
+                  priority={true}
                 />
               </div>
 

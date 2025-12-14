@@ -48,11 +48,11 @@ export function ProblemSection() {
               key={index}
               className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 hover:bg-slate-800 transition-all hover:scale-105"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-red-600 rounded-lg flex items-center justify-center mb-4">
-                <problem.icon className="h-6 w-6 text-white" />
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-red-600 rounded-lg flex items-center justify-center mb-4 text-white">
+                <problem.icon className="h-6 w-6" aria-hidden="true" />
               </div>
-              <h3 className="text-xl mb-3 font-semibold">{problem.title}</h3>
-              <p className="text-slate-400">{problem.description}</p>
+              <h3 className="text-xl mb-3 font-semibold text-white">{problem.title}</h3>
+              <p className="text-slate-300">{problem.description}</p>
             </div>
           ))}
         </div>

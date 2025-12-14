@@ -164,6 +164,7 @@ export function ValuePropositionSection() {
                       alt={item.title}
                       className="w-full h-full object-cover brightness-90 group-hover:brightness-110 transition-all duration-700"
                       loading="lazy"
+                      width="400"
                     />
                     {/* Noise texture overlay for depth */}
                     <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/5 to-black/20 mix-blend-overlay"></div>

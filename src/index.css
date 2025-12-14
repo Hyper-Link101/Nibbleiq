@@ -141,7 +141,6 @@
     --color-slate-700: oklch(.372 .044 257.287);
     --color-slate-800: oklch(.279 .041 260.031);
     --color-slate-900: oklch(.208 .042 265.755);
-    --color-gray-100: oklch(.967 .003 264.542);
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
@@ -1819,6 +1818,10 @@
     border-left-color: #0000;
   }
 
+  .bg-accent {
+    background-color: var(--accent);
+  }
+
   .bg-amber-400 {
     background-color: var(--color-amber-400);
   }
@@ -1869,10 +1872,6 @@
 
   .bg-destructive {
     background-color: var(--destructive);
-  }
-
-  .bg-gray-100 {
-    background-color: var(--color-gray-100);
   }
 
   .bg-green-50 {
@@ -3143,10 +3142,6 @@
 
   .text-left {
     text-align: left;
-  }
-
-  .align-middle {
-    vertical-align: middle;
   }
 
   .font-mono {

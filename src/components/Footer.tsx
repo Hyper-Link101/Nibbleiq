@@ -30,7 +30,15 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
           <div className="lg:col-span-2">
             <Link to="/" aria-label="NibbleIQ Home">
-              <img src={logoImage} alt="NibbleIQ" className="h-10 mb-6 hover:opacity-80 transition-opacity cursor-pointer" width="160" height="40" />
+              <img 
+                src={logoImage} 
+                alt="NibbleIQ" 
+                className="h-10 mb-6 hover:opacity-80 transition-opacity cursor-pointer" 
+                width="160" 
+                height="40" 
+                loading="lazy" 
+                decoding="async" 
+              />
             </Link>
             <p className="text-slate-400 mb-6 max-w-sm">
               A unified restaurant intelligence platform that delivers real-time analytics and intelligent automation for better operational decisions.
