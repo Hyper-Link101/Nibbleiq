@@ -141,6 +141,7 @@
     --color-slate-700: oklch(.372 .044 257.287);
     --color-slate-800: oklch(.279 .041 260.031);
     --color-slate-900: oklch(.208 .042 265.755);
+    --color-gray-100: oklch(.967 .003 264.542);
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
@@ -1818,10 +1819,6 @@
     border-left-color: #0000;
   }
 
-  .bg-accent {
-    background-color: var(--accent);
-  }
-
   .bg-amber-400 {
     background-color: var(--color-amber-400);
   }
@@ -1872,6 +1869,10 @@
 
   .bg-destructive {
     background-color: var(--destructive);
+  }
+
+  .bg-gray-100 {
+    background-color: var(--color-gray-100);
   }
 
   .bg-green-50 {
@@ -3142,6 +3143,10 @@
 
   .text-left {
     text-align: left;
+  }
+
+  .align-middle {
+    vertical-align: middle;
   }
 
   .font-mono {
@@ -4464,65 +4469,8 @@
     }
   }
 
-  .focus\:not-sr-only:focus {
-    clip: auto;
-    white-space: normal;
-    width: auto;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    position: static;
-    overflow: visible;
-  }
-
-  .focus\:fixed:focus {
-    position: fixed;
-  }
-
-  .focus\:top-4:focus {
-    top: calc(var(--spacing) * 4);
-  }
-
-  .focus\:left-4:focus {
-    left: calc(var(--spacing) * 4);
-  }
-
-  .focus\:z-\[100\]:focus {
-    z-index: 100;
-  }
-
-  .focus\:rounded-lg:focus {
-    border-radius: var(--radius);
-  }
-
   .focus\:border-transparent:focus {
     border-color: #0000;
-  }
-
-  .focus\:bg-white:focus {
-    background-color: var(--color-white);
-  }
-
-  .focus\:px-6:focus {
-    padding-inline: calc(var(--spacing) * 6);
-  }
-
-  .focus\:py-3:focus {
-    padding-block: calc(var(--spacing) * 3);
-  }
-
-  .focus\:font-bold:focus {
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
-  }
-
-  .focus\:text-slate-900:focus {
-    color: var(--color-slate-900);
-  }
-
-  .focus\:shadow-xl:focus {
-    --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, #0000001a), 0 8px 10px -6px var(--tw-shadow-color, #0000001a);
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
 
   .focus\:ring-2:focus {

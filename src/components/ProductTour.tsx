@@ -81,7 +81,7 @@ export function ProductTour() {
                     {step.title}
                   </h3>
                   <p className={`text-sm leading-relaxed ${
-                    activeStep === index ? "text-slate-700" : "text-slate-500"
+                    activeStep === index ? "text-slate-700" : "text-slate-400"
                   }`}>
                     {step.description}
                   </p>
