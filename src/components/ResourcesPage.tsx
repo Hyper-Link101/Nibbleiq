@@ -69,34 +69,45 @@ export function ResourcesPage({ initialTab = 'blog' }: ResourcesPageProps) {
           api.getResourceLinks()
         ]);
 
-        // MDX Content
-        const mdxBlogs = getAllContent('blog').map(item => ({
-          id: item.slug, // Use slug as ID for MDX
-          title: item.frontmatter.title || 'Untitled',
-          slug: item.slug,
-          excerpt: item.frontmatter.excerpt || item.frontmatter.description || '',
-          content: '', // Not needed for list
-          author: item.frontmatter.author || 'NibbleIQ Team',
-          date: item.frontmatter.date ? new Date(item.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
-          readTime: item.frontmatter.readTime || '5 min read',
-          category: item.frontmatter.category || 'Insights',
-          image: item.frontmatter.image,
-          published: item.frontmatter.published !== false
-        }));
+        // MDX Content - Wrap in try-catch to handle glob errors gracefully
+        let mdxBlogs: any[] = [];
+        let mdxPodcasts: any[] = [];
+        
+        try {
+          mdxBlogs = getAllContent('blog').map(item => ({
+            id: item.slug, // Use slug as ID for MDX
+            title: item.frontmatter.title || 'Untitled',
+            slug: item.slug,
+            excerpt: item.frontmatter.excerpt || item.frontmatter.description || '',
+            content: '', // Not needed for list
+            author: item.frontmatter.author || 'NibbleIQ Team',
+            date: item.frontmatter.date ? new Date(item.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
+            readTime: item.frontmatter.readTime || '5 min read',
+            category: item.frontmatter.category || 'Insights',
+            image: item.frontmatter.image,
+            published: item.frontmatter.published !== false
+          }));
+        } catch (error) {
+          console.warn('MDX blog loading failed, using API/default data only:', error);
+        }
 
-        const mdxPodcasts = getAllContent('podcast').map(item => ({
-          id: item.slug,
-          title: item.frontmatter.title || 'Untitled',
-          description: item.frontmatter.description || '',
-          duration: item.frontmatter.duration || '',
-          date: item.frontmatter.date ? new Date(item.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
-          guest: item.frontmatter.guest || '',
-          topics: item.frontmatter.topics || [],
-          spotifyUrl: item.frontmatter.spotifyUrl || '#',
-          appleUrl: item.frontmatter.appleUrl || '#',
-          image: item.frontmatter.image,
-          published: item.frontmatter.published !== false
-        }));
+        try {
+          mdxPodcasts = getAllContent('podcast').map(item => ({
+            id: item.slug,
+            title: item.frontmatter.title || 'Untitled',
+            description: item.frontmatter.description || '',
+            duration: item.frontmatter.duration || '',
+            date: item.frontmatter.date ? new Date(item.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
+            guest: item.frontmatter.guest || '',
+            topics: item.frontmatter.topics || [],
+            spotifyUrl: item.frontmatter.spotifyUrl || '#',
+            appleUrl: item.frontmatter.appleUrl || '#',
+            image: item.frontmatter.image,
+            published: item.frontmatter.published !== false
+          }));
+        } catch (error) {
+          console.warn('MDX podcast loading failed, using API/default data only:', error);
+        }
 
         let combinedBlogs = [...mdxBlogs];
         if (blogs && blogs.length > 0) {

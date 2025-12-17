@@ -47,6 +47,13 @@ export function Hero() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
             </a>
             <Link 
+              to="/blog" 
+              className="text-slate-700 hover:text-orange-600 transition-colors relative group"
+            >
+              Blog
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
+            </Link>
+            <Link 
               to="/resources" 
               className="text-slate-700 hover:text-orange-600 transition-colors relative group"
             >
@@ -96,6 +103,13 @@ export function Hero() {
               >
                 How It Works
               </a>
+              <Link 
+                to="/blog" 
+                className="text-slate-700 hover:text-orange-600 transition-colors py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
               <Link 
                 to="/resources" 
                 className="text-slate-700 hover:text-orange-600 transition-colors py-2"
