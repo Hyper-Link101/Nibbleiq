@@ -94,7 +94,15 @@ export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
           setBlogPosts(blogs);
         } else {
           setBlogPosts(INITIAL_BLOG_POSTS);
-          api.saveBlogPosts(INITIAL_BLOG_POSTS); // Sync initial data
+          // Seed the backend only when authenticated
+          if (token) {
+            try {
+              await api.saveBlogPosts(INITIAL_BLOG_POSTS, token);
+              toast.success('Seeded initial blog posts');
+            } catch {
+              // Ignore seed failures; local UI still works
+            }
+          }
         }
 
         setPodcastEpisodes(podcasts || []);
@@ -109,7 +117,7 @@ export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
     };
 
     loadData();
-  }, []);
+  }, [token]);
 
   // CRUD Handlers
   const handleSaveBlog = async (blog: BlogPost) => {
