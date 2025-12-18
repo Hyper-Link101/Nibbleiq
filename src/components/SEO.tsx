@@ -32,6 +32,12 @@ export function SEO({
   const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
   const canonicalUrl = canonical || siteUrl;
 
+  // Safety check: Only noindex legal pages (privacy, terms, cookies)
+  const isLegalPage = title.toLowerCase().includes('privacy') || 
+                      title.toLowerCase().includes('terms') || 
+                      title.toLowerCase().includes('cookie');
+  const shouldNoIndex = isLegalPage || noindex;
+
   return (
     <Helmet>
       {/* Performance optimizations - Preconnect to external domains */}
@@ -54,7 +60,7 @@ export function SEO({
       <link rel="canonical" href={canonicalUrl} />
 
       {/* Robots */}
-      {noindex ? (
+      {shouldNoIndex ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
