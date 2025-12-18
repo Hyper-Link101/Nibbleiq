@@ -7,20 +7,24 @@ import { Lock } from 'lucide-react';
 import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
 
 interface AdminLoginProps {
-  onLogin: (password: string) => void;
+  onLogin: (password: string) => Promise<boolean>;
 }
 
 export function AdminLogin({ onLogin }: AdminLoginProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'nibbleiq2024') {
-      onLogin(password);
-      setError('');
-    } else {
-      setError('Incorrect password');
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const ok = await onLogin(password.trim());
+      if (!ok) setError('Incorrect password');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -45,13 +49,18 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter admin password"
                 className="pl-10"
+                autoComplete="current-password"
               />
             </div>
             {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
           </div>
 
-          <Button type="submit" className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white">
-            Login to Admin Panel
+          <Button
+            type="submit"
+            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+            disabled={isSubmitting || password.trim().length === 0}
+          >
+            {isSubmitting ? 'Checking…' : 'Login to Admin Panel'}
           </Button>
         </form>
       </Card>

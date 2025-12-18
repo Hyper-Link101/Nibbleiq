@@ -1,13 +1,14 @@
-import { projectId, publicAnonKey } from './supabase/info';
+const BASE_URL = '/.netlify/functions';
 
-const BASE_URL = `https://${projectId}.supabase.co/functions/v1/make-server-94a4ef79`;
-
-async function fetchWithAuth(endpoint: string, options: RequestInit = {}, token?: string) {
-  const headers = {
-    'Authorization': `Bearer ${token || publicAnonKey}`,
+async function fetchJson(endpoint: string, options: RequestInit = {}, token?: string) {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...options.headers,
+    ...(options.headers as Record<string, string> | undefined),
   };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
 
   const response = await fetch(`${BASE_URL}${endpoint}`, {
     ...options,
@@ -15,28 +16,46 @@ async function fetchWithAuth(endpoint: string, options: RequestInit = {}, token?
   });
 
   if (!response.ok) {
-    throw new Error(`API call failed: ${response.statusText}`);
+    const text = await response.text().catch(() => '');
+    throw new Error(text || response.statusText);
   }
 
-  return response.json();
+  return response.json().catch(() => ({}));
 }
 
 export const api = {
-  getBlogPosts: () => fetchWithAuth('/blog-posts'),
-  saveBlogPosts: (posts: any[], token?: string) => fetchWithAuth('/blog-posts', {
-    method: 'POST',
-    body: JSON.stringify(posts),
-  }, token),
+  verifyAdmin: (token: string) => fetchJson('/admin-auth', { method: 'GET' }, token),
 
-  getPodcasts: () => fetchWithAuth('/podcasts'),
-  savePodcasts: (podcasts: any[], token?: string) => fetchWithAuth('/podcasts', {
-    method: 'POST',
-    body: JSON.stringify(podcasts),
-  }, token),
+  getBlogPosts: () => fetchJson('/blog-posts'),
+  saveBlogPosts: (posts: any[], token: string) =>
+    fetchJson(
+      '/blog-posts',
+      {
+        method: 'POST',
+        body: JSON.stringify(posts),
+      },
+      token,
+    ),
 
-  getResourceLinks: () => fetchWithAuth('/resource-links'),
-  saveResourceLinks: (links: any[], token?: string) => fetchWithAuth('/resource-links', {
-    method: 'POST',
-    body: JSON.stringify(links),
-  }, token),
+  getPodcasts: () => fetchJson('/podcasts'),
+  savePodcasts: (podcasts: any[], token: string) =>
+    fetchJson(
+      '/podcasts',
+      {
+        method: 'POST',
+        body: JSON.stringify(podcasts),
+      },
+      token,
+    ),
+
+  getResourceLinks: () => fetchJson('/resource-links'),
+  saveResourceLinks: (links: any[], token: string) =>
+    fetchJson(
+      '/resource-links',
+      {
+        method: 'POST',
+        body: JSON.stringify(links),
+      },
+      token,
+    ),
 };
