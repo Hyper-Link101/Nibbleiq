@@ -1,12 +1,14 @@
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Podcast, 
-  Link2, 
-  Settings, 
-  LogOut, 
+import {
+  LayoutDashboard,
+  FileText,
+  Podcast,
+  Link2,
+  Settings,
+  LogOut,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Newspaper,
+  ExternalLink
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { cn } from '../lib/utils';
@@ -20,17 +22,18 @@ interface AdminSidebarProps {
   setIsCollapsed: (collapsed: boolean) => void;
 }
 
-export function AdminSidebar({ 
-  activeTab, 
-  onTabChange, 
+export function AdminSidebar({
+  activeTab,
+  onTabChange,
   onLogout,
   isCollapsed,
   setIsCollapsed
 }: AdminSidebarProps) {
-  
+
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'blog', label: 'Blog Posts', icon: FileText },
+    { id: 'articles', label: 'Articles', icon: Newspaper },
     { id: 'podcast', label: 'Podcasts', icon: Podcast },
     { id: 'links', label: 'Resources', icon: Link2 },
   ];
@@ -75,6 +78,17 @@ export function AdminSidebar({
 
       {/* Footer */}
       <div className="p-2 border-t border-slate-800 space-y-1">
+        <a
+          href="/admin/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition-colors text-slate-400"
+          title={isCollapsed ? "Open Git CMS" : undefined}
+        >
+          <ExternalLink className="w-5 h-5 min-w-[20px]" />
+          {!isCollapsed && <span>Open Git CMS</span>}
+        </a>
+
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition-colors text-slate-400"
@@ -82,7 +96,7 @@ export function AdminSidebar({
           {isCollapsed ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
           {!isCollapsed && <span>Collapse</span>}
         </button>
-        
+
         <button
           onClick={onLogout}
           className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-900/20 hover:text-red-400 transition-colors text-slate-400"

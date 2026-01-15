@@ -10,22 +10,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Switch } from './ui/switch';
 import { RichTextEditor } from './RichTextEditor';
 import { AdminSidebar } from './AdminSidebar';
-import { 
-  Plus, 
-  Search, 
-  Filter, 
-  MoreHorizontal, 
-  Eye, 
-  Edit2, 
-  Trash2, 
-  X, 
-  Save, 
+import {
+  Plus,
+  Search,
+  Filter,
+  MoreHorizontal,
+  Eye,
+  Edit2,
+  Trash2,
+  X,
+  Save,
   Loader2,
   CheckCircle2,
   Clock,
   ArrowUpRight,
   Globe,
-  BarChart3
+  BarChart3,
+  Newspaper,
+  FileText,
+  Podcast,
+  Link2,
+  Star
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { INITIAL_BLOG_POSTS, BlogPost } from '../data/blogPosts';
@@ -58,6 +63,23 @@ interface ResourceLink {
   published: boolean;
 }
 
+interface Article {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content?: string;
+  articleType: 'News' | 'Tutorial' | 'Case Study' | 'Opinion' | 'Research';
+  category: string;
+  author: string;
+  date: string;
+  readTime: string;
+  featuredImage?: string;
+  tags: string[];
+  published: boolean;
+  featured: boolean;
+}
+
 interface AdminDashboardProps {
   onLogout: () => void;
   token: string;
@@ -66,17 +88,19 @@ interface AdminDashboardProps {
 export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  
+
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [podcastEpisodes, setPodcastEpisodes] = useState<PodcastEpisode[]>([]);
   const [resourceLinks, setResourceLinks] = useState<ResourceLink[]>([]);
-  
+  const [articles, setArticles] = useState<Article[]>([]);
+
   const [isLoading, setIsLoading] = useState(true);
 
   // Editors State
   const [editingBlog, setEditingBlog] = useState<BlogPost | null>(null);
   const [editingPodcast, setEditingPodcast] = useState<PodcastEpisode | null>(null);
   const [editingLink, setEditingLink] = useState<ResourceLink | null>(null);
+  const [editingArticle, setEditingArticle] = useState<Article | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
   // Load Data
@@ -84,10 +108,11 @@ export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
     const loadData = async () => {
       try {
         setIsLoading(true);
-        const [blogs, podcasts, links] = await Promise.all([
+        const [blogs, podcasts, links, articlesData] = await Promise.all([
           api.getBlogPosts(),
           api.getPodcasts(),
-          api.getResourceLinks()
+          api.getResourceLinks(),
+          api.getArticles()
         ]);
 
         if (blogs && blogs.length > 0) {
@@ -107,6 +132,7 @@ export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
 
         setPodcastEpisodes(podcasts || []);
         setResourceLinks(links || []);
+        setArticles(articlesData || []);
       } catch (error) {
         console.error('Failed to load data:', error);
         toast.error('Failed to load data from server');
@@ -208,6 +234,36 @@ export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
     }
   };
 
+  // Article CRUD handlers
+  const handleSaveArticle = async (article: Article) => {
+    try {
+      let newArticles;
+      if (article.id === 0) {
+        const newArticle = { ...article, id: Date.now() };
+        newArticles = [newArticle, ...articles];
+        toast.success('Article created successfully!');
+      } else {
+        newArticles = articles.map(a => a.id === article.id ? article : a);
+        toast.success('Article updated successfully!');
+      }
+      setArticles(newArticles);
+      await api.saveArticles(newArticles, token);
+      setEditingArticle(null);
+      setIsCreating(false);
+    } catch (error) {
+      toast.error('Failed to save article');
+    }
+  };
+
+  const handleDeleteArticle = async (id: number) => {
+    if (confirm('Are you sure? This cannot be undone.')) {
+      const newArticles = articles.filter(a => a.id !== id);
+      setArticles(newArticles);
+      await api.saveArticles(newArticles, token);
+      toast.success('Article deleted');
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -221,54 +277,64 @@ export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
     if (editingBlog) return <BlogEditor blog={editingBlog} onSave={handleSaveBlog} onCancel={() => setEditingBlog(null)} />;
     if (editingPodcast) return <PodcastEditor podcast={editingPodcast} onSave={handleSavePodcast} onCancel={() => setEditingPodcast(null)} />;
     if (editingLink) return <LinkEditor link={editingLink} onSave={handleSaveLink} onCancel={() => setEditingLink(null)} />;
-    
+    if (editingArticle) return <ArticleEditor article={editingArticle} onSave={handleSaveArticle} onCancel={() => setEditingArticle(null)} />;
+
     // Creating New Items
     if (isCreating) {
       if (activeTab === 'blog') return <BlogEditor blog={emptyBlog} onSave={handleSaveBlog} onCancel={() => setIsCreating(false)} />;
       if (activeTab === 'podcast') return <PodcastEditor podcast={emptyPodcast} onSave={handleSavePodcast} onCancel={() => setIsCreating(false)} />;
       if (activeTab === 'links') return <LinkEditor link={emptyLink} onSave={handleSaveLink} onCancel={() => setIsCreating(false)} />;
+      if (activeTab === 'articles') return <ArticleEditor article={emptyArticle} onSave={handleSaveArticle} onCancel={() => setIsCreating(false)} />;
     }
 
     switch (activeTab) {
       case 'dashboard':
-        return <DashboardHome blogs={blogPosts} podcasts={podcastEpisodes} links={resourceLinks} onChangeTab={setActiveTab} />;
+        return <DashboardHome blogs={blogPosts} podcasts={podcastEpisodes} links={resourceLinks} articles={articles} onChangeTab={setActiveTab} />;
       case 'blog':
-        return <BlogList 
-          posts={blogPosts} 
-          onCreate={() => setIsCreating(true)} 
-          onEdit={setEditingBlog} 
+        return <BlogList
+          posts={blogPosts}
+          onCreate={() => setIsCreating(true)}
+          onEdit={setEditingBlog}
           onDelete={handleDeleteBlog}
         />;
+      case 'articles':
+        return <ArticleList
+          articles={articles}
+          onCreate={() => setIsCreating(true)}
+          onEdit={setEditingArticle}
+          onDelete={handleDeleteArticle}
+        />;
       case 'podcast':
-        return <PodcastList 
-          episodes={podcastEpisodes} 
-          onCreate={() => setIsCreating(true)} 
-          onEdit={setEditingPodcast} 
+        return <PodcastList
+          episodes={podcastEpisodes}
+          onCreate={() => setIsCreating(true)}
+          onEdit={setEditingPodcast}
           onDelete={handleDeletePodcast}
         />;
       case 'links':
-        return <LinkList 
-          links={resourceLinks} 
-          onCreate={() => setIsCreating(true)} 
-          onEdit={setEditingLink} 
+        return <LinkList
+          links={resourceLinks}
+          onCreate={() => setIsCreating(true)}
+          onEdit={setEditingLink}
           onDelete={handleDeleteLink}
         />;
       default:
-        return <DashboardHome blogs={blogPosts} podcasts={podcastEpisodes} links={resourceLinks} onChangeTab={setActiveTab} />;
+        return <DashboardHome blogs={blogPosts} podcasts={podcastEpisodes} links={resourceLinks} articles={articles} onChangeTab={setActiveTab} />;
     }
   };
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
-      <AdminSidebar 
-        activeTab={activeTab} 
+      <AdminSidebar
+        activeTab={activeTab}
         onTabChange={(tab) => {
           setActiveTab(tab);
           setIsCreating(false);
           setEditingBlog(null);
           setEditingPodcast(null);
           setEditingLink(null);
-        }} 
+          setEditingArticle(null);
+        }}
         onLogout={onLogout}
         isCollapsed={isSidebarCollapsed}
         setIsCollapsed={setIsSidebarCollapsed}
@@ -285,9 +351,10 @@ export function AdminDashboard({ onLogout, token }: AdminDashboardProps) {
 
 // Sub-components (DashboardHome, BlogList, BlogEditor, etc.)
 
-function DashboardHome({ blogs, podcasts, links, onChangeTab }: any) {
+function DashboardHome({ blogs, podcasts, links, articles, onChangeTab }: any) {
   const stats = [
     { title: 'Total Blog Posts', value: blogs.length, icon: FileText, color: 'text-blue-600', bg: 'bg-blue-100', tab: 'blog' },
+    { title: 'Articles', value: articles?.length || 0, icon: Newspaper, color: 'text-orange-600', bg: 'bg-orange-100', tab: 'articles' },
     { title: 'Podcast Episodes', value: podcasts.length, icon: Podcast, color: 'text-purple-600', bg: 'bg-purple-100', tab: 'podcast' },
     { title: 'Resource Links', value: links.length, icon: Link2, color: 'text-green-600', bg: 'bg-green-100', tab: 'links' },
   ];
@@ -299,7 +366,7 @@ function DashboardHome({ blogs, podcasts, links, onChangeTab }: any) {
         <p className="text-slate-500 mt-2">Welcome back to NibbleIQ Admin</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
           <Card key={i} className="hover:shadow-md transition-shadow cursor-pointer" onClick={() => onChangeTab(stat.tab)}>
             <CardContent className="p-6 flex items-center justify-between">
@@ -829,3 +896,341 @@ const emptyLink: ResourceLink = {
   date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
   published: false
 };
+
+const emptyArticle: Article = {
+  id: 0,
+  title: '',
+  slug: '',
+  excerpt: '',
+  content: '',
+  articleType: 'News',
+  category: 'Industry Trends',
+  author: 'NibbleIQ Team',
+  date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+  readTime: '5 min read',
+  tags: [],
+  published: false,
+  featured: false
+};
+
+// Article List Component
+function ArticleList({ articles, onCreate, onEdit, onDelete }: any) {
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('all');
+  const [typeFilter, setTypeFilter] = useState('all');
+
+  const filteredArticles = articles.filter((article: Article) => {
+    const matchesSearch = article.title.toLowerCase().includes(search.toLowerCase()) ||
+                          article.excerpt?.toLowerCase().includes(search.toLowerCase());
+    const matchesFilter = filter === 'all' ? true :
+                          filter === 'published' ? article.published :
+                          filter === 'featured' ? article.featured : !article.published;
+    const matchesType = typeFilter === 'all' ? true : article.articleType === typeFilter;
+    return matchesSearch && matchesFilter && matchesType;
+  });
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900">Articles</h2>
+          <p className="text-slate-500">Manage industry news, tutorials, and case studies</p>
+        </div>
+        <Button onClick={onCreate} className="bg-orange-600 hover:bg-orange-700 text-white">
+          <Plus className="w-4 h-4 mr-2" /> New Article
+        </Button>
+      </div>
+
+      {/* Filters */}
+      <div className="flex flex-wrap gap-4 items-center bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+        <div className="relative flex-1 min-w-[200px] max-w-sm">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Input
+            placeholder="Search articles..."
+            className="pl-9"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <select
+          className="h-10 px-3 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="all">All Status</option>
+          <option value="published">Published</option>
+          <option value="draft">Draft</option>
+          <option value="featured">Featured</option>
+        </select>
+        <select
+          className="h-10 px-3 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+          value={typeFilter}
+          onChange={(e) => setTypeFilter(e.target.value)}
+        >
+          <option value="all">All Types</option>
+          <option value="News">News</option>
+          <option value="Tutorial">Tutorial</option>
+          <option value="Case Study">Case Study</option>
+          <option value="Opinion">Opinion</option>
+          <option value="Research">Research</option>
+        </select>
+      </div>
+
+      <div className="grid gap-4">
+        {filteredArticles.map((article: Article) => (
+          <Card key={article.id} className="group hover:shadow-md transition-all duration-200 border-l-4 border-l-transparent hover:border-l-orange-500">
+            <CardContent className="p-6">
+              <div className="flex items-start justify-between">
+                <div className="space-y-1 flex-1">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h3 className="font-semibold text-lg text-slate-900">{article.title}</h3>
+                    <Badge variant="outline" className="text-xs">{article.articleType}</Badge>
+                    {article.featured && (
+                      <Badge className="bg-yellow-100 text-yellow-700 hover:bg-yellow-200">
+                        <Star className="w-3 h-3 mr-1" /> Featured
+                      </Badge>
+                    )}
+                    <Badge variant={article.published ? "default" : "secondary"} className={article.published ? "bg-green-100 text-green-700 hover:bg-green-200" : ""}>
+                      {article.published ? 'Published' : 'Draft'}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-slate-500 line-clamp-1 max-w-2xl">{article.excerpt}</p>
+                  <div className="flex items-center gap-4 text-xs text-slate-400 mt-2">
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {article.date}</span>
+                    <span>•</span>
+                    <span>{article.author}</span>
+                    <span>•</span>
+                    <span>{article.category}</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Button size="sm" variant="ghost" onClick={() => onEdit(article)}>
+                    <Edit2 className="w-4 h-4 text-slate-500" />
+                  </Button>
+                  <Button size="sm" variant="ghost" onClick={() => onDelete(article.id)} className="text-red-500 hover:text-red-600 hover:bg-red-50">
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+        {filteredArticles.length === 0 && (
+          <div className="text-center py-12 text-slate-500">
+            No articles found matching your filters.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// Article Editor Component
+function ArticleEditor({ article, onSave, onCancel }: any) {
+  const [formData, setFormData] = useState<Article>(article);
+  const [activeTab, setActiveTab] = useState('content');
+
+  const generateSlug = (title: string) => {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  };
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const title = e.target.value;
+    if (article.id === 0 || !formData.slug) {
+      setFormData(prev => ({ ...prev, title, slug: generateSlug(title) }));
+    } else {
+      setFormData(prev => ({ ...prev, title }));
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden flex flex-col h-[calc(100vh-100px)]">
+      {/* Header */}
+      <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-white z-10">
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="icon" onClick={onCancel}>
+            <X className="w-5 h-5" />
+          </Button>
+          <div>
+            <h2 className="text-lg font-bold text-slate-900">{article.id === 0 ? 'New Article' : 'Edit Article'}</h2>
+            <p className="text-xs text-slate-500">{formData.slug ? `/articles/${formData.slug}` : 'No slug set'}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 mr-2">
+            <Label htmlFor="featured-toggle" className="text-sm font-medium text-slate-600 cursor-pointer">
+              Featured
+            </Label>
+            <Switch
+              id="featured-toggle"
+              checked={formData.featured}
+              onCheckedChange={(checked) => setFormData({ ...formData, featured: checked })}
+            />
+          </div>
+          <div className="flex items-center gap-2 mr-4">
+            <Label htmlFor="article-published-toggle" className="text-sm font-medium text-slate-600 cursor-pointer">
+              {formData.published ? 'Published' : 'Draft'}
+            </Label>
+            <Switch
+              id="article-published-toggle"
+              checked={formData.published}
+              onCheckedChange={(checked) => setFormData({ ...formData, published: checked })}
+            />
+          </div>
+          <Button variant="outline" onClick={onCancel}>Cancel</Button>
+          <Button onClick={() => onSave(formData)} className="bg-orange-600 hover:bg-orange-700 text-white gap-2">
+            <Save className="w-4 h-4" /> Save
+          </Button>
+        </div>
+      </div>
+
+      {/* Editor Body */}
+      <div className="flex-1 overflow-hidden">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
+          <div className="px-6 pt-4 bg-slate-50 border-b border-slate-200">
+            <TabsList className="bg-white border border-slate-200">
+              <TabsTrigger value="content">Content</TabsTrigger>
+              <TabsTrigger value="settings">Settings</TabsTrigger>
+            </TabsList>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-6 bg-slate-50/50">
+            <TabsContent value="content" className="mt-0 space-y-6 max-w-4xl mx-auto">
+              <div className="space-y-4 bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                <div>
+                  <Label>Article Title</Label>
+                  <Input
+                    value={formData.title}
+                    onChange={handleTitleChange}
+                    className="text-lg font-bold mt-1"
+                    placeholder="Enter an engaging title..."
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>Article Type</Label>
+                    <select
+                      className="w-full h-10 px-3 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 mt-1"
+                      value={formData.articleType}
+                      onChange={(e) => setFormData({ ...formData, articleType: e.target.value as Article['articleType'] })}
+                    >
+                      <option value="News">News</option>
+                      <option value="Tutorial">Tutorial</option>
+                      <option value="Case Study">Case Study</option>
+                      <option value="Opinion">Opinion</option>
+                      <option value="Research">Research</option>
+                    </select>
+                  </div>
+                  <div>
+                    <Label>Category</Label>
+                    <select
+                      className="w-full h-10 px-3 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 mt-1"
+                      value={formData.category}
+                      onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    >
+                      <option value="Restaurant Tech">Restaurant Tech</option>
+                      <option value="Industry Trends">Industry Trends</option>
+                      <option value="AI & Automation">AI & Automation</option>
+                      <option value="Cost Management">Cost Management</option>
+                      <option value="Workforce">Workforce</option>
+                      <option value="Sustainability">Sustainability</option>
+                      <option value="Food Safety">Food Safety</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <Label>Excerpt</Label>
+                  <Textarea
+                    value={formData.excerpt}
+                    onChange={e => setFormData({ ...formData, excerpt: e.target.value })}
+                    placeholder="A brief summary for article listings..."
+                    rows={2}
+                  />
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 min-h-[500px]">
+                <Label className="mb-2 block">Content</Label>
+                <RichTextEditor
+                  value={formData.content || ''}
+                  onChange={content => setFormData({ ...formData, content })}
+                  placeholder="Write your article content..."
+                />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="settings" className="mt-0 max-w-3xl mx-auto">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Article Settings</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label>URL Slug</Label>
+                      <Input
+                        value={formData.slug || ''}
+                        onChange={e => setFormData({ ...formData, slug: e.target.value })}
+                        className="font-mono text-sm"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Author</Label>
+                      <Input
+                        value={formData.author}
+                        onChange={e => setFormData({ ...formData, author: e.target.value })}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label>Publish Date</Label>
+                      <Input
+                        value={formData.date}
+                        onChange={e => setFormData({ ...formData, date: e.target.value })}
+                        placeholder="Nov 20, 2024"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Read Time</Label>
+                      <Input
+                        value={formData.readTime}
+                        onChange={e => setFormData({ ...formData, readTime: e.target.value })}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Featured Image URL</Label>
+                    <Input
+                      value={formData.featuredImage || ''}
+                      onChange={e => setFormData({ ...formData, featuredImage: e.target.value })}
+                      placeholder="https://images.unsplash.com/..."
+                    />
+                    {formData.featuredImage && (
+                      <div className="mt-2 relative aspect-video rounded-lg overflow-hidden border border-slate-200 bg-slate-100">
+                        <img src={formData.featuredImage} alt="Preview" className="w-full h-full object-cover" />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Tags (comma-separated)</Label>
+                    <Input
+                      value={formData.tags?.join(', ') || ''}
+                      onChange={e => setFormData({ ...formData, tags: e.target.value.split(',').map(t => t.trim()).filter(Boolean) })}
+                      placeholder="AI, restaurant tech, automation"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </div>
+        </Tabs>
+      </div>
+    </div>
+  );
+}

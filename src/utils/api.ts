@@ -58,4 +58,15 @@ export const api = {
       },
       token,
     ),
+
+  getArticles: () => fetchJson('/articles'),
+  saveArticles: (articles: any[], token: string) =>
+    fetchJson(
+      '/articles',
+      {
+        method: 'POST',
+        body: JSON.stringify(articles),
+      },
+      token,
+    ),
 };
