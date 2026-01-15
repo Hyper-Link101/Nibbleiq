@@ -2,7 +2,7 @@ import image_90f71b77ff8f7feaaf19a1f5fd379bf272f74375 from 'figma:asset/90f71b77
 import { Button } from "./ui/button";
 import { MoveRight, Play, Menu, X, CircleCheck, Sparkles, Zap, TrendingUp, Heart, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoImage from 'figma:asset/9bb62c518e31aa9f806ab4341886470dd2d122c6.png';
+import logoImage from '../assets/nibbleiq-logo-primary-512.png';
 import { useState, lazy, Suspense } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
